@@ -1,0 +1,79 @@
+# This is a basic workflow to help you get started with Actions
+
+name: PLT build
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    # Add dependencies (libraries + build tools)
+    - name: Install System
+      run: |
+        set -x
+        sudo apt-get update
+        sudo apt-get install -yy libsfml-dev libboost-test-dev libmicrohttpd-dev libxml2-dev xvfb lcov gcovr
+
+
+    # Run CMake
+    - name: Prepare build directory
+      run: |
+        set -x
+        mkdir build
+        cd build
+        cmake -DBOOST_ROOT=$BOOST_ROOT_1_69_0 -DBoost_ARCHITECTURE=-x64 ..
+
+    # Compile project
+    - name: Compile project
+      run: make -C build
+
+    # Run tests
+    - name: Test
+      run: xvfb-run make -C build check
+
+    # Run code coverage
+    - name: Code coverage
+      run: xvfb-run make -C build code-coverage
+
+    # Run code coverage XML
+    - name: Code coverage xml
+      run: xvfb-run make -C build code-coverage-gcov
+
+    - name: Code Coverage Summary Report
+      uses: irongut/CodeCoverageSummary@v1.2.0
+      with:
+        filename: build/code-coverage-gcov.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '0 50'
+        
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
+        
+# vim: set sw=2 sts=2 et:
