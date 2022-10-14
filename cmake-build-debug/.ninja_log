@@ -1,0 +1,13 @@
+# ninja log v5
+0	2	0	/home/alexandros/Documents/ENSEA_3A/PLT/plt/cmake-build-debug/CMakeFiles/clean-headers	cde38ebb7bcd60c4
+2	157	1665768027939195914	extern/dia2code/CMakeFiles/dia2code.dir/src/main.c.o	24febb342cf13a6f
+2	174	1665768027955196034	extern/dia2code/CMakeFiles/dia2code.dir/src/source_parser.c.o	e319ffa592721ec4
+1	385	1665768028167197623	extern/dia2code/CMakeFiles/dia2code.dir/src/generate_code_cpp.c.o	be6b3fbcd892d5c2
+0	93	1665768027875195435	extern/dia2code/CMakeFiles/dia2code.dir/src/comment_helper.c.o	6babf60bd443db4b
+432	518	1665768028299198613	../bin/dia2code	3d2d6bcca259693b
+2	215	1665768027995196333	extern/dia2code/CMakeFiles/dia2code.dir/src/scan_tree.c.o	b6f28e415f361705
+0	2	0	CMakeFiles/clean-headers	cde38ebb7bcd60c4
+1	118	1665768027899195615	extern/dia2code/CMakeFiles/dia2code.dir/src/decls.c.o	2cc52ff591a22979
+1	409	1665768028191197803	extern/dia2code/CMakeFiles/dia2code.dir/src/dia2code.c.o	1b3b8a7e26bf84c6
+2	432	1665768028215197983	extern/dia2code/CMakeFiles/dia2code.dir/src/parse_diagram.c.o	e7288a44f4d8ce41
+1	127	1665768027907195675	extern/dia2code/CMakeFiles/dia2code.dir/src/includes.c.o	b15b9e72c1c36b9f
