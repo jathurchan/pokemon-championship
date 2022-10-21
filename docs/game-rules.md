@@ -78,7 +78,7 @@
 >
 > <br/>* *Players can substitute their active creature as many times as they want as long as they have another available creature. This action is always performed before any opponent's attack*
 
-##### When a Creature is Knocked-out
+##### When a Creature is Knocked-out!
 
 > The knocked-out creature's owner chooses which of their remaining creatures enters the battlefield before the next turn begins.<br/>
 > If they have no available creatures left, the encounter ends.
@@ -95,6 +95,8 @@
 > - `Attack (Atk)`
 > - `Defense (Def)`
 > - `Speed (Spd)`
+
+[FLAREZAEL](https://user-images.githubusercontent.com/91960907/197291221-27a829c1-c213-41eb-b1a7-b0de0cf124fb.png)
 
 #### Items
 > Items can be given to a creature during the first part of an encounter. There are 2 types of items in the game :
