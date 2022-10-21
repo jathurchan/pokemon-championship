@@ -132,5 +132,5 @@ set(BUILD_TESTING ON CACHE BOOL
   "Set BUILD_TESTING to OFF to disable tests")
 if(BUILD_TESTING)
   # Include tests scripts
-  add_subdirectory(test)
+  # add_subdirectory(test)
 endif()
