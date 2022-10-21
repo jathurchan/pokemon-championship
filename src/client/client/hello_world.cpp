@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace client {
-    void client::helloWorld() {
+    void hello::helloWorld() {
         std::cout << "Hello, world!\n";
     }
 }

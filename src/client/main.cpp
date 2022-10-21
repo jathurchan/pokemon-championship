@@ -1,9 +1,8 @@
-#include <iostream>
 #include <client.hpp>
 
 int main(int argc,char* argv[])
 {
-    client::client test;
+    client::hello test;
     test.helloWorld();
     return 0;
 }
