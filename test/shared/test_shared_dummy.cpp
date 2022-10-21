@@ -26,5 +26,3 @@ BOOST_AUTO_TEST_CASE(TestExemple)
     BOOST_CHECK_GT(ex.x, 11); // Greater than equl
   }
 }
-
-/* vim: set sw=2 sts=2 et : */
