@@ -1,10 +1,13 @@
 
 # Using GitHub Actions to automate building and testing
+# Continuous Integration (CI)
 
 # Workflow -> Job -> Step -> Action
 
+
 # Workflow name (as it will appear in the 'Actions' tab)
 name: 'TurnBasedCombatCpp CI'
+
 
 # Workflow triggers (events that cause a workflow to run)
 on:
@@ -19,6 +22,7 @@ on:
       - main
       - 'release-v*'
       - dev
+
 
 # Group of jobs (which run in parallel by default)
 jobs:
