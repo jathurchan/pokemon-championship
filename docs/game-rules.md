@@ -1,4 +1,7 @@
+![AEVITUU](https://user-images.githubusercontent.com/91960907/197291599-fd09ea1b-735c-4a98-8dc4-46fc2d96d52f.png)
 # Pokémon Championship
+
+![ARBERMY](https://user-images.githubusercontent.com/91960907/197291630-a4b8441e-1b0f-4e3f-8d4e-6b5ee2834b5d.png)
 
 ## Archetype
 
@@ -57,6 +60,7 @@
 
 > Sets of tied players enter in Tournament Mode to resolve potential ties. Once all ties are resolved, final rankings are displayed.
 
+![VEILOW](https://user-images.githubusercontent.com/91960907/197291780-8c4c2b25-b7bb-4d19-bacd-becee3f53d90.png)
 
 ### Combat rules
 
@@ -95,6 +99,8 @@
 > - `Attack (Atk)`
 > - `Defense (Def)`
 > - `Speed (Spd)`
+
+   ![FLAREZAEL](https://user-images.githubusercontent.com/91960907/197291221-27a829c1-c213-41eb-b1a7-b0de0cf124fb.png)
 
 #### Items
 > Items can be given to a creature during the first part of an encounter. There are 2 types of items in the game :
