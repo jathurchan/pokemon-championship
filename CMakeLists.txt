@@ -84,8 +84,44 @@ endif()
 add_subdirectory(dependencies/dia2code)
 
 
+# Find library jsoncpp
+set(jsoncpp_include_dir "${PROJECT_SOURCE_DIR}/dependencies/jsoncpp-1.8.0")
+file(GLOB_RECURSE jsoncpp_sources dependencies/jsoncpp-1.8.0/*.cpp)
+
+
+# Add option to enable special build for ENSEA's machines
+set(MACHINE_ENSEA OFF CACHE BOOL
+  "Set MACHINE_ENSEA to ON to build on the CentOS machine at ENSEA")
+
+
+# Find library SFML
+if(WIN32)
+  set(SFML_ROOT "D:/Utils/SFML-2.3" CACHE STRING
+    "Root directory for SFML library")
+  set(CMAKE_MODULE_PATH "${SFML_ROOT}/cmake/Modules" ${CMAKE_MODULE_PATH})
+else(WIN32)
+  set(CMAKE_MODULE_PATH "/usr/share/SFML/cmake/Modules/" ${CMAKE_MODULE_PATH})
+endif(WIN32)
+if(${MACHINE_ENSEA})
+  set(SFML_ROOT "/usr/lsa")
+  set(CMAKE_MODULE_PATH "${SFML_ROOT}/share/SFML/cmake/Modules/" ${CMAKE_MODULE_PATH})
+endif()
+find_package(SFML 2 COMPONENTS graphics network window system)
+if(NOT ${MACHINE_ENSEA})
+  set(SFML_LIBRARIES sfml-graphics sfml-network sfml-window sfml-system)
+endif()
+
+
+# Find library libmicrohttpd
+find_library(
+  MHD_LIBRARY
+  NAMES microhttpd microhttpd-10 libmicrohttpd libmicrohttpd-dll
+  DOC "microhttpd library"
+)
+
+
 # Add source subdirectories
-add_subdirectory(src/client)
+# add_subdirectory(src/client)
 #add_subdirectory(src/shared)
 #add_subdirectory(src/server)
 
@@ -96,5 +132,5 @@ set(BUILD_TESTING ON CACHE BOOL
   "Set BUILD_TESTING to OFF to disable tests")
 if(BUILD_TESTING)
   # Include tests scripts
-  add_subdirectory(test)
+  # add_subdirectory(test)
 endif()
