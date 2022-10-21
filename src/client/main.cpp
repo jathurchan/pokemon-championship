@@ -1,16 +1,9 @@
 #include <iostream>
 #include <client.hpp>
 
-namespace client {
-    client::helloWorld() {
-        std::cout << "Hello, world!\n";
-    }
-}
-
-using namespace client;
-
 int main(int argc,char* argv[])
 {
-    client::helloWorld();
+    client::client test;
+    test.helloWorld();
     return 0;
 }
