@@ -60,9 +60,9 @@ jobs:
       - name: Compiling
         run: make -C build
       
-      # Run tests
-      - name: Testing
-        run: xvfb-run make -C build check
+      # # Run tests
+      # - name: Testing
+      #   run: xvfb-run make -C build check
       
       # # Run Code coverage
       # - name: Code coverage
