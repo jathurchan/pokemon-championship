@@ -3,7 +3,6 @@ set(lib_client_target client_static)
 
 # Generate header files from dia UML files
 generate_dia_header("${CMAKE_CURRENT_SOURCE_DIR}/../client.dia")
-#generate_dia_header("${CMAKE_CURRENT_SOURCE_DIR}/../client.dia")
 #generate_dia_header("${CMAKE_CURRENT_SOURCE_DIR}/../render.dia")
 
 # Find all source files to include in library
@@ -19,7 +18,7 @@ target_include_directories(${lib_client_target} PUBLIC
   )
 target_link_libraries(${lib_client_target} PUBLIC
   ${SFML_LIBRARIES}
-  $<TARGET_NAME:shared_static>
+  #$<TARGET_NAME:shared_static>
   )
 
 # Compile "client" executable
