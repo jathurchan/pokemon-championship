@@ -44,9 +44,9 @@ jobs:
       
       - name: Install dependencies
         run: |
-        set -x
-        sudo apt-get update
-        sudo apt-get install -yy libsfml-dev libboost-test-dev libmicrohttpd-dev libxml2-dev xvfb lcov gcovr dia libjsoncpp-dev
+          set -x
+          sudo apt-get update
+          sudo apt-get install -yy libsfml-dev libboost-test-dev libmicrohttpd-dev libxml2-dev xvfb lcov gcovr dia libjsoncpp-dev
       
       # Generate native makefiles and workspaces
       - name: Run CMake
