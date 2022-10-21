@@ -1,14 +1,10 @@
 #include <iostream>
-#include <hello_world.hpp>
+#include <client.hpp>
 
-using namespace std;
-
-void World::Hello () {
-    std::cout << "Hello, world!\n";
-}
+using namespace client;
 
 int main(int argc,char* argv[])
 {
-    World::Hello();
+    client::helloWorld();
     return 0;
 }
