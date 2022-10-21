@@ -1,0 +1,93 @@
+
+# Using GitHub Actions to automate building and testing
+# Continuous Integration (CI)
+
+# Workflow -> Job -> Step -> Action
+
+
+# Workflow name (as it will appear in the 'Actions' tab)
+name: 'TurnBasedCombatCpp CI'
+
+
+# Workflow triggers (events that cause a workflow to run)
+on:
+  push:
+    branches:
+      - main
+      - 'release-v*'
+      - dev
+
+  pull_request:
+    branches:
+      - main
+      - 'release-v*'
+      - dev
+
+
+# Group of jobs (which run in parallel by default)
+jobs:
+
+  # Single job in this workflow
+  build_test:
+
+    # Choose the runner for the job (defines the type of machine that will process it)
+    runs-on: ubuntu-latest
+
+    # Actions steps will run in order (each step = shell script that will be exectued / action that will be run)
+    steps:
+
+      # Action that checks out the repository and downloads it to the runner (needed to run actions against the repository's code)
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      
+      - name: Install dependencies
+        run: |
+          set -x
+          sudo apt-get update
+          sudo apt-get install -yy libsfml-dev libboost-test-dev libmicrohttpd-dev libxml2-dev xvfb lcov gcovr dia libjsoncpp-dev
+      
+      # Generate native makefiles and workspaces
+      - name: Run CMake
+        run: |
+          set -x
+          mkdir build
+          cd build
+          cmake -DBOOST_ROOT=$BOOST_ROOT_1_69_0 -DBoost_ARCHITECTURE=-x64 ..
+      
+      # Compile project
+      - name: Compiling
+        run: make -C build
+      
+      # # Run tests
+      # - name: Testing
+      #   run: xvfb-run make -C build check
+      
+      # # Run Code coverage
+      # - name: Code coverage
+      #   run: xvfb-run make -C build code-coverage
+      
+      # # Run code coverage XML
+      # - name: Code coverage xml
+      #   run: xvfb-run make -C build code-coverage-gcov
+
+      # - name: Code Coverage Summary Report
+      #   uses: irongut/CodeCoverageSummary@v1.2.0
+      #   with:
+      #     filename: build/code-coverage-gcov.xml
+      #     badge: true
+      #     fail_below_min: true
+      #     format: markdown
+      #     hide_branch_rate: false
+      #     hide_complexity: true
+      #     indicators: true
+      #     output: both
+      #     thresholds: '0 50'
+          
+      # - name: Add Coverage PR Comment
+      #   uses: marocchino/sticky-pull-request-comment@v2
+      #   if: github.event_name == 'pull_request'
+      #   with:
+      #     recreate: true
+      #     path: code-coverage-results.md
