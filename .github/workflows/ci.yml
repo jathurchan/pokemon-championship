@@ -64,30 +64,30 @@ jobs:
       - name: Testing
         run: xvfb-run make -C build check
       
-      # Run Code coverage
-      - name: Code coverage
-        run: xvfb-run make -C build code-coverage
+      # # Run Code coverage
+      # - name: Code coverage
+      #   run: xvfb-run make -C build code-coverage
       
-      # Run code coverage XML
-      - name: Code coverage xml
-        run: xvfb-run make -C build code-coverage-gcov
+      # # Run code coverage XML
+      # - name: Code coverage xml
+      #   run: xvfb-run make -C build code-coverage-gcov
 
-      - name: Code Coverage Summary Report
-        uses: irongut/CodeCoverageSummary@v1.2.0
-        with:
-          filename: build/code-coverage-gcov.xml
-          badge: true
-          fail_below_min: true
-          format: markdown
-          hide_branch_rate: false
-          hide_complexity: true
-          indicators: true
-          output: both
-          thresholds: '0 50'
+      # - name: Code Coverage Summary Report
+      #   uses: irongut/CodeCoverageSummary@v1.2.0
+      #   with:
+      #     filename: build/code-coverage-gcov.xml
+      #     badge: true
+      #     fail_below_min: true
+      #     format: markdown
+      #     hide_branch_rate: false
+      #     hide_complexity: true
+      #     indicators: true
+      #     output: both
+      #     thresholds: '0 50'
           
-      - name: Add Coverage PR Comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request'
-        with:
-          recreate: true
-          path: code-coverage-results.md
+      # - name: Add Coverage PR Comment
+      #   uses: marocchino/sticky-pull-request-comment@v2
+      #   if: github.event_name == 'pull_request'
+      #   with:
+      #     recreate: true
+      #     path: code-coverage-results.md
