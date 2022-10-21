@@ -39,15 +39,15 @@
 
 > Each player has to choose a team of 6 creatures from the catalog. Note that players would not be able to modify their choices during the championship, except during the mid-season pause.
 
+#### First Leg Encounters
+
+> Each player will encounter other participants once in best of one format matches (for a total of 7 encounters).
+
 #### Mid-Season Pause
 
 > Each player has the possibility to replace* one of their creatures with another one picked from the catalog. Note that players would not be able to modify their choices until the end of the championship.
 > 
 > <br/>* *A player can decide to do not replace any of his creatures during this phase and keep the same team for the second leg.*
-
-#### First Leg Encounters
-
-> Each player will encounter other participants once in best of one format matches (for a total of 7 encounters).
 
 #### Second Leg Encounters
 
@@ -110,7 +110,7 @@
 
 #### Attacks
 
-> There are 2 types of attacks that can be part of the creatures attack pool :
+> There are 2 types of attacks that can be part of the creatures' attack pool :
 > - `Damage dealers`
 >   - `Represented by a power value`
 > - `Statistic changers*`
