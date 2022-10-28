@@ -10,14 +10,20 @@ void testSFML() {
 // Fin test SFML
 
 #include <state.h>
+#include <client.h>
 
 using namespace std;
 using namespace state;
+using namespace client;
 
 int main(int argc,char* argv[])
 {
+
     Exemple exemple;
     exemple.setX(53);
+
+    hello helloWorld;
+    helloWorld.helloWorld();
 
     cout << "It works !" << endl;
 
