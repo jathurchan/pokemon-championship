@@ -18,10 +18,6 @@ using namespace client;
 
 int main(int argc,char* argv[])
 {
-
-    Exemple exemple;
-    exemple.setX(53);
-
     hello helloWorld;
     helloWorld.helloWorld();
 

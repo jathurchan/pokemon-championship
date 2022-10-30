@@ -7,21 +7,8 @@ CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
   CMake that the project does not need compatibility with older versions.
 
 
--- The C compiler identification is GNU 9.4.0
--- The CXX compiler identification is GNU 9.4.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
 -- Build type: Debug
 -- Code coverage: ON
--- Found Python: /usr/bin/python3.8 (found version "3.8.10") found components: Interpreter 
 -- Appending code coverage compiler flags: -g --coverage -fprofile-arcs -ftest-coverage
 CMake Deprecation Warning at extern/dia2code/CMakeLists.txt:1 (cmake_minimum_required):
   Compatibility with CMake < 2.8.12 will be removed from a future version of
@@ -31,32 +18,21 @@ CMake Deprecation Warning at extern/dia2code/CMakeLists.txt:1 (cmake_minimum_req
   CMake that the project does not need compatibility with older versions.
 
 
--- Found LibXml2: /usr/lib/x86_64-linux-gnu/libxml2.so (found version "2.9.10") 
 -- Found SFML 2.5.1 in /usr/lib/x86_64-linux-gnu/cmake/SFML
--- Found Dia: /usr/bin/dia  
--- Found Ps2Pdf: /usr/bin/ps2pdf  
--- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.50") found components: unit_test_framework 
 -- Boost libraries: Boost::unit_test_framework
 -- Boost include directory: /usr/include
 -- Configuring done
--- Generating done
-CMake Warning (dev):
-  Policy CMP0058 is not set: Ninja requires custom command byproducts to be
-  explicit.  Run "cmake --help-policy CMP0058" for policy details.  Use the
-  cmake_policy command to set the policy and suppress this warning.
+CMake Error at src/shared/CMakeLists.txt:13 (add_library):
+  Cannot find source file:
 
-  This project specifies custom command DEPENDS on files in the build tree
-  that are not specified as the OUTPUT or BYPRODUCTS of any
-  add_custom_command or add_custom_target:
+    state/*.cpp
 
-   run_test.sh
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
 
-  For compatibility with versions of CMake that did not have the BYPRODUCTS
-  option, CMake is generating phony rules for such files to convince 'ninja'
-  to build.
 
-  Project authors should add the missing BYPRODUCTS or OUTPUT options to the
-  custom commands that produce these files.
-This warning is for project developers.  Use -Wno-dev to suppress it.
+CMake Error at src/shared/CMakeLists.txt:13 (add_library):
+  No SOURCES given to target: shared_static
 
--- Build files have been written to: /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/cmake-build-debug
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

@@ -251,8 +251,92 @@ build src/shared/generate-header-state: phony src/shared/CMakeFiles/generate-hea
 
 build cmake_object_order_depends_target_shared_static: phony || generate-headers
 
-build src/shared/CMakeFiles/shared_static.dir/state/Exemple.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Exemple.cpp || cmake_object_order_depends_target_shared_static
-  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Exemple.cpp.o.d
+build src/shared/CMakeFiles/shared_static.dir/state/Attack.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Attack.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Attack.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/Championship.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Championship.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Championship.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/ChampionshipStatus.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/ChampionshipStatus.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/ChampionshipStatus.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/Creature.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Creature.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Creature.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/CreatureStatus.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/CreatureStatus.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/CreatureStatus.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/Encounter.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Encounter.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Encounter.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/Phase.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Phase.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Phase.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/Player.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Player.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Player.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/PlayerStatus.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/PlayerStatus.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/PlayerStatus.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/Round.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Round.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Round.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/RoundStatus.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/RoundStatus.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/RoundStatus.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/Stat.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Stat.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Stat.cpp.o.d
+  FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
+  INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
+  OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
+  OBJECT_FILE_DIR = src/shared/CMakeFiles/shared_static.dir/state
+
+build src/shared/CMakeFiles/shared_static.dir/state/Type.cpp.o: CXX_COMPILER__shared_static_Debug /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared/state/Type.cpp || cmake_object_order_depends_target_shared_static
+  DEP_FILE = src/shared/CMakeFiles/shared_static.dir/state/Type.cpp.o.d
   FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g -std=gnu++11
   INCLUDES = -I/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/src/shared
   OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
@@ -266,7 +350,7 @@ build src/shared/CMakeFiles/shared_static.dir/state/Exemple.cpp.o: CXX_COMPILER_
 #############################################
 # Link the static library src/shared/libshared_static.a
 
-build src/shared/libshared_static.a: CXX_STATIC_LIBRARY_LINKER__shared_static_Debug src/shared/CMakeFiles/shared_static.dir/state/Exemple.cpp.o || generate-headers
+build src/shared/libshared_static.a: CXX_STATIC_LIBRARY_LINKER__shared_static_Debug src/shared/CMakeFiles/shared_static.dir/state/Attack.cpp.o src/shared/CMakeFiles/shared_static.dir/state/Championship.cpp.o src/shared/CMakeFiles/shared_static.dir/state/ChampionshipStatus.cpp.o src/shared/CMakeFiles/shared_static.dir/state/Creature.cpp.o src/shared/CMakeFiles/shared_static.dir/state/CreatureStatus.cpp.o src/shared/CMakeFiles/shared_static.dir/state/Encounter.cpp.o src/shared/CMakeFiles/shared_static.dir/state/Phase.cpp.o src/shared/CMakeFiles/shared_static.dir/state/Player.cpp.o src/shared/CMakeFiles/shared_static.dir/state/PlayerStatus.cpp.o src/shared/CMakeFiles/shared_static.dir/state/Round.cpp.o src/shared/CMakeFiles/shared_static.dir/state/RoundStatus.cpp.o src/shared/CMakeFiles/shared_static.dir/state/Stat.cpp.o src/shared/CMakeFiles/shared_static.dir/state/Type.cpp.o || generate-headers
   LANGUAGE_COMPILE_FLAGS = -Wall -std=c++11 -pg -pthread -g -g --coverage -fprofile-arcs -ftest-coverage -g
   OBJECT_DIR = src/shared/CMakeFiles/shared_static.dir
   POST_BUILD = :
