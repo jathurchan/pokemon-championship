@@ -22,17 +22,24 @@ CMake Deprecation Warning at extern/dia2code/CMakeLists.txt:1 (cmake_minimum_req
 -- Boost libraries: Boost::unit_test_framework
 -- Boost include directory: /usr/include
 -- Configuring done
-CMake Error at src/shared/CMakeLists.txt:13 (add_library):
-  Cannot find source file:
+-- Generating done
+CMake Warning (dev):
+  Policy CMP0058 is not set: Ninja requires custom command byproducts to be
+  explicit.  Run "cmake --help-policy CMP0058" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
 
-    state/*.cpp
+  This project specifies custom command DEPENDS on files in the build tree
+  that are not specified as the OUTPUT or BYPRODUCTS of any
+  add_custom_command or add_custom_target:
 
-  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
-  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+   run_test.sh
 
+  For compatibility with versions of CMake that did not have the BYPRODUCTS
+  option, CMake is generating phony rules for such files to convince 'ninja'
+  to build.
 
-CMake Error at src/shared/CMakeLists.txt:13 (add_library):
-  No SOURCES given to target: shared_static
+  Project authors should add the missing BYPRODUCTS or OUTPUT options to the
+  custom commands that produce these files.
+This warning is for project developers.  Use -Wno-dev to suppress it.
 
-
-CMake Generate step failed.  Build files cannot be regenerated correctly.
+-- Build files have been written to: /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/cmake-build-debug

@@ -1,8 +1,8 @@
 *~
+cmake-build-debug
 build
 bin
 nbproject
 src/*/*.h
 src/*/*/*.h
 .idea
-cmake-build-debug
