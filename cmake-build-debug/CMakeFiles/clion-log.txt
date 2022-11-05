@@ -19,27 +19,11 @@ CMake Deprecation Warning at extern/dia2code/CMakeLists.txt:1 (cmake_minimum_req
 
 
 -- Found SFML 2.5.1 in /usr/lib/x86_64-linux-gnu/cmake/SFML
+CMake Error at CMakeLists.txt:118 (add_subdirectory):
+  add_subdirectory given source "rapport" which is not an existing directory.
+
+
 -- Boost libraries: Boost::unit_test_framework
 -- Boost include directory: /usr/include
--- Configuring done
--- Generating done
-CMake Warning (dev):
-  Policy CMP0058 is not set: Ninja requires custom command byproducts to be
-  explicit.  Run "cmake --help-policy CMP0058" for policy details.  Use the
-  cmake_policy command to set the policy and suppress this warning.
-
-  This project specifies custom command DEPENDS on files in the build tree
-  that are not specified as the OUTPUT or BYPRODUCTS of any
-  add_custom_command or add_custom_target:
-
-   run_test.sh
-
-  For compatibility with versions of CMake that did not have the BYPRODUCTS
-  option, CMake is generating phony rules for such files to convince 'ninja'
-  to build.
-
-  Project authors should add the missing BYPRODUCTS or OUTPUT options to the
-  custom commands that produce these files.
-This warning is for project developers.  Use -Wno-dev to suppress it.
-
--- Build files have been written to: /home/alexandros/Documents/ENSEA/ENSEA_3A/plt/cmake-build-debug
+-- Configuring incomplete, errors occurred!
+See also "/home/alexandros/Documents/ENSEA/ENSEA_3A/plt/cmake-build-debug/CMakeFiles/CMakeOutput.log".
