@@ -3,8 +3,8 @@ cmake-build-debug
 build
 bin
 nbproject
-src/*/*.h
-src/*/*/*.h
+src/*/*.hpp
+src/*/*/*.hpp
 src/*/*.out
 src/*/*/*.out
 .idea
