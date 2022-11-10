@@ -9,8 +9,8 @@ void testSFML() {
 
 // Fin test SFML
 
-#include <state.h>
-#include <client.h>
+#include <state.hpp>
+#include <client.hpp>
 
 using namespace std;
 using namespace state;
@@ -20,7 +20,6 @@ int main(int argc,char* argv[])
 {
     hello helloWorld;
     helloWorld.helloWorld();
-
     cout << "It works !" << endl;
 
     return 0;

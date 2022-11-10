@@ -7,5 +7,6 @@ src/*/*.hpp
 src/*/*/*.hpp
 src/*/*.out
 src/*/*/*.out
+*.out
 .idea
 .DS_Store

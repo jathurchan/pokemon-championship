@@ -2,7 +2,7 @@
 // Created by alexandros on 26/10/22.
 //
 
-#include "client.h"
+#include "client.hpp"
 #include <iostream>
 
 namespace client {
