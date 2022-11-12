@@ -65,10 +65,8 @@ namespace client {
                             }
                             fullScreen = !fullScreen;
                             break;
-/*                            case sf::Keyboard::A:
-                            Request1();
-                        case sf::Keyboard::Z:
-                            Request2();*/
+                        case sf::Keyboard::A:
+                            temporaryRequestCall();
                         default:
                             break;
                     }
@@ -125,8 +123,8 @@ namespace client {
     }
 
     void BattleScene::resetDrawVectors() {
-        spriteVector.erase(spriteVector.begin(), spriteVector.begin() + (spriteVector.size()- numberStaticSprite));
-        textVector.erase(textVector.begin(), textVector.begin() + (textVector.size()-numberStaticText));
+        spriteVector.resize(numberStaticSprite);
+        textVector.resize(numberStaticText);
     }
 
 
@@ -134,13 +132,13 @@ namespace client {
         return view;
     }
 
-    sf::RenderWindow& BattleScene::getWindow() {
-        return window;
-    }
-
     void BattleScene::transitionTo(std::shared_ptr<State> state) {
         this->state = std::move(state);
         this->state->setScene(this);
         this->state->initializeState();
+    }
+
+    void BattleScene::temporaryRequestCall() {
+        state->temporaryRequest();
     }
 }

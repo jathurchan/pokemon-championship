@@ -13,9 +13,9 @@ namespace client {
         text.setStyle(style);
     }
 
-    void CustomText::setCharacterSize (sf::RenderWindow& window, sf::View view, float ratio) {
+    void CustomText::setCharacterSize (sf::View view, float ratio) {
         if (ratio!=0)
-            text.setCharacterSize(view.getViewport().width*window.getSize().x/ratio);
+            text.setCharacterSize(view.getSize().x/ratio);
     }
 
     void CustomText::setPosition (sf::View& view, float ratioX, float ratioY) {

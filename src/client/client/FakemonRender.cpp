@@ -10,7 +10,7 @@ namespace client {
         this->healthBarFont = CustomSprite("healthBarFont", true);
 
         this->nameText = CustomText("textFont",name);
-        this->healtText = CustomText("textFont",name);
+        this->healthText = CustomText("textFont",name);
     }
 
     CustomSprite FakemonRender::getFakemonSprite() {
@@ -30,6 +30,6 @@ namespace client {
     }
 
     CustomText FakemonRender::getHealthText() {
-        return healtText;
+        return healthText;
     }
 }

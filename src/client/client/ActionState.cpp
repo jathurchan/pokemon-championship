@@ -1,7 +1,7 @@
 #include <iostream>
 #include "BattleScene.hpp"
 #include "ActionState.hpp"
-#include "ChoiceState.hpp"
+#include "SwitchState.hpp"
 
 namespace client {
 
@@ -9,7 +9,6 @@ namespace client {
 
         auto &spriteVector = this->battleScene->getSpriteVector();
         auto &spriteText = this->battleScene->getTextVector();
-        auto &window = this->battleScene->getWindow();
         auto &view = this->battleScene->getView();
 
         spriteVector.emplace_back("infernalAction", true);
@@ -38,23 +37,27 @@ namespace client {
         spriteVector.back().setScale(view, 10);
 
         spriteText.emplace_back("textFont", "Action 1");
-        spriteText.back().setCharacterSize(window, view, 63);
+        spriteText.back().setCharacterSize(view, 63);
         spriteText.back().setOrigin(1, 2);
         spriteText.back().setPosition(view, 2.08, 1.28);
 
         spriteText.emplace_back("textFont", "Action 2");
-        spriteText.back().setCharacterSize(window, view, 63);
+        spriteText.back().setCharacterSize(view, 63);
         spriteText.back().setOrigin(0, 2);
         spriteText.back().setPosition(view, 1.92, 1.28);
 
         spriteText.emplace_back("textFont", "Action 3");
-        spriteText.back().setCharacterSize(window, view, 63);
+        spriteText.back().setCharacterSize(view, 63);
         spriteText.back().setOrigin(1, 2);
         spriteText.back().setPosition(view, 2.08, 1.08);
 
         spriteText.emplace_back("textFont", "Action 4");
-        spriteText.back().setCharacterSize(window, view, 63);
+        spriteText.back().setCharacterSize(view, 63);
         spriteText.back().setOrigin(0, 2);
         spriteText.back().setPosition(view, 1.92, 1.08);
+    }
+
+    void ActionState::temporaryRequest() {
+        battleScene->transitionTo(std::make_shared<SwitchState>());
     }
 }

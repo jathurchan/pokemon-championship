@@ -81,11 +81,11 @@ namespace client {
         switchButton.setPosition(view, 1.99, 1.002);
         switchButton.setScale(view, 5);
 
-        actionButtonText.setCharacterSize(window, view, 50);
+        actionButtonText.setCharacterSize(view, 50);
         actionButtonText.setOrigin(1, 2);
         actionButtonText.setPosition(view, 2.1, 1.114);
 
-        switchButtonText.setCharacterSize(window, view, 50);
+        switchButtonText.setCharacterSize(view, 50);
         switchButtonText.setOrigin(0, 2);
         switchButtonText.setPosition(view, 1.9, 1.114);
 
@@ -105,19 +105,19 @@ namespace client {
         action4Button.setPosition(view, 1.99, 1.169);
         action4Button.setScale(view, 7);
 
-        action1Text.setCharacterSize(window, view, 63);
+        action1Text.setCharacterSize(view, 63);
         action1Text.setOrigin(1, 2);
         action1Text.setPosition(view, 2.08, 1.28);
 
-        action2Text.setCharacterSize(window, view, 63);
+        action2Text.setCharacterSize(view, 63);
         action2Text.setOrigin(0, 2);
         action2Text.setPosition(view, 1.92, 1.28);
 
-        action3Text.setCharacterSize(window, view, 63);
+        action3Text.setCharacterSize(view, 63);
         action3Text.setOrigin(1, 2);
         action3Text.setPosition(view, 2.08, 1.08);
 
-        action4Text.setCharacterSize(window, view, 63);
+        action4Text.setCharacterSize(view, 63);
         action4Text.setOrigin(0, 2);
         action4Text.setPosition(view, 1.92, 1.08);
 
