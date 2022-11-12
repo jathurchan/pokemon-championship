@@ -1,7 +1,3 @@
-//
-// Created by alexandros on 26/10/22.
-//
-
 #include "client.hpp"
 #include <iostream>
 

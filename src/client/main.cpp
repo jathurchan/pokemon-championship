@@ -18,9 +18,13 @@ using namespace client;
 
 int main(int argc,char* argv[])
 {
-    hello helloWorld;
-    helloWorld.helloWorld();
+    client::hello test;
+    test.helloWorld();
+
+    client::BattleScene battleScene(std::make_shared<client::ActionState>());
+    
     cout << "It works !" << endl;
+        
 
     return 0;
 }
