@@ -1,6 +1,6 @@
 /*
  * Summary: minimal HTTP implementation
- * Description: minimal HTTP implementation allowing to fetch resources
+ * Description: minimal HTTP implementation allowing to fetch res
  *              like external subset.
  *
  * Copy: See Copyright for the status of this software.

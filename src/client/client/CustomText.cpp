@@ -1,5 +1,4 @@
 #include "CustomText.hpp"
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include "ResourceHolder.hpp"
 

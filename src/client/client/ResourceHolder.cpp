@@ -26,7 +26,7 @@ namespace client {
         }
         else {
             sf::Image& image = images[name];
-            if (!image.loadFromFile("resources/" + name + ".png")) {
+            if (!image.loadFromFile("res/" + name + ".png")) {
                 std::cout << "Failed to load " + name + " image" << std::endl;
             }
             return images[name];
@@ -56,7 +56,7 @@ namespace client {
         }
         else {
             sf::Font& font = fonts[name];
-            if(!font.loadFromFile("resources/" + name + ".ttf")) {
+            if(!font.loadFromFile("res/" + name + ".ttf")) {
                 std::cout << "Failed to load " + name + " font" << std::endl;
             }
             return fonts[name];
