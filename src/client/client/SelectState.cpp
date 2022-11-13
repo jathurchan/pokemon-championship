@@ -1,15 +1,13 @@
 #include <iostream>
 #include "BattleScene.hpp"
+#include "ChoiceState.hpp"
 #include "SelectState.hpp"
-#include "BanState.hpp"
 
 namespace client {
 
-    void BanState::generateInterface() {
+    void SelectState::generateInterface() {
 
-        std::cout << "Enter Ban State" << std::endl;
-
-        this->battleScene->generateDefaultInterface();
+        std::cout << "Enter Select State" << std::endl;
 
         auto &spriteVector = this->battleScene->getStateSpriteVector();
         auto &textVector = this->battleScene->getStateTextVector();
@@ -92,15 +90,11 @@ namespace client {
         textVector.back().setOrigin(0, 2);
         textVector.back().setPosition(view, 2.5, 3.90);
 
-        textVector.emplace_back(CustomText("textFont", "PV : 100/100\n\nAttack : 100\n\nDefense : 100\n\nSpeed : 100"));
-        textVector.back().setCharacterSize(view, 100);
-        textVector.back().setOrigin(0, 2);
-        textVector.back().setPosition(view, 3.5, 1.98);
-
-        textVector.emplace_back(CustomText("textFont", "Action 1\n\nAction 2\n\nAction 3\n\npAction 4"));
-        textVector.back().setCharacterSize(view, 100);
-        textVector.back().setOrigin(0, 2);
-        textVector.back().setPosition(view, 2.5, 1.98);
+        textVector.emplace_back(CustomText("textFont", "Banned", sf::Text::Bold));
+        textVector.back().setCharacterSize(view, 40);
+        textVector.back().setOrigin(2, 2);
+        textVector.back().setPosition(view, 2.8, 2);
+        textVector.back().setColor(240, 219, 219, 230);
 
         textVector.emplace_back(CustomText("textFont", "PV : 100/100\n\nAttack : 100\n\nDefense : 100\n\nSpeed : 100"));
         textVector.back().setCharacterSize(view, 100);
@@ -144,18 +138,45 @@ namespace client {
         textVector.back().setPosition(view, 1.3, 1.34);
 
 
-        spriteVector.emplace_back(CustomSprite ("banButton", true));
+        spriteVector.emplace_back("fakemonBannedFront", true);
+        spriteVector.back().setOrigin(2, 2);
+        spriteVector.back().setPosition(view, 3.18, 2);
+        spriteVector.back().setScale(view, 5);
+
+
+        spriteVector.emplace_back("berryItem", true);
+        spriteVector.back().setOrigin(2, 1);
+        spriteVector.back().setPosition(view, 2.6, 1.002);
+        spriteVector.back().setScale(view, 8);
+
+        spriteVector.emplace_back("berryItem", true);
+        spriteVector.back().setOrigin(2, 1);
+        spriteVector.back().setPosition(view, 3.2, 1.002);
+        spriteVector.back().setScale(view, 8);
+
+        spriteVector.emplace_back("berryItem", true);
+        spriteVector.back().setOrigin(2, 1);
+        spriteVector.back().setPosition(view, 1.625, 1.002);
+        spriteVector.back().setScale(view, 8);
+
+        spriteVector.emplace_back("berryItem", true);
+        spriteVector.back().setOrigin(2, 1);
+        spriteVector.back().setPosition(view, 1.455, 1.002);
+        spriteVector.back().setScale(view, 8);
+
+
+        spriteVector.emplace_back(CustomSprite ("selectButton", true));
         spriteVector.back().setOrigin(2, 1);
         spriteVector.back().setPosition(view, 2, 1.002);
         spriteVector.back().setScale(view, 7);
 
-        textVector.emplace_back(CustomText("textFont", "Ban", sf::Text::Bold));
+        textVector.emplace_back(CustomText("textFont", "Select", sf::Text::Bold));
         textVector.back().setCharacterSize(view, 50);
         textVector.back().setOrigin(2, 1);
         textVector.back().setPosition(view, 2, 1.07);
     }
 
-    void BanState::temporaryRequest() {
-        battleScene->transitionTo(std::make_shared<SelectState>());
+    void SelectState::temporaryRequest() {
+        battleScene->transitionTo(std::make_shared<ChoiceState>());
     }
 }

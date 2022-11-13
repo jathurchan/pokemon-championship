@@ -7,9 +7,15 @@
 #include <utility>
 #include <list>
 
+/*
+ * Creates and manages the window in which the game is displayed.
+ */
 
 namespace client {
 
+    /*
+     * Construct the scene and initialized its state.
+     */
     BattleScene::BattleScene(std::shared_ptr<State> state) {
         this->state = nullptr;
         createWindow();
@@ -20,6 +26,9 @@ namespace client {
         }
     }
 
+    /*
+     * Creates a new window on fullScreen and sets its view.
+     */
     void BattleScene::createWindow() {
 
         fullScreen = true;
@@ -27,6 +36,9 @@ namespace client {
         view = window.getDefaultView();
     }
 
+    /*
+     *
+     */
     void BattleScene::windowLoop() {
 
         window.clear(sf::Color::Black);
@@ -80,6 +92,9 @@ namespace client {
         }
     }
 
+    /*
+     * up
+     */
     sf::View BattleScene::updateView(int windowWidth, int windowHeight) {
 
         float windowRatio = (float) windowWidth / (float) windowHeight;
@@ -178,11 +193,6 @@ namespace client {
 
     std::vector<CustomText>& BattleScene::getStateTextVector() {
         return stateTextVector;
-    }
-
-    void BattleScene::resetBaseDrawVectors() {
-        baseSpriteVector.resize(numberBaseSprite);
-        baseTextVector.resize(numberBaseText);
     }
 
     void BattleScene::resetStateDrawVectors() {

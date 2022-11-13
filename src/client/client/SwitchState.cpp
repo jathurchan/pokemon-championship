@@ -62,6 +62,17 @@ namespace client {
         textVector.back().setCharacterSize(view, 80);
         textVector.back().setOrigin(0, 2);
         textVector.back().setPosition(view, 1.6, 1.47);
+
+
+        spriteVector.emplace_back("berryItem", true);
+        spriteVector.back().setOrigin(2.5, 1);
+        spriteVector.back().setPosition(view, 2.38, 2.2);
+        spriteVector.back().setScale(view, 14);
+
+        spriteVector.emplace_back("berryItem", true);
+        spriteVector.back().setOrigin(2.5, 1);
+        spriteVector.back().setPosition(view, 2.38, 1.238);
+        spriteVector.back().setScale(view, 14);
     }
 
     void SwitchState::temporaryRequest() {

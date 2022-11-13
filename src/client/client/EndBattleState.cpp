@@ -41,6 +41,15 @@ namespace client {
         spriteVector.back().setPosition(view, 1.11, 1.91);
         spriteVector.back().setScale(view, 1.5);
 
+        textVector.emplace_back("textFont", "Recap : Player 1", sf::Text::Bold);
+        textVector.back().setCharacterSize(view, 55);
+        textVector.back().setOrigin(1, 2);
+        textVector.back().setPosition(view, 2.17, 2.6);
+
+        textVector.emplace_back("textFont", "Recap : Player 2", sf::Text::Bold);
+        textVector.back().setCharacterSize(view, 55);
+        textVector.back().setOrigin(0, 2);
+        textVector.back().setPosition(view, 1.855, 2.6);
     }
 
     void EndBattleState::temporaryRequest() {
