@@ -25,8 +25,6 @@ namespace client {
         fullScreen = true;
         window.create(sf::VideoMode::getDesktopMode(), "Fakemon_Projekt", sf::Style::Fullscreen);
         view = window.getDefaultView();
-
-        generateDefaultInterface();
     }
 
     void BattleScene::windowLoop() {
@@ -34,10 +32,16 @@ namespace client {
         window.clear(sf::Color::Black);
         window.setView(view);
 
-        for (auto iS : spriteVector) {
+        for (auto iS : baseSpriteVector) {
             window.draw(iS.getSprite());
         }
-        for (auto iT : textVector) {
+        for (auto iT : baseTextVector) {
+            window.draw(iT.getText());
+        }
+        for (auto iS : stateSpriteVector) {
+            window.draw(iS.getSprite());
+        }
+        for (auto iT : stateTextVector) {
             window.draw(iT.getText());
         }
 
@@ -97,34 +101,93 @@ namespace client {
     }
 
     void BattleScene::generateDefaultInterface() {
+
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<int> distrib(1,6);
-        spriteVector.emplace_back(CustomSprite ("arenamap" + std::to_string(distrib(gen)), false));
-        spriteVector.back().setOrigin(2, 2);
-        spriteVector.back().setPosition(view, 2, 2);
-        spriteVector.back().setScale(view, 1);
+        baseSpriteVector.emplace_back(CustomSprite ("arenamap" + std::to_string(distrib(gen)), false));
+        baseSpriteVector.back().setOrigin(2, 2);
+        baseSpriteVector.back().setPosition(view, 2, 2);
+        baseSpriteVector.back().setScale(view, 1);
 
-        spriteVector.emplace_back(CustomSprite ("optionButton", true));
-        spriteVector.back().setOrigin(1, 0);
-        spriteVector.back().setPosition(view, 1.008, 70);
-        spriteVector.back().setScale(view, 15);
+        baseSpriteVector.emplace_back(CustomSprite ("optionButton", true));
+        baseSpriteVector.back().setOrigin(1, 0);
+        baseSpriteVector.back().setPosition(view, 1.008, 70);
+        baseSpriteVector.back().setScale(view, 15);
 
-        numberStaticSprite = spriteVector.size();
-        numberStaticText = textVector.size();
+        numberBaseSprite = stateSpriteVector.size();
+        numberBaseText = stateTextVector.size();
     }
 
-    std::vector<CustomSprite>& BattleScene::getSpriteVector() {
-        return spriteVector;
+    void BattleScene::generateFakemonInterface() {
+
+        baseSpriteVector.emplace_back(CustomSprite ("Unex", false));
+        baseSpriteVector.back().setOrigin(0, 1);
+        baseSpriteVector.back().setPosition(view, 2.818, 1.01);
+        baseSpriteVector.back().setScale(view, 1.7, true, false);
+
+        baseSpriteVector.emplace_back(CustomSprite ("Aevituu", false));
+        baseSpriteVector.back().setOrigin(0, 1);
+        baseSpriteVector.back().setPosition(view, 1.55, 1.01);
+        baseSpriteVector.back().setScale(view, 1.7, false, false);
+
+        baseSpriteVector.emplace_back(CustomSprite ("fakemonInfo", true));
+        baseSpriteVector.back().setOrigin(0, 2);
+        baseSpriteVector.back().setPosition(view, 0, 3.5);
+        baseSpriteVector.back().setScale(view, 12, false, false);
+
+        baseSpriteVector.emplace_back(CustomSprite ("fakemonInfo", true));
+        baseSpriteVector.back().setOrigin(0, 2);
+        baseSpriteVector.back().setPosition(view, 1, 4.2);
+        baseSpriteVector.back().setScale(view, 12, true, false);
+
+        baseTextVector.emplace_back(CustomText("textFont", "Unex"));
+        baseTextVector.back().setOrigin(2, 2);
+        baseTextVector.back().setPosition(view, 3.805, 3.7);
+        baseTextVector.back().setCharacterSize(view, 80);
+
+        baseTextVector.emplace_back(CustomText("textFont", "Aevituu"));
+        baseTextVector.back().setOrigin(2, 2);
+        baseTextVector.back().setPosition(view, 1.356, 4.5);
+        baseTextVector.back().setCharacterSize(view, 80);
+
+        baseSpriteVector.emplace_back(CustomSprite ("healthBar100", true));
+        baseSpriteVector.back().setOrigin(0, 2);
+        baseSpriteVector.back().setPosition(view, 5.362, 3.3);
+        baseSpriteVector.back().setScale(view, 53);
+
+        baseSpriteVector.emplace_back(CustomSprite ("healthBar75", true));
+        baseSpriteVector.back().setOrigin(0, 2);
+        baseSpriteVector.back().setPosition(view, 1.512, 3.95);
+        baseSpriteVector.back().setScale(view, 53, false, false, 0.75);
+
+        baseSpriteVector.emplace_back(CustomSprite ("healthBarFont", true));
+        baseSpriteVector.back().setOrigin(2, 2);
+        baseSpriteVector.back().setPosition(view, 3.805, 3.3);
+        baseSpriteVector.back().setScale(view, 64);
+
+        baseSpriteVector.emplace_back(CustomSprite ("healthBarFont", true));
+        baseSpriteVector.back().setOrigin(2, 2);
+        baseSpriteVector.back().setPosition(view, 1.356, 3.95);
+        baseSpriteVector.back().setScale(view, 64);
     }
 
-    std::vector<CustomText>& BattleScene::getTextVector() {
-        return textVector;
+    std::vector<CustomSprite>& BattleScene::getStateSpriteVector() {
+        return stateSpriteVector;
     }
 
-    void BattleScene::resetDrawVectors() {
-        spriteVector.resize(numberStaticSprite);
-        textVector.resize(numberStaticText);
+    std::vector<CustomText>& BattleScene::getStateTextVector() {
+        return stateTextVector;
+    }
+
+    void BattleScene::resetBaseDrawVectors() {
+        baseSpriteVector.resize(numberBaseSprite);
+        baseTextVector.resize(numberBaseText);
+    }
+
+    void BattleScene::resetStateDrawVectors() {
+        stateSpriteVector.resize(0);
+        stateTextVector.resize(0);
     }
 
 

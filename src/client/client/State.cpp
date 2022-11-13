@@ -11,7 +11,7 @@ namespace client {
     }
 
     void State::initializeState() {
-        battleScene->resetDrawVectors();
+        battleScene->resetStateDrawVectors();
         generateInterface();
     }
 }

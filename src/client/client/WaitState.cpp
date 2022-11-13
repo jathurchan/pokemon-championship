@@ -7,8 +7,10 @@ namespace client {
 
     void WaitState::generateInterface() {
 
-        auto &spriteVector = this->battleScene->getSpriteVector();
-        auto &spriteText = this->battleScene->getTextVector();
+        std::cout << "Enter Wait State" << std::endl;
+
+        auto &spriteVector = this->battleScene->getStateSpriteVector();
+        auto &textVector = this->battleScene->getStateTextVector();
         auto &view = this->battleScene->getView();
 
         spriteVector.emplace_back("battleInfoBack", true);
@@ -16,10 +18,10 @@ namespace client {
         spriteVector.back().setPosition(view, 2, 1.175);
         spriteVector.back().setScale(view, 3.5);
 
-        spriteText.emplace_back("textFont", "Wait ...");
-        spriteText.back().setCharacterSize(view, 50);
-        spriteText.back().setOrigin(2, 2);
-        spriteText.back().setPosition(view, 2, 1.175);
+        textVector.emplace_back("textFont", "Wait ...");
+        textVector.back().setCharacterSize(view, 50);
+        textVector.back().setOrigin(2, 2);
+        textVector.back().setPosition(view, 2, 1.175);
     }
 
     void WaitState::temporaryRequest() {

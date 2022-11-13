@@ -16,12 +16,12 @@ namespace client {
         texture.setSmooth(smooth);
     }
 
-    void CustomSprite::setScale(sf::View& view, float ratio, bool invertedX, bool invertedY) {
+    void CustomSprite::setScale(sf::View& view, float ratio, bool invertedX, bool invertedY, float ratioCropX) {
         float x,y;
         if (invertedX)
-            x = -(float) view.getSize().y/texture.getSize().y/ratio;
+            x = -(float) view.getSize().y/texture.getSize().y/ratio*ratioCropX;
         else
-            x = (float) view.getSize().y/texture.getSize().y/ratio;
+            x = (float) view.getSize().y/texture.getSize().y/ratio*ratioCropX;
         if (invertedY)
             y = -(float) view.getSize().y/texture.getSize().y/ratio;
         else

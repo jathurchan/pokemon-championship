@@ -7,8 +7,12 @@ namespace client {
 
     void ChoiceState::generateInterface() {
 
-        auto& spriteVector = this->battleScene->getSpriteVector();
-        auto& spriteText = this->battleScene->getTextVector();
+        std::cout << "Enter Choice State" << std::endl;
+
+        this->battleScene->generateFakemonInterface();
+
+        auto& spriteVector = this->battleScene->getStateSpriteVector();
+        auto& textVector = this->battleScene->getStateTextVector();
         auto& view = this->battleScene->getView();
 
         spriteVector.emplace_back("actionButton", true);
@@ -21,15 +25,15 @@ namespace client {
         spriteVector.back().setPosition(view, 1.99, 1.002);
         spriteVector.back().setScale(view, 5);
 
-        spriteText.emplace_back("textFont", "ACTION", sf::Text::Bold);
-        spriteText.back().setCharacterSize(view, 50);
-        spriteText.back().setOrigin(1, 2);
-        spriteText.back().setPosition(view, 2.1, 1.114);
+        textVector.emplace_back("textFont", "ACTION", sf::Text::Bold);
+        textVector.back().setCharacterSize(view, 50);
+        textVector.back().setOrigin(1, 2);
+        textVector.back().setPosition(view, 2.1, 1.114);
 
-        spriteText.emplace_back("textFont", "SWITCH", sf::Text::Bold);
-        spriteText.back().setCharacterSize(view, 50);
-        spriteText.back().setOrigin(0, 2);
-        spriteText.back().setPosition(view, 1.9, 1.114);
+        textVector.emplace_back("textFont", "SWITCH", sf::Text::Bold);
+        textVector.back().setCharacterSize(view, 50);
+        textVector.back().setOrigin(0, 2);
+        textVector.back().setPosition(view, 1.9, 1.114);
     }
 
     void ChoiceState::temporaryRequest() {

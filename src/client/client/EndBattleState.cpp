@@ -1,7 +1,7 @@
 #include <iostream>
 #include "BattleScene.hpp"
 #include "EndBattleState.hpp"
-#include "ChoiceState.hpp"
+#include "LoginState.hpp"
 
 namespace client {
 
@@ -10,8 +10,10 @@ namespace client {
         std::string result = "victory";
         //std::string result = "defeat";
 
-        auto &spriteVector = this->battleScene->getSpriteVector();
-        auto &spriteText = this->battleScene->getTextVector();
+        std::cout << "Enter " + result + " End Turn State" << std::endl;
+
+        auto &spriteVector = this->battleScene->getStateSpriteVector();
+        auto &textVector = this->battleScene->getStateTextVector();
         auto &view = this->battleScene->getView();
 
         spriteVector.emplace_back(result + "Banner1", true);
@@ -42,6 +44,6 @@ namespace client {
     }
 
     void EndBattleState::temporaryRequest() {
-        battleScene->transitionTo(std::make_shared<ChoiceState>());
+        battleScene->transitionTo(std::make_shared<LoginState>());
     }
 }

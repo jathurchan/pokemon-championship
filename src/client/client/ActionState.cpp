@@ -7,8 +7,10 @@ namespace client {
 
     void ActionState::generateInterface() {
 
-        auto &spriteVector = this->battleScene->getSpriteVector();
-        auto &spriteText = this->battleScene->getTextVector();
+        std::cout << "Enter Action State" << std::endl;
+
+        auto &spriteVector = this->battleScene->getStateSpriteVector();
+        auto &textVector = this->battleScene->getStateTextVector();
         auto &view = this->battleScene->getView();
 
         spriteVector.emplace_back("infernalAction", true);
@@ -36,25 +38,25 @@ namespace client {
         spriteVector.back().setPosition(view, 1.5, 1);
         spriteVector.back().setScale(view, 10);
 
-        spriteText.emplace_back("textFont", "Action 1");
-        spriteText.back().setCharacterSize(view, 63);
-        spriteText.back().setOrigin(1, 2);
-        spriteText.back().setPosition(view, 2.08, 1.28);
+        textVector.emplace_back("textFont", "Action 1");
+        textVector.back().setCharacterSize(view, 63);
+        textVector.back().setOrigin(1, 2);
+        textVector.back().setPosition(view, 2.08, 1.28);
 
-        spriteText.emplace_back("textFont", "Action 2");
-        spriteText.back().setCharacterSize(view, 63);
-        spriteText.back().setOrigin(0, 2);
-        spriteText.back().setPosition(view, 1.92, 1.28);
+        textVector.emplace_back("textFont", "Action 2");
+        textVector.back().setCharacterSize(view, 63);
+        textVector.back().setOrigin(0, 2);
+        textVector.back().setPosition(view, 1.92, 1.28);
 
-        spriteText.emplace_back("textFont", "Action 3");
-        spriteText.back().setCharacterSize(view, 63);
-        spriteText.back().setOrigin(1, 2);
-        spriteText.back().setPosition(view, 2.08, 1.08);
+        textVector.emplace_back("textFont", "Action 3");
+        textVector.back().setCharacterSize(view, 63);
+        textVector.back().setOrigin(1, 2);
+        textVector.back().setPosition(view, 2.08, 1.08);
 
-        spriteText.emplace_back("textFont", "Action 4");
-        spriteText.back().setCharacterSize(view, 63);
-        spriteText.back().setOrigin(0, 2);
-        spriteText.back().setPosition(view, 1.92, 1.08);
+        textVector.emplace_back("textFont", "Action 4");
+        textVector.back().setCharacterSize(view, 63);
+        textVector.back().setOrigin(0, 2);
+        textVector.back().setPosition(view, 1.92, 1.08);
     }
 
     void ActionState::temporaryRequest() {
