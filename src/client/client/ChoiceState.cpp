@@ -3,8 +3,15 @@
 #include "ChoiceState.hpp"
 #include "ActionState.hpp"
 
+/*
+ * Choice state, when the player can choose between realising an action and switching its active fakemon.
+ */
+
 namespace client {
 
+    /*
+     * Add the state interface element to the vectors of the state displayed element.
+     */
     void ChoiceState::generateInterface() {
 
         std::cout << "Enter Choice State" << std::endl;
@@ -36,6 +43,9 @@ namespace client {
         textVector.back().setPosition(view, 1.9, 1.114);
     }
 
+    /*
+     * Test request which change the current state of the scene to the Action State.
+     */
     void ChoiceState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<ActionState>());
     }

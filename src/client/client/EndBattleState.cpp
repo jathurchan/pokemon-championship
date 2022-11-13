@@ -3,8 +3,15 @@
 #include "EndBattleState.hpp"
 #include "LoginState.hpp"
 
+/*
+ * End Battle state, when the player see the result of the match.
+ */
+
 namespace client {
 
+    /*
+     * Add the state interface element to the vectors of the state displayed element.
+     */
     void EndBattleState::generateInterface() {
 
         std::string result = "victory";
@@ -41,8 +48,20 @@ namespace client {
         spriteVector.back().setPosition(view, 1.11, 1.91);
         spriteVector.back().setScale(view, 1.5);
 
+        textVector.emplace_back("textFont", "Recap : Player 1", sf::Text::Bold);
+        textVector.back().setCharacterSize(view, 55);
+        textVector.back().setOrigin(1, 2);
+        textVector.back().setPosition(view, 2.17, 2.6);
+
+        textVector.emplace_back("textFont", "Recap : Player 2", sf::Text::Bold);
+        textVector.back().setCharacterSize(view, 55);
+        textVector.back().setOrigin(0, 2);
+        textVector.back().setPosition(view, 1.855, 2.6);
     }
 
+    /*
+     * Test request which change the current state of the scene to the Login State.
+     */
     void EndBattleState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<LoginState>());
     }

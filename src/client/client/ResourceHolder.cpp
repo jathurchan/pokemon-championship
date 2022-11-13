@@ -4,20 +4,35 @@
 #include <iostream>
 #include "ResourceHolder.hpp"
 
+/*
+ * Contains the textures, images and fonts which were loaded by the render, each one of them is stored only once.
+ * Configures as a singleton as only one unique instance is wanted.
+ */
+
 namespace client {
 
-    /*FAUT CA DANS LE HPP COMMENT JE FAIIIIIIIIIIIIIIIS
+    /* Il faudrait mettre ca dans le hpp mais dia...
     ResourceHolder(const ResourceHolder&) = delete;
     void operator=(const ResourceHolder &) = delete;
      */
 
+    /*
+     * Private constructor
+     */
+    ResourceHolder::ResourceHolder() {}
+
+    /*
+     * Returns the single instance of the class.
+     */
     ResourceHolder& ResourceHolder::getInstance() {
         static ResourceHolder instance;
         return instance;
     }
 
-    ResourceHolder::ResourceHolder() {}
-
+    /*
+     * Return the sf::Image identified by the name argument.
+     * If the image described is not already loaded in memory, load it before returning it.
+     */
     sf::Image& ResourceHolder::getImage(std::string name) {
 
         auto imagePair = images.find(name);
@@ -33,6 +48,10 @@ namespace client {
         }
     }
 
+    /*
+     * Return the sf::Texture identified by the name argument.
+     * If the texture described is not already loaded in memory, load it before returning it.
+     */
     sf::Texture& ResourceHolder::getTexture(std::string name) {
 
         auto texturePair = textures.find(name);
@@ -48,6 +67,10 @@ namespace client {
         }
     }
 
+    /*
+     * Returns the sf::Font identified by the name argument.
+     * If the font described is not already loaded in memory, loads it before returning it.
+     */
     sf::Font& ResourceHolder::getFont(std::string name) {
 
         auto fontPair = fonts.find(name);

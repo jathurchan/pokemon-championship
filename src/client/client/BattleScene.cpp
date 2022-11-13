@@ -7,9 +7,15 @@
 #include <utility>
 #include <list>
 
+/*
+ * Creates and manages the window in which the game is displayed.
+ */
 
 namespace client {
 
+    /*
+     * Construct the scene and initialized its state.
+     */
     BattleScene::BattleScene(std::shared_ptr<State> state) {
         this->state = nullptr;
         createWindow();
@@ -20,6 +26,9 @@ namespace client {
         }
     }
 
+    /*
+     * Creates a new window on fullScreen and sets its view.
+     */
     void BattleScene::createWindow() {
 
         fullScreen = true;
@@ -27,6 +36,10 @@ namespace client {
         view = window.getDefaultView();
     }
 
+    /*
+     * Set the elements displayed in the window and handle the events.
+     * Must be call in the loop : while (window.isOpen()).
+     */
     void BattleScene::windowLoop() {
 
         window.clear(sf::Color::Black);
@@ -80,6 +93,10 @@ namespace client {
         }
     }
 
+    /*
+     * Updates the battle scene view according to the window size and returns it.
+     * The view disaplayed will always have a 16:9 ratio.
+     */
     sf::View BattleScene::updateView(int windowWidth, int windowHeight) {
 
         float windowRatio = (float) windowWidth / (float) windowHeight;
@@ -100,6 +117,9 @@ namespace client {
         return view;
     }
 
+    /*
+     * Add the basic interface element to the vectors of the base displayed element.
+     */
     void BattleScene::generateDefaultInterface() {
 
         std::random_device rd;
@@ -119,6 +139,9 @@ namespace client {
         numberBaseText = stateTextVector.size();
     }
 
+    /*
+     * Add the fakemon interface element to the vectors of the base displayed element.
+     */
     void BattleScene::generateFakemonInterface() {
 
         baseSpriteVector.emplace_back(CustomSprite ("Unex", false));
@@ -172,35 +195,45 @@ namespace client {
         baseSpriteVector.back().setScale(view, 64);
     }
 
+    /*
+     * Return a reference of the vector containing the displayed sprites depending on the state.
+     */
     std::vector<CustomSprite>& BattleScene::getStateSpriteVector() {
         return stateSpriteVector;
     }
-
+    /*
+     * Return a reference of the vector containing the displayed texts depending on the state.
+     */
     std::vector<CustomText>& BattleScene::getStateTextVector() {
         return stateTextVector;
     }
-
-    void BattleScene::resetBaseDrawVectors() {
-        baseSpriteVector.resize(numberBaseSprite);
-        baseTextVector.resize(numberBaseText);
-    }
-
+    /*
+     * Reset the vector containing the displayed sprites and texts.
+     */
     void BattleScene::resetStateDrawVectors() {
         stateSpriteVector.resize(0);
         stateTextVector.resize(0);
     }
 
-
+    /*
+     * Return a reference of the view used.
+     */
     sf::View& BattleScene::getView() {
         return view;
     }
 
+    /*
+     * Test function used to change the state of the scene.
+     */
     void BattleScene::transitionTo(std::shared_ptr<State> state) {
         this->state = std::move(state);
         this->state->setScene(this);
         this->state->initializeState();
     }
 
+    /*
+     * Test function used to call a request in the current state.
+     */
     void BattleScene::temporaryRequestCall() {
         state->temporaryRequest();
     }

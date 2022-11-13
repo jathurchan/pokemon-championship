@@ -3,8 +3,15 @@
 #include "LoginState.hpp"
 #include "BanState.hpp"
 
+/*
+ * Login state, when the player can log into the match.
+ */
+
 namespace client {
 
+    /*
+     * Add the state interface element to the vectors of the state displayed element.
+     */
     void LoginState::generateInterface() {
 
         std::cout << "Enter Login State" << std::endl;
@@ -44,6 +51,9 @@ namespace client {
         spriteVector.back().setScale(view, 12);
     }
 
+    /*
+     * Test request which change the current state of the scene to the Ban State.
+     */
     void LoginState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<BanState>());
     }

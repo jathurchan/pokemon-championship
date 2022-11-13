@@ -3,8 +3,15 @@
 #include "EndBattleState.hpp"
 #include "TurnResultState.hpp"
 
+/*
+ * Turn Result state, when the player see the result of the current turn.
+ */
+
 namespace client {
 
+    /*
+     * Add the state interface element to the vectors of the state displayed element.
+     */
     void TurnResultState::generateInterface() {
 
         std::cout << "Enter Turn Result State" << std::endl;
@@ -24,6 +31,9 @@ namespace client {
         textVector.back().setPosition(view, 2, 1.175);
     }
 
+    /*
+     * Test request which change the current state of the scene to the End Battle State.
+     */
     void TurnResultState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<EndBattleState>());
     }
