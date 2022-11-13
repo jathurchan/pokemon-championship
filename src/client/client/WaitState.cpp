@@ -3,8 +3,15 @@
 #include "WaitState.hpp"
 #include "TurnResultState.hpp"
 
+/*
+ * Wait state, when the player wait for the other player to play.
+ */
+
 namespace client {
 
+    /*
+     * Add the state interface element to the vectors of the state displayed element.
+     */
     void WaitState::generateInterface() {
 
         std::cout << "Enter Wait State" << std::endl;
@@ -24,6 +31,9 @@ namespace client {
         textVector.back().setPosition(view, 2, 1.175);
     }
 
+    /*
+     * Test request which change the current state of the scene to the Turn Result State.
+     */
     void WaitState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<TurnResultState>());
     }

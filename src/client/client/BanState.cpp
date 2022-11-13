@@ -3,8 +3,15 @@
 #include "SelectState.hpp"
 #include "BanState.hpp"
 
+/*
+ * Turn Result state, when the player can ban a fakemon from the ennemy team.
+ */
+
 namespace client {
 
+    /*
+     * Add the state interface element to the vectors of the state displayed element.
+     */
     void BanState::generateInterface() {
 
         std::cout << "Enter Ban State" << std::endl;
@@ -155,6 +162,9 @@ namespace client {
         textVector.back().setPosition(view, 2, 1.07);
     }
 
+    /*
+     * Test request which change the current state of the scene to the Select State.
+     */
     void BanState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<SelectState>());
     }

@@ -3,8 +3,15 @@
 #include "WaitState.hpp"
 #include "SwitchState.hpp"
 
+/*
+ * Switch state, when the player can switch its active fakemon.
+ */
+
 namespace client {
 
+    /*
+     * Add the state interface element to the vectors of the state displayed element.
+     */
     void SwitchState::generateInterface() {
 
         std::cout << "Enter Switch State" << std::endl;
@@ -75,6 +82,9 @@ namespace client {
         spriteVector.back().setScale(view, 14);
     }
 
+    /*
+     * Test request which change the current state of the scene to the Wait State.
+     */
     void SwitchState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<WaitState>());
     }

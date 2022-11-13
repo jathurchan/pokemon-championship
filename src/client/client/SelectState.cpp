@@ -3,8 +3,15 @@
 #include "ChoiceState.hpp"
 #include "SelectState.hpp"
 
+/*
+ * Select state, when the player select its 3 used fakemon and give them the items.
+ */
+
 namespace client {
 
+    /*
+     * Add the state interface element to the vectors of the state displayed element.
+     */
     void SelectState::generateInterface() {
 
         std::cout << "Enter Select State" << std::endl;
@@ -176,6 +183,9 @@ namespace client {
         textVector.back().setPosition(view, 2, 1.07);
     }
 
+    /*
+     * Test request which change the current state of the scene to the Choice State.
+     */
     void SelectState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<ChoiceState>());
     }

@@ -3,8 +3,15 @@
 #include "ActionState.hpp"
 #include "SwitchState.hpp"
 
+/*
+ * Turn Result state, when the player can choose between the 4 actions of its active fakemon.
+ */
+
 namespace client {
 
+    /*
+     * Add the state interface element to the vectors of the state displayed element.
+     */
     void ActionState::generateInterface() {
 
         std::cout << "Enter Action State" << std::endl;
@@ -59,6 +66,9 @@ namespace client {
         textVector.back().setPosition(view, 1.92, 1.08);
     }
 
+    /*
+     * Test request which change the current state of the scene to the Switch State.
+     */
     void ActionState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<SwitchState>());
     }
