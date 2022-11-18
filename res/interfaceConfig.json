@@ -1,0 +1,93 @@
+{
+  "Action_State" : {
+    "Sprite" : [
+      {
+        "imageName": "loginBackground",
+        "smooth": true,
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "position": {
+          "ratioX": 0,
+          "ratioY": 0
+        },
+        "scale": {
+          "ratio": 1
+        }
+      },
+      {
+        "imageName": "loginTextBox",
+        "smooth": true,
+        "origin": {
+          "x": 2,
+          "y": 2
+        },
+        "position": {
+          "ratioX": 2,
+          "ratioY": 3.5
+        },
+        "scale": {
+          "ratio": 12
+        }
+      },
+      {
+        "imageName": "loginTextBox",
+        "smooth": true,
+        "origin": {
+          "x": 2,
+          "y": 2
+        },
+        "position": {
+          "ratioX": 2,
+          "ratioY": 2.3
+        },
+        "scale": {
+          "ratio": 12
+        }
+      }
+    ],
+
+    "Text" : [
+      {
+        "fontName": "titleFont",
+        "string" : "Fakemon Projekt",
+        "characterSize": 20,
+        "origin": {
+          "x": 2,
+          "y": 2
+        },
+        "position": {
+          "ratioX": 2,
+          "ratioY": 12
+        }
+      },
+      {
+        "fontName": "textFont",
+        "string" : "USername",
+        "characterSize": 60,
+        "origin": {
+          "x": 2,
+          "y": 2
+        },
+        "position": {
+          "ratioX": 2,
+          "ratioY": 4.5
+        },
+      {
+        "fontName": "texetFont",
+        "string" : "Link Code",
+        "characterSize": 60,
+        "origin": {
+          "x": 2,
+          "y": 2
+        },
+        "position": {
+          "ratioX": 2,
+          "ratioY": 2.7
+        }
+      },
+      }
+    ]
+  }
+}

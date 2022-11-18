@@ -73,7 +73,7 @@ namespace client {
                 case sf::Event::KeyPressed:
                     switch (event.key.code) {
                         case sf::Keyboard::Escape:
-                            window.close();
+                            windowClose();
                             break;
                         case sf::Keyboard::Enter:
                             if (fullScreen) {
@@ -238,6 +238,11 @@ namespace client {
      */
     void BattleScene::temporaryRequestCall() {
         state->temporaryRequest();
+    }
+
+    void BattleScene::windowClose() {
+        window.close();
+        std::cout << "Game OVer" << std::endl;
     }
 
     std::string BattleScene::getState() {

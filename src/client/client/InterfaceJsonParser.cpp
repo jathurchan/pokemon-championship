@@ -1,4 +1,4 @@
-#include "JsonParser.hpp"
+#include "InterfaceJsonParser.hpp"
 #include <iostream>
 #include <string>
 #include <jsoncpp/json/json.h>
@@ -6,8 +6,20 @@
 
 namespace client {
 
-    void JsonParser::readInterfaceJson(std::string state) {
-        /*unique_ptr <Json::CharReader> reader = unique_ptr<Json::CharReader>(builder.newCharReader());
+    void InterfaceJsonParser::readInterfaceJson(std::string state) {
+
+        /*Json::CharReaderBuilder rbuilder;
+        cfg >> rbuilder.settings_;
+        reader->parse(start, stop, &value1, &errs);
+// ...
+        reader->parse(start, stop, &value2, &errs);
+
+
+        Json::CharReaderBuilder builder;
+        std::unique_ptr <Json::CharReader> const reader (builder.newCharReader());
+
+
+
         Json::Value val{};
         string err{};
         this->effects = unordered_map<string, Effect>();
