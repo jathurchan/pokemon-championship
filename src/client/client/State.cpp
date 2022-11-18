@@ -8,15 +8,12 @@
 
 namespace client {
 
-    /*
-     * Default destructor;
-     */
     State::~State() = default;
 
     /*
      * Sets the pointer refering to the battlescene associated to the state.
      */
-    void State::setScene(BattleScene *battleScene) {
+    void State::setBattleScene(BattleScene *battleScene) {
         this->battleScene = battleScene;
     }
 

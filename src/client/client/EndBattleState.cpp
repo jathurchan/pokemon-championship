@@ -14,8 +14,8 @@ namespace client {
      */
     void EndBattleState::generateInterface() {
 
-        std::string result = "victory";
-        //std::string result = "defeat";
+        //std::string result = "victory";
+        std::string result = "defeat";
 
         std::cout << "Enter " + result + " End Turn State" << std::endl;
 
@@ -64,5 +64,9 @@ namespace client {
      */
     void EndBattleState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<LoginState>());
+    }
+
+    std::string EndBattleState::getStateName() {
+        return std::to_string(StatesName::EndBattle_State);
     }
 }

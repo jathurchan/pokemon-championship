@@ -16,15 +16,15 @@ namespace client {
 
     /*
      * Constructs the CustomSprite.
-     * Instanciates a new sf::Sprite by loading its texture from the Resource Holder.
+     * Instantiates a new sf::Sprite by loading its texture from the Resource Holder.
      * Enable the smooth filter of the texture depending on the smooth argument. Disables it by default.
      */
     CustomSprite::CustomSprite(std::string fileName, bool smooth) {
 
-        image = ResourceHolder::getInstance().getImage(fileName);
-        texture = ResourceHolder::getInstance().getTexture(fileName);
-        ResourceHolder::getInstance().getTexture(fileName).setSmooth(smooth);
-        sprite.setTexture(ResourceHolder::getInstance().getTexture(fileName));
+        imagePtr = ResourceHolder::getInstance().getImage(fileName);
+        texturePtr = ResourceHolder::getInstance().getTexture(fileName);
+        texturePtr->setSmooth(smooth);
+        sprite.setTexture(*texturePtr);
     }
 
     /*
@@ -34,13 +34,13 @@ namespace client {
     void CustomSprite::setScale(sf::View& view, float ratio, bool invertedX, bool invertedY, float ratioCropX) {
         float x,y;
         if (invertedX)
-            x = -(float) view.getSize().y/texture.getSize().y/ratio*ratioCropX;
+            x = -(float) view.getSize().y / (float) texturePtr->getSize().y/ratio*ratioCropX;
         else
-            x = (float) view.getSize().y/texture.getSize().y/ratio*ratioCropX;
+            x = (float) view.getSize().y / (float) texturePtr->getSize().y/ratio*ratioCropX;
         if (invertedY)
-            y = -(float) view.getSize().y/texture.getSize().y/ratio;
+            y = -(float) view.getSize().y / (float) texturePtr->getSize().y/ratio;
         else
-            y = (float) view.getSize().y/texture.getSize().y/ratio;
+            y = (float) view.getSize().y / (float) texturePtr->getSize().y/ratio;
 
         sprite.setScale(x,y);
     }
@@ -65,9 +65,9 @@ namespace client {
     void CustomSprite::setOrigin(float ratioX, float ratioY) {
         float x=0,y=0;
         if (ratioX!=0)
-            x=texture.getSize().x/ratioX;
+            x = (float) texturePtr->getSize().x/ratioX;
         if (ratioY!=0)
-            y=texture.getSize().y/ratioY;
+            y = (float) texturePtr->getSize().y/ratioY;
         sprite.setOrigin(x,y);
     }
 
@@ -76,8 +76,8 @@ namespace client {
      */
     bool CustomSprite::isInSprite(sf::Vector2f position) {
         if (sprite.getGlobalBounds().contains(position.x, position.y) &&
-            image.getPixel(sprite.getOrigin().x - (sprite.getPosition().x-position.x)/sprite.getScale().x,
-                           sprite.getOrigin().y - (sprite.getPosition().y-position.y)/sprite.getScale().y).a != 0)
+            imagePtr->getPixel((int) (sprite.getOrigin().x - (sprite.getPosition().x-position.x)/sprite.getScale().x),
+                               (int) (sprite.getOrigin().y - (sprite.getPosition().y-position.y)/sprite.getScale().y)).a != 0)
             return true;
         else
             return false;
@@ -86,21 +86,21 @@ namespace client {
     /*
      * Returns the sprite.
      */
-    sf::Sprite CustomSprite::getSprite() {
+    sf::Sprite& CustomSprite::getSprite() {
         return sprite;
     }
 
     /*
      * Returns the texture of the sprite.
      */
-    sf::Texture CustomSprite::getTexture() {
-        return texture;
+    sf::Texture* CustomSprite::getTexture() {
+        return texturePtr;
     }
 
     /*
      * Returns the image of the sprite.
      */
-    sf::Image CustomSprite::getImage() {
-        return image;
+    sf::Image* CustomSprite::getImage() {
+        return imagePtr;
     }
 }

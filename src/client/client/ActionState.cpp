@@ -1,4 +1,5 @@
 #include <iostream>
+#include <regex>
 #include "BattleScene.hpp"
 #include "ActionState.hpp"
 #include "SwitchState.hpp"
@@ -71,5 +72,9 @@ namespace client {
      */
     void ActionState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<SwitchState>());
+    }
+
+    std::string ActionState::getStateName() {
+        return std::to_string(StatesName::Action_State);
     }
 }

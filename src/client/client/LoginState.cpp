@@ -57,4 +57,8 @@ namespace client {
     void LoginState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<BanState>());
     }
+
+    std::string LoginState::getStateName() {
+        return std::to_string(StatesName::Login_State);
+    }
 }

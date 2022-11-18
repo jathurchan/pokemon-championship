@@ -19,7 +19,7 @@ namespace client {
      * Instanciates a new sf::Text and sets its string and style, as well as its font using by loading it from the Resource Holder .
      */
     CustomText::CustomText(std::string fontName, std::string textString, sf::Text::Style style) {
-        text.setFont(ResourceHolder::getInstance().getFont(std::move(fontName)));
+        text.setFont(*ResourceHolder::getInstance().getFont(std::move(fontName)));
         text.setString(textString);
         text.setStyle(style);
     }
@@ -28,7 +28,7 @@ namespace client {
      * Sets the character size of the text as a ratio of the view used.
      */
     //ALWAYS CALL BEFORE setPosition BECAUSE IT IS NOT JUST A SCALE FACTOR
-    void CustomText::setCharacterSize (sf::View view, float ratio) {
+    void CustomText::setCharacterSize (sf::View& view, float ratio) {
         if (ratio!=0)
             text.setCharacterSize(view.getSize().x/ratio);
     }
@@ -78,7 +78,7 @@ namespace client {
     /*
      * Returns the sf::Text.
      */
-    sf::Text CustomText::getText () {
+    sf::Text& CustomText::getText () {
         return text;
     }
 }

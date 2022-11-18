@@ -37,4 +37,8 @@ namespace client {
     void WaitState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<TurnResultState>());
     }
+
+    std::string WaitState::getStateName() {
+        return std::to_string(StatesName::Wait_State);
+    }
 }

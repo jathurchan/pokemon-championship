@@ -168,4 +168,8 @@ namespace client {
     void BanState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<SelectState>());
     }
+
+    std::string BanState::getStateName() {
+        return std::to_string(StatesName::Ban_State);
+    }
 }

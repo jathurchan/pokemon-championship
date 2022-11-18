@@ -16,13 +16,15 @@ namespace client {
     /*
      * Construct the scene and initialized its state.
      */
-    BattleScene::BattleScene(std::shared_ptr<State> state) {
+    BattleScene::BattleScene(std::shared_ptr<State> state, std::string mode) {
         this->state = nullptr;
         createWindow();
-        transitionTo(std::move(state));
+        if (state!= nullptr)
+            transitionTo(std::move(state));
 
-        while (window.isOpen()) {
-            windowLoop();
+        if (!std::equal(mode.begin(), mode.end(), "test")) {
+            while (window.isOpen())
+                windowLoop();
         }
     }
 
@@ -227,7 +229,7 @@ namespace client {
      */
     void BattleScene::transitionTo(std::shared_ptr<State> state) {
         this->state = std::move(state);
-        this->state->setScene(this);
+        this->state->setBattleScene(this);
         this->state->initializeState();
     }
 
@@ -236,5 +238,9 @@ namespace client {
      */
     void BattleScene::temporaryRequestCall() {
         state->temporaryRequest();
+    }
+
+    std::string BattleScene::getState() {
+        return state->getStateName();
     }
 }

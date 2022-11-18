@@ -189,4 +189,8 @@ namespace client {
     void SelectState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<ChoiceState>());
     }
+
+    std::string SelectState::getStateName() {
+        return std::to_string(StatesName::Select_State);
+    }
 }

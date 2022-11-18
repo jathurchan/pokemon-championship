@@ -88,4 +88,8 @@ namespace client {
     void SwitchState::temporaryRequest() {
         battleScene->transitionTo(std::make_shared<WaitState>());
     }
+
+    std::string SwitchState::getStateName() {
+        return std::to_string(StatesName::Switch_State);
+    }
 }
