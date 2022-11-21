@@ -695,6 +695,7 @@ struct stdlib_includes {
    int mutex;
    int random;
    int sfmlGraphics;
+   int sfmlAudio;
    int jsoncpp;
 };
 
@@ -788,18 +789,24 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
            print ("#include <random>\n");
            si->random = 1;
        }
-       if (!si->sfmlGraphics 
-       && (strstr(name,"sf::RenderWindow")
-       ||  strstr(name,"sf::VertexArray")
-       ||  strstr(name,"sf::Texture"))) {
-           print ("#include <SFML/Graphics.hpp>\n");
-           si->sfmlGraphics = 1;
-       }       
-       if (!si->jsoncpp
-       && (strstr(name,"Json::") == name)) {
+        if (!si->sfmlGraphics
+            && (strstr(name,"sf::RenderWindow")
+                ||  strstr(name,"sf::VertexArray")
+                ||  strstr(name,"sf::Texture"))) {
+            print ("#include <SFML/Graphics.hpp>\n");
+            si->sfmlGraphics = 1;
+        }
+        if (!si->sfmlAudio
+            && (strstr(name,"sf::Sound")
+                ||  strstr(name,"sf::Music"))) {
+            print ("#include <SFML/Audio.hpp>\n");
+            si->sfmlAudio = 1;
+        }
+        if (!si->jsoncpp
+            && (strstr(name,"Json::Value"))) {
            print ("#include <json/json.h>\n");
            si->jsoncpp = 1;
-       }       
+        }
     }
 }
 

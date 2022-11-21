@@ -1,34 +1,35 @@
 #include "InterfaceJsonParser.hpp"
+#include "json/json.h"
 #include <iostream>
 #include <string>
-#include <jsoncpp/json/json.h>
 #include <memory>
+#include <fstream>
+#include <sstream>
+#include <unordered_map>
 
 namespace client {
 
-    void InterfaceJsonParser::readInterfaceJson(std::string state) {
+    Json::Value InterfaceJsonParser::readJsonString(std::string state) {
 
-        /*Json::CharReaderBuilder rbuilder;
-        cfg >> rbuilder.settings_;
-        reader->parse(start, stop, &value1, &errs);
-// ...
-        reader->parse(start, stop, &value2, &errs);
-
+        std::string jsonContent = loadJsonFile("res/interfaceConfig.json");
 
         Json::CharReaderBuilder builder;
-        std::unique_ptr <Json::CharReader> const reader (builder.newCharReader());
+        std::unique_ptr<Json::CharReader> reader = std::unique_ptr<Json::CharReader> (builder.newCharReader());
+        Json::Value val {};
+        std::string err {};
 
+        reader->parse(jsonContent.c_str(), jsonContent.c_str() + jsonContent.length(), &val, &err);
 
+        return val;
+    }
 
-        Json::Value val{};
-        string err{};
-        this->effects = unordered_map<string, Effect>();
+    std::string InterfaceJsonParser::loadJsonFile(std::string file) {
 
-        reader->parse(json.c_str(), json.c_str() + json.length(), &val, &err);
-        this->effects.reserve(val.size());
+        std::ifstream jsonStream(file);
+        std::stringstream jsonBuffer;
+        jsonBuffer << jsonStream.rdbuf();
+        std::string jsonContent = jsonBuffer.str();
 
-        for (Json::ValueIterator effect = val.begin(); effect != val.end(); effect++) {
-            this->effects[effect.name()] = Effect(val[effect.name()]);
-        }*/
+        return jsonContent;
     }
 }

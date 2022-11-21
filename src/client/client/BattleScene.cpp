@@ -2,6 +2,7 @@
 #include <iostream>
 #include <client.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <forward_list>
 #include <random>
 #include <utility>
@@ -22,6 +23,8 @@ namespace client {
         if (state!= nullptr)
             transitionTo(std::move(state));
 
+        playMusic();
+
         if (!std::equal(mode.begin(), mode.end(), "test")) {
             while (window.isOpen())
                 windowLoop();
@@ -37,6 +40,20 @@ namespace client {
         window.create(sf::VideoMode::getDesktopMode(), "Fakemon_Projekt", sf::Style::Fullscreen);
         view = window.getDefaultView();
     }
+
+    /*
+     * Opens the music file and plays it.
+     */
+    void BattleScene::playMusic() {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<int> distrib(1,6);
+        if (!music.openFromFile("res/BattleMusic" + std::to_string(distrib(gen)) + ".wav"))
+            std::cout << "Failed to load music" << std::endl;
+        music.setLoop(true);
+        music.play();
+    }
+
 
     /*
      * Set the elements displayed in the window and handle the events.
@@ -66,7 +83,7 @@ namespace client {
         while (window.pollEvent(event)) {
             switch (event.type) {
                 case sf::Event::Closed:
-                    window.close();
+                    windowClose();
                     break;
                 case sf::Event::Resized:
                     view = updateView(event.size.width, event.size.height);

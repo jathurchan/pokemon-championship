@@ -64,7 +64,7 @@
       },
       {
         "fontName": "textFont",
-        "string" : "USername",
+        "string": "USername",
         "characterSize": 60,
         "origin": {
           "x": 2,
@@ -73,7 +73,8 @@
         "position": {
           "ratioX": 2,
           "ratioY": 4.5
-        },
+        }
+      },
       {
         "fontName": "texetFont",
         "string" : "Link Code",
@@ -86,7 +87,7 @@
           "ratioX": 2,
           "ratioY": 2.7
         }
-      },
+      }
       }
     ]
   }
