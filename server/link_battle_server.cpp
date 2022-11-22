@@ -3,3 +3,7 @@
 //
 
 #include "link_battle_server.h"
+
+namespace server {
+
+}   // namespace server

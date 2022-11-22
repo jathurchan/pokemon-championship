@@ -3,3 +3,7 @@
 //
 
 #include "link_battle_client.h"
+
+namespace client {
+
+}   // namespace client
