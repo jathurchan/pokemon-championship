@@ -1,5 +1,5 @@
 //
-// Created by Jathurchan Selvakumar on 22/11/2022.
+// Created by JS on 22/11/2022.
 //
 
 #ifndef POKEMON_CHAMPIONSHIP_CLIENT_LINK_BATTLE_CLIENT_H
@@ -7,7 +7,7 @@
 
 namespace client {
 
-    class link_battle_client {
+    class LinkBattleClient {
 
     };
 

@@ -64,6 +64,12 @@ build CMakeFiles/pokemon_championship.dir/server/link_battle_server.cpp.o: CXX_C
   OBJECT_DIR = CMakeFiles/pokemon_championship.dir
   OBJECT_FILE_DIR = CMakeFiles/pokemon_championship.dir/server
 
+build CMakeFiles/pokemon_championship.dir/client/link_battle_client_builder.cpp.o: CXX_COMPILER__pokemon_championship_Debug /Users/jathselv/Documents/pokemon-championship/client/link_battle_client_builder.cpp || cmake_object_order_depends_target_pokemon_championship
+  DEP_FILE = CMakeFiles/pokemon_championship.dir/client/link_battle_client_builder.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++11
+  OBJECT_DIR = CMakeFiles/pokemon_championship.dir
+  OBJECT_FILE_DIR = CMakeFiles/pokemon_championship.dir/client
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target pokemon_championship
@@ -72,7 +78,7 @@ build CMakeFiles/pokemon_championship.dir/server/link_battle_server.cpp.o: CXX_C
 #############################################
 # Link the executable pokemon_championship
 
-build pokemon_championship: CXX_EXECUTABLE_LINKER__pokemon_championship_Debug CMakeFiles/pokemon_championship.dir/main.cpp.o CMakeFiles/pokemon_championship.dir/client/link_battle_client.cpp.o CMakeFiles/pokemon_championship.dir/server/link_battle_server.cpp.o
+build pokemon_championship: CXX_EXECUTABLE_LINKER__pokemon_championship_Debug CMakeFiles/pokemon_championship.dir/main.cpp.o CMakeFiles/pokemon_championship.dir/client/link_battle_client.cpp.o CMakeFiles/pokemon_championship.dir/server/link_battle_server.cpp.o CMakeFiles/pokemon_championship.dir/client/link_battle_client_builder.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
   OBJECT_DIR = CMakeFiles/pokemon_championship.dir
   POST_BUILD = :
