@@ -1,5 +1,6 @@
 #include "CustomSprite.hpp"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "ResourceHolder.hpp"
 
 /*
@@ -20,7 +21,7 @@ namespace client {
      * Enable the smooth filter of the texture depending on the smooth argument. Disables it by default.
      */
     CustomSprite::CustomSprite(std::string fileName, bool smooth) {
-
+        this->fileName = fileName;
         imagePtr = ResourceHolder::getInstance().getImage(fileName);
         texturePtr = ResourceHolder::getInstance().getTexture(fileName);
         texturePtr->setSmooth(smooth);
@@ -46,19 +47,6 @@ namespace client {
     }
 
     /*
-     * Sets the position of the sprite as a ratio of the view size on X and Y.
-     * Using 0 set its position to 0 on the axis.
-     */
-    void CustomSprite::setPosition(sf::View& view, float ratioX, float ratioY) {
-        float x=0, y=0;
-        if (ratioX!=0)
-            x=view.getSize().x/ratioX;
-        if (ratioY!=0)
-            y=view.getSize().y/ratioY;
-        sprite.setPosition(x,y);
-    }
-
-    /*
      * Sets the origin of the sprite as a ratio of the sprite size.
      * Using 0 set its position to 0 on the axis.
      */
@@ -72,6 +60,19 @@ namespace client {
     }
 
     /*
+     * Sets the position of the sprite as a ratio of the view size on X and Y.
+     * Using 0 set its position to 0 on the axis.
+     */
+    void CustomSprite::setPosition(sf::View& view, float ratioX, float ratioY) {
+        float x=0, y=0;
+        if (ratioX!=0)
+            x=view.getSize().x/ratioX;
+        if (ratioY!=0)
+            y=view.getSize().y/ratioY;
+        sprite.setPosition(x,y);
+    }
+
+    /*
      * Checks whether the position is inside the visible part of the sprite.
      */
     bool CustomSprite::isInSprite(sf::Vector2f position) {
@@ -81,6 +82,21 @@ namespace client {
             return true;
         else
             return false;
+    }
+
+    void CustomSprite::changeTexture(std::string fileName) {
+        imagePtr = ResourceHolder::getInstance().getImage(fileName);
+        texturePtr = ResourceHolder::getInstance().getTexture(fileName);
+        sprite.setTexture(*texturePtr);
+    }
+
+    void CustomSprite::move(sf::View& view, float ratioX, float ratioY) {
+        float x=0, y=0;
+        if (ratioX!=0)
+            x=view.getSize().x/ratioX;
+        if (ratioY!=0)
+            y=view.getSize().y/ratioY;
+        sprite.move(x,y);
     }
 
     /*

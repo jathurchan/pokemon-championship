@@ -16,7 +16,7 @@ namespace client {
 
         std::cout << "Enter Select State" << std::endl;
 
-        auto &spriteVector = this->battleScene->getStateSpriteVector();
+        /*auto &spriteVector = this->battleScene->getStateSpriteVector();
         auto &textVector = this->battleScene->getStateTextVector();
         auto &view = this->battleScene->getView();
 
@@ -180,7 +180,7 @@ namespace client {
         textVector.emplace_back(CustomText("textFont", "Select", sf::Text::Bold));
         textVector.back().setCharacterSize(view, 50);
         textVector.back().setOrigin(2, 1);
-        textVector.back().setPosition(view, 2, 1.07);
+        textVector.back().setPosition(view, 2, 1.07);*/
     }
 
     /*
@@ -191,6 +191,6 @@ namespace client {
     }
 
     std::string SelectState::getStateName() {
-        return std::to_string(StatesName::Select_State);
+        return ResourceHolder::getInstance().getStateName(Select_State);
     }
 }

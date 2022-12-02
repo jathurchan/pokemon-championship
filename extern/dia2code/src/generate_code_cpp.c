@@ -721,6 +721,10 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
            print ("#include <string>\n");
            si->string = 1;
        }
+       if (!si->string && strstr(name,"std::forward_list")) {
+           print("#include <forward_list>\n");
+           si->string = 1;
+       }
        if (!si->array && strstr(name,"std::array")) {
            print ("#include <array>\n");
            si->array = 1;

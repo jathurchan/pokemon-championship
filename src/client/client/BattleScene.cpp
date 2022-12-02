@@ -1,12 +1,12 @@
 #include "BattleScene.hpp"
 #include <iostream>
-#include <client.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <forward_list>
 #include <random>
 #include <utility>
 #include <list>
+#include <algorithm>
+#include <thread>
 
 /*
  * Creates and manages the window in which the game is displayed.
@@ -20,7 +20,7 @@ namespace client {
     BattleScene::BattleScene(std::shared_ptr<State> state, std::string mode) {
         this->state = nullptr;
         createWindow();
-        if (state!= nullptr)
+        if (state != nullptr)
             transitionTo(std::move(state));
 
         playMusic();
@@ -64,18 +64,26 @@ namespace client {
         window.clear(sf::Color::Black);
         window.setView(view);
 
-        for (auto iS : baseSpriteVector) {
+        for (auto iS: baseSpriteVector)
             window.draw(iS.getSprite());
-        }
-        for (auto iT : baseTextVector) {
-            window.draw(iT.getText());
-        }
-        for (auto iS : stateSpriteVector) {
+        for (auto iS: stateSpriteVector)
             window.draw(iS.getSprite());
+        for (auto iB: stateButtonVector)
+            window.draw(iB.getSprite());
+        for (auto iB: baseButtonVector)
+            window.draw(iB.getSprite());
+        for (auto iB: stateButtonWithTextVector) {
+            window.draw(iB.getSprite());
+            window.draw(iB.getText().getText());
         }
-        for (auto iT : stateTextVector) {
+        for (auto iB: baseButtonWithTextVector) {
+            window.draw(iB.getSprite());
+            window.draw(iB.getText().getText());
+        }
+        for (auto iT: baseTextVector)
             window.draw(iT.getText());
-        }
+        for (auto iT: stateTextVector)
+            window.draw(iT.getText());
 
         window.display();
 
@@ -106,9 +114,33 @@ namespace client {
                         default:
                             break;
                     }
+                case sf::Event::MouseButtonReleased:
+                    if (event.mouseButton.button == sf::Mouse::Left) {
+                        sf::Vector2i position(event.mouseButton.x, event.mouseButton.y);
+                        for (auto iB = begin(stateButtonVector); iB != end(stateButtonVector); iB++) {
+                            if (iB->isInSprite(window.mapPixelToCoords(position, view))) {
+                                if (activeButton != nullptr)
+                                    activeButton = activeButton->clickedOnButtonDisable();
+                                activeButton = iB->clickedOnButtonAction();
+                            }
+                        }
+                        for (auto iB = begin(stateButtonWithTextVector); iB != end(stateButtonWithTextVector); iB++) {
+                            if (iB->isInSprite(window.mapPixelToCoords(position, view))) {
+                                if (activeButton != nullptr)
+                                    activeButton = activeButton->clickedOnButtonDisable();
+                                activeButton = iB->clickedOnButtonAction();
+                            }
+                        }
+                    }
+                case sf::Event::TextEntered:
+                    if (event.text.unicode < 128)
+                        std::cout << (char) event.text.unicode << std::endl;
                 default:
                     break;
             }
+        }
+        if (activeButton != nullptr) {
+            activeButton = activeButton->clickedOnButtonTimed();
         }
     }
 
@@ -217,28 +249,41 @@ namespace client {
     /*
      * Return a reference of the vector containing the displayed sprites depending on the state.
      */
-    std::vector<CustomSprite>& BattleScene::getStateSpriteVector() {
-        return stateSpriteVector;
+    std::vector<CustomSprite>* BattleScene::getStateSpriteVector() {
+        return &stateSpriteVector;
     }
     /*
      * Return a reference of the vector containing the displayed texts depending on the state.
      */
-    std::vector<CustomText>& BattleScene::getStateTextVector() {
-        return stateTextVector;
+    std::vector<CustomText>* BattleScene::getStateTextVector() {
+        return &stateTextVector;
     }
+
     /*
-     * Reset the vector containing the displayed sprites and texts.
+    * Return a reference of the vector containing the displayed button depending on the state.
+    */
+    std::vector<CustomButton>* BattleScene::getStateButtonVector() {
+        return &stateButtonVector;
+    }
+
+    std::vector<CustomButtonWithText> *BattleScene::getStateButtonWithTextVector() {
+        return &stateButtonWithTextVector;
+    }
+
+    /*
+     * Reset the vector containing the displayed sprites, buttons and texts.
      */
     void BattleScene::resetStateDrawVectors() {
         stateSpriteVector.resize(0);
         stateTextVector.resize(0);
+        stateButtonVector.resize(0);
     }
 
     /*
      * Return a reference of the view used.
      */
-    sf::View& BattleScene::getView() {
-        return view;
+    sf::View* BattleScene::getView() {
+        return &view;
     }
 
     /*
@@ -259,10 +304,15 @@ namespace client {
 
     void BattleScene::windowClose() {
         window.close();
-        std::cout << "Game OVer" << std::endl;
+        std::cout << "Game Over" << std::endl;
     }
 
     std::string BattleScene::getState() {
         return state->getStateName();
     }
+
+    CustomButton* BattleScene::getActiveButton() {
+        return activeButton;
+    }
+
 }

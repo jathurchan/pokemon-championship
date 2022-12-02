@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "ResourceHolder.hpp"
+#include "StatesName.hpp"
+#define stringify(name) #name
 
 /*
  * Contains the textures, images and fonts which were loaded by the render, each one of them is stored only once.
@@ -84,5 +86,28 @@ namespace client {
             }
             return &fonts[name];
         }
+    }
+
+    sf::Time ResourceHolder::getClkTime() {
+        return clk.getElapsedTime();
+    }
+
+    //Mettre ca sous forme de methode maybe ???
+    //Faudra surement mettre ca ailleur mais ou ????
+    static const char* strConvertedEnum[] =
+            {
+            stringify(Login_State),
+            stringify(Ban_State),
+            stringify(Choice_State),
+            stringify(Select_State),
+            stringify(Action_State),
+            stringify(Switch_State),
+            stringify(Wait_State),
+            stringify(TurnResult_State),
+            stringify(EndBattle_State)
+            };
+
+    std::string ResourceHolder::getStateName(StatesName state) {
+        return strConvertedEnum[state];
     }
 }

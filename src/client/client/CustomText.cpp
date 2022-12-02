@@ -1,5 +1,6 @@
 #include "CustomText.hpp"
 #include <utility>
+#include <iostream>
 #include "ResourceHolder.hpp"
 
 /*
@@ -80,5 +81,14 @@ namespace client {
      */
     sf::Text& CustomText::getText () {
         return text;
+    }
+
+    void CustomText::move(sf::View &view, float ratioX, float ratioY) {
+        float x=0, y=0;
+        if (ratioX!=0)
+            x=view.getSize().x/ratioX;
+        if (ratioY!=0)
+            y=view.getSize().y/ratioY;
+        text.move(x,y);
     }
 }

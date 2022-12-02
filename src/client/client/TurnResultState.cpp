@@ -16,7 +16,7 @@ namespace client {
 
         std::cout << "Enter Turn Result State" << std::endl;
 
-        auto &spriteVector = this->battleScene->getStateSpriteVector();
+       /* auto &spriteVector = this->battleScene->getStateSpriteVector();
         auto &textVector = this->battleScene->getStateTextVector();
         auto &view = this->battleScene->getView();
 
@@ -28,7 +28,7 @@ namespace client {
         textVector.emplace_back("textFont", "Player 2 switched Fakemon 2.1 with Fakemon 2.2.\n\nFakemon 1.1 of Player 1 did something to Fakemon 2.2\nof Player 2.");
         textVector.back().setCharacterSize(view, 95);
         textVector.back().setOrigin(2, 2);
-        textVector.back().setPosition(view, 2, 1.175);
+        textVector.back().setPosition(view, 2, 1.175);*/
     }
 
     /*
@@ -39,6 +39,6 @@ namespace client {
     }
 
     std::string TurnResultState::getStateName() {
-        return std::to_string(StatesName::TurnResult_State);
+        return ResourceHolder::getInstance().getStateName(TurnResult_State);
     }
 }

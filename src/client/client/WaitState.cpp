@@ -16,7 +16,7 @@ namespace client {
 
         std::cout << "Enter Wait State" << std::endl;
 
-        auto &spriteVector = this->battleScene->getStateSpriteVector();
+       /* auto &spriteVector = this->battleScene->getStateSpriteVector();
         auto &textVector = this->battleScene->getStateTextVector();
         auto &view = this->battleScene->getView();
 
@@ -28,7 +28,7 @@ namespace client {
         textVector.emplace_back("textFont", "Wait ...");
         textVector.back().setCharacterSize(view, 50);
         textVector.back().setOrigin(2, 2);
-        textVector.back().setPosition(view, 2, 1.175);
+        textVector.back().setPosition(view, 2, 1.175);*/
     }
 
     /*
@@ -39,6 +39,6 @@ namespace client {
     }
 
     std::string WaitState::getStateName() {
-        return std::to_string(StatesName::Wait_State);
+        return ResourceHolder::getInstance().getStateName(Wait_State);
     }
 }

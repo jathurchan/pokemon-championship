@@ -16,7 +16,7 @@ namespace client {
 
         std::cout << "Enter Switch State" << std::endl;
 
-        auto &spriteVector = this->battleScene->getStateSpriteVector();
+       /* auto &spriteVector = this->battleScene->getStateSpriteVector();
         auto &textVector = this->battleScene->getStateTextVector();
         auto &view = this->battleScene->getView();
 
@@ -79,7 +79,7 @@ namespace client {
         spriteVector.emplace_back("berryItem", true);
         spriteVector.back().setOrigin(2.5, 1);
         spriteVector.back().setPosition(view, 2.38, 1.238);
-        spriteVector.back().setScale(view, 14);
+        spriteVector.back().setScale(view, 14);*/
     }
 
     /*
@@ -90,6 +90,6 @@ namespace client {
     }
 
     std::string SwitchState::getStateName() {
-        return std::to_string(StatesName::Switch_State);
+        return ResourceHolder::getInstance().getStateName(Switch_State);
     }
 }

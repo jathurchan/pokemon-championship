@@ -17,7 +17,7 @@ namespace client {
 
         std::cout << "Enter Action State" << std::endl;
 
-        auto &spriteVector = this->battleScene->getStateSpriteVector();
+        /*auto &spriteVector = this->battleScene->getStateSpriteVector();
         auto &textVector = this->battleScene->getStateTextVector();
         auto &view = this->battleScene->getView();
 
@@ -64,7 +64,7 @@ namespace client {
         textVector.emplace_back("textFont", "Action 4");
         textVector.back().setCharacterSize(view, 63);
         textVector.back().setOrigin(0, 2);
-        textVector.back().setPosition(view, 1.92, 1.08);
+        textVector.back().setPosition(view, 1.92, 1.08);*/
     }
 
     /*
@@ -75,6 +75,6 @@ namespace client {
     }
 
     std::string ActionState::getStateName() {
-        return std::to_string(StatesName::Action_State);
+        return ResourceHolder::getInstance().getStateName(Action_State);
     }
 }

@@ -4,14 +4,12 @@
 #include <string>
 #include <memory>
 #include <fstream>
-#include <sstream>
-#include <unordered_map>
 
 namespace client {
 
-    Json::Value InterfaceJsonParser::readJsonString(std::string state) {
+    Json::Value InterfaceJsonParser::readJsonString(std::string file) {
 
-        std::string jsonContent = loadJsonFile("res/interfaceConfig.json");
+        std::string jsonContent = loadJsonFile(file);
 
         Json::CharReaderBuilder builder;
         std::unique_ptr<Json::CharReader> reader = std::unique_ptr<Json::CharReader> (builder.newCharReader());

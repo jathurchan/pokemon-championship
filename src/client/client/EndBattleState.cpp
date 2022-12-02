@@ -18,7 +18,7 @@ namespace client {
         std::string result = "defeat";
 
         std::cout << "Enter " + result + " End Turn State" << std::endl;
-
+/*
         auto &spriteVector = this->battleScene->getStateSpriteVector();
         auto &textVector = this->battleScene->getStateTextVector();
         auto &view = this->battleScene->getView();
@@ -56,7 +56,7 @@ namespace client {
         textVector.emplace_back("textFont", "Recap : Player 2", sf::Text::Bold);
         textVector.back().setCharacterSize(view, 55);
         textVector.back().setOrigin(0, 2);
-        textVector.back().setPosition(view, 1.855, 2.6);
+        textVector.back().setPosition(view, 1.855, 2.6);*/
     }
 
     /*
@@ -67,6 +67,6 @@ namespace client {
     }
 
     std::string EndBattleState::getStateName() {
-        return std::to_string(StatesName::EndBattle_State);
+        return ResourceHolder::getInstance().getStateName(EndBattle_State);
     }
 }
