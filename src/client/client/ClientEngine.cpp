@@ -3,7 +3,9 @@
 namespace client {
 
     void ClientEngine::run() {
+
         scene.initWindow();
+        scene.playMusic();
 
         while (scene.getWindow()->isOpen()) {
             sf::Event event;
