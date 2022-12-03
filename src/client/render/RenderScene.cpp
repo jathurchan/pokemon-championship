@@ -1,6 +1,6 @@
 #include "RenderScene.hpp"
 
-namespace client {
+namespace render {
 
     RenderScene::RenderScene() = default;
 }
