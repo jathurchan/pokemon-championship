@@ -5,7 +5,8 @@ int main(int argc,char* argv[])
 {
     std::cout << "It Works !" <<std::endl;
 
-    client::ClientEngine engine();
+    client::ClientEngine engine;
+    engine.run();
 
     return 0;
 }
