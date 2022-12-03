@@ -1,4 +1,6 @@
+#include <iostream>
 #include "ClientEngine.hpp"
+#include "LoginState.hpp"
 
 namespace client {
 

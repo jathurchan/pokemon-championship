@@ -4,8 +4,6 @@
 
 namespace render {
 
-    GameScene::GameScene() = default;
-
     void GameScene::initWindow() {
         Json::Value configInfo = utilities::JsonParser::readJsonString(configFile)["window"];
         fullscreen = configInfo["fullscreen"].asBool();
