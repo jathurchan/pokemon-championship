@@ -2,4 +2,5 @@
 
 namespace client {
 
+    ClientEngine::ClientEngine() = default;
 }
