@@ -10,7 +10,7 @@ file(GLOB_RECURSE client_sources *.cpp)
 list(REMOVE_ITEM client_sources "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 
 # Build the "client" library, add required include and link against dependencies
-add_library(${lib_client_target} STATIC ${client_sources} client/SwitchState.cpp client/TurnResultState.cpp client/EndBattleState.cpp client/BanState.cpp client/LoginState.cpp client/SelectState.cpp)
+add_library(${lib_client_target} STATIC ${client_sources} ${jsoncpp_sources})
 add_dependencies(${lib_client_target} generate-headers)
 target_include_directories(${lib_client_target} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}
@@ -23,7 +23,7 @@ target_link_libraries(${lib_client_target} PUBLIC
 
 # Compile "client" executable
 set(client_target client)
-add_executable(${client_target} main.cpp client/WaitState.cpp)
+add_executable(${client_target} main.cpp client/ClientEngine.cpp)
 target_link_libraries(${client_target} ${lib_client_target})
 if(BUILD_CODE_COVERAGE)
   add_dependencies(code-coverage ${client_target})
