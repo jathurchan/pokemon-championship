@@ -38,6 +38,14 @@ namespace render {
         window.setView(view);
     }
 
+    void GameScene::changeScreenMode() {
+        if (!fullscreen)
+            window.create(sf::VideoMode::getDesktopMode(), configInfo["name"].asString(), sf::Style::Fullscreen);
+        else
+            window.create(sf::VideoMode(configInfo["width"].asInt(), configInfo["height"].asInt()), configInfo["name"].asString(), sf::Style::Default);
+        fullscreen = !fullscreen;
+    }
+
     sf::RenderWindow *GameScene::getWindow() {
         return &window;
     }
