@@ -2,9 +2,8 @@
 
 namespace client {
 
-    //EventHandler::EventHandler() = default;
     EventHandler::EventHandler() {
-        eventMap[0] = "Closed";
+        initEventMap();
     }
 
     EventHandler& EventHandler::getInstance() {
@@ -12,12 +11,12 @@ namespace client {
         return instance;
     }
 
-    std::unordered_map<int, std::string>* EventHandler::getMap() {
+    std::unordered_map<int, std::function<void(ClientEngine&, sf::Event)>>* EventHandler::getEventMap() {
         return &eventMap;
     }
 
-    std::function<void(ClientEngine&, sf::Event)>& getFunc() {
-        std::function<void(ClientEngine&, sf::Event)> func = &ClientEngine::windowClose;
-        return func;
-    };
+    void EventHandler::initEventMap() {
+        eventMap[0] = &ClientEngine::windowClose;
+        eventMap[1] = &ClientEngine::updateView;
+    }
 }
