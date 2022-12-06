@@ -10,3 +10,4 @@ src/*/*/*.out
 *.out
 .idea
 .DS_Store
+.vscode
