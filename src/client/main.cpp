@@ -1,10 +1,12 @@
 #include <client.hpp>
 #include <iostream>
+#include "utilities.hpp"
 
 int main(int argc,char* argv[])
 {
     std::cout << "It Works !" <<std::endl;
 
+    utilities::JsonParser::writeJsonFile();
     client::ClientEngine engine;
     engine.run();
 

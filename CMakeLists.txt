@@ -15,7 +15,7 @@ include(GenerateDiaHeader)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 # Enable C++11
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Enable Debug and Release builds
@@ -25,8 +25,8 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 IF(CMAKE_COMPILER_IS_GNUCC)
-  SET(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -Wall -std=c11 -pg  -pthread -g")
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -pg -pthread -g")
+  SET(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -Wall -std=c2x -pg  -pthread -g")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++2a -pg -pthread -g")
 ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
 

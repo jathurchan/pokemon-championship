@@ -1,16 +1,12 @@
 #include <iostream>
+#include <memory>
 #include "ClientEngine.hpp"
-#include "render.hpp"
 
 namespace client {
 
-    //Pour les test je peux faire que chaque event a un nom -> problème : dia, ENCORE
-    //vu que le nombre de caractère est limité
-
     ClientEngine::ClientEngine() {
-        //Unique_ptr donc pas d'allocation dynamique
-        eventHandler = std::unique_ptr<EventHandler>(new EventHandler);
-
+        eventHandler = std::make_unique<EventHandler>();
+        State::initStatesName();
     }
 
     void ClientEngine::run() {
@@ -19,6 +15,9 @@ namespace client {
         scene.playMusic();
 
         while (scene.getWindow()->isOpen()) {
+
+            scene.getWindow()->clear();
+            scene.getWindow()->display();
 
             sf::Event event{};
             while (scene.getWindow()->pollEvent(event)) {

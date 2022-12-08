@@ -1,5 +1,4 @@
 #include "CustomSprite.hpp"
-#include <iostream>
 
 /*
  * Creates an instance of sf::Sprite and implement different method to interact with it.
@@ -53,15 +52,6 @@ namespace render {
     void CustomSprite::move(sf::View& view, float posX, float posY) {
         sprite.move((posX+100) * view.getSize().x/200,
                     (posY+100) * view.getSize().y/200);
-    }
-
-    /*
-     * Checks whether the position is inside the visible part of the sprite.
-     */
-    bool CustomSprite::isInSprite(sf::Vector2f position) {
-        return (sprite.getGlobalBounds().contains(position.x, position.y) &&
-                imagePtr->getPixel((int) (sprite.getOrigin().x - (sprite.getPosition().x-position.x)/sprite.getScale().x),
-                                   (int) (sprite.getOrigin().y - (sprite.getPosition().y-position.y)/sprite.getScale().y)).a != 0);
     }
 
     /*

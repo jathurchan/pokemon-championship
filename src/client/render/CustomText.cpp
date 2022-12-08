@@ -1,7 +1,4 @@
 #include "CustomText.hpp"
-#include <utility>
-#include <iostream>
-#include "ResourceHolder.hpp"
 
 /*
  * Creates an instance of sf::Text and implement different method to interact with it.

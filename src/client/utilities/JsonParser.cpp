@@ -1,11 +1,13 @@
 #include "JsonParser.hpp"
 #include <memory>
 #include <fstream>
+#include <iostream>
 
 namespace utilities {
 
-    Json::Value JsonParser::readJsonString(const std::string& file) {
+    const char* JsonParser::configFile = "res/config.json";
 
+    Json::Value JsonParser::readJsonString(const std::string& file) {
         std::string jsonContent = loadJsonFile(file);
 
         Json::CharReaderBuilder builder;
@@ -26,5 +28,21 @@ namespace utilities {
         std::string jsonContent = jsonBuffer.str();
 
         return jsonContent;
+    }
+
+    void JsonParser::writeJsonFile() {
+
+        Json::StreamWriterBuilder builder;
+        std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
+
+        std::fstream file;
+        file.open("res/test.json", std::fstream::out);
+        file << Json::writeString(builder, getConfigInfo()) << std::endl;
+        file.close();
+    }
+
+    Json::Value* JsonParser::getConfigInfo() {
+        static Json::Value configInfo = readJsonString(configFile);
+        return &configInfo;
     }
 }

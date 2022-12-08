@@ -6,5 +6,10 @@
     "ratioX": 16,
     "ratioY": 9,
     "fullscreen": false
+  },
+  "volume": 100,
+  "jsonFiles" : {
+    "events": "events.json",
+    "assets": "assets.json"
   }
 }
