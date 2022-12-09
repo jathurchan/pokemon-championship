@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.23)
 project(pokemon_championship)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 
-add_executable(pokemon_championship main.cpp client/link_battle_client.cpp client/link_battle_client.h server/link_battle_server.cpp server/link_battle_server.h client/link_battle_client_builder.cpp client/link_battle_client_builder.h)
+add_executable(pokemon_championship main.cpp server.cpp client.cpp server2.cpp)
