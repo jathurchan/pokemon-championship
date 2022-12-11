@@ -12,23 +12,27 @@
 
 namespace render {
 
-    /* Il faudrait mettre ca dans le hpp sauf que dia
+    /* Il faudrait mettre ca dans le hpp mais comment faire avec dia ?
     ResourceHolder(const ResourceHolder&) = delete;
     void operator=(const ResourceHolder &) = delete;
      */
 
+
     /*
      * Private constructor
      */
-    ResourceHolder::ResourceHolder() = default;
+    ResourceHolder::ResourceHolder() {
+        assetsFile = "res/" + (*utilities::JsonParser::getConfigInfo())["jsonFiles"]["stateAssets"].asString();
+    };
 
     /*
      * Returns the single instance of the class.
      */
-    ResourceHolder& ResourceHolder::getInstance() {
+    ResourceHolder &ResourceHolder::getInstance() {
         static ResourceHolder instance;
         return instance;
     }
+
 
     /*
      * Return the sf::Image identified by the name argument.
@@ -42,7 +46,7 @@ namespace render {
         }
         else {
             sf::Image& image = images[name];
-            if (!image.loadFromFile("res/" + name + ".png")) {
+            if (!image.loadFromFile("res/asset/" + name + ".png")) {
                 std::cout << "Failed to load " + name + " image" << std::endl;
             }
             return &images[name];
@@ -69,7 +73,7 @@ namespace render {
     }
 
     /*
-     * Returns the sf::font identified by the name argument.
+     * Returns the sf::Font identified by the name argument.
      * If the font described is not already loaded in memory, loads it before returning it.
      */
     sf::Font* ResourceHolder::getFont(const std::string& name) {
@@ -84,6 +88,55 @@ namespace render {
                 std::cout << "Failed to load " + name + " font" << std::endl;
             }
             return &fonts[name];
+        }
+    }
+
+    std::vector<CustomText> *ResourceHolder::getStateTextVector(int state) {
+        return &stateAssetsMap[state].first;
+    }
+
+    std::vector<CustomSprite> *ResourceHolder::getStateSpriteVector(int state) {
+        return &stateAssetsMap[state].second;
+    }
+
+    void ResourceHolder::loadStateAssets(sf::View view) {
+        Json::Value stateAssetsInfo = utilities::JsonParser::readJsonString(assetsFile);
+        for (const Json::Value &stateAssets: stateAssetsInfo) {
+            if (stateAssets != Json::nullValue) {
+                int index = stateAssets["stateIndex"].asInt();
+                stateAssetsMap[index] = std::make_pair(std::vector<CustomText>{}, std::vector<CustomSprite>{});
+                for (const Json::Value &stateText: stateAssets["text"]) {
+                    stateAssetsMap[index].first.emplace(stateAssetsMap[index].first.end(),
+                                                        stateText["fontName"].asString(),
+                                                        stateText["string"].asString(),
+                                                        sf::Text::Style(stateText["style"].asInt()));
+                    stateAssetsMap[index].first.back().setCharacterSize(view,
+                                                                        stateText["characterSize"].asInt());
+                    stateAssetsMap[index].first.back().setXOrigin(stateText["origin"]["originX"].asFloat());
+                    stateAssetsMap[index].first.back().setPosition(view,
+                                                                   stateText["position"]["ratioX"].asFloat(),
+                                                                   stateText["position"]["ratioY"].asFloat());
+                    stateAssetsMap[index].first.back().setColor((char) stateText["color"]["red"].asInt(),
+                                                                (char) stateText["color"]["green"].asInt(),
+                                                                (char) stateText["color"]["blue"].asInt(),
+                                                                (char) stateText["color"]["alpha"].asInt());
+                }
+                for (const Json::Value &stateSprites: stateAssets["sprite"]) {
+                    stateAssetsMap[index].second.emplace(stateAssetsMap[index].second.end(),
+                                                         stateSprites["imageName"].asString(),
+                                                         stateSprites["smooth"].asBool());
+                    stateAssetsMap[index].second.back().setScale(view,
+                                                                 stateSprites["scale"]["ratioOnX"].asBool(),
+                                                                 stateSprites["scale"]["percent"].asFloat(),
+                                                                 stateSprites["scale"]["invertedX"].asBool(),
+                                                                 stateSprites["scale"]["invertedY"].asBool());
+                    stateAssetsMap[index].second.back().setOrigin(stateSprites["origin"]["originX"].asFloat(),
+                                                                  stateSprites["origin"]["originY"].asFloat());
+                    stateAssetsMap[index].second.back().setPosition(view,
+                                                                    stateSprites["position"]["posX"].asFloat(),
+                                                                    stateSprites["position"]["posY"].asFloat());
+                }
+            }
         }
     }
 }

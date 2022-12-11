@@ -1,0 +1,67 @@
+{
+  "Login_State": {
+    "stateIndex": 0,
+    "sprite": [
+      {
+        "imageName": "loginBackground",
+        "smooth": false,
+        "scale": {
+          "ratioOnX" : true,
+          "percent": 100
+        },
+        "origin": {
+          "originX": -10,
+          "originY": -10
+        },
+        "position": {
+          "posX": -100,
+          "posY": -100
+        }
+      }
+    ],
+    "text": [
+      {
+        "fontName": "titleFont",
+        "string": "Fakemon Projekt",
+        "characterSize": 200,
+        "origin": {
+          "originX": 0
+        },
+        "position": {
+          "ratioX": 0,
+          "ratioY": -85
+        },
+        "color": {
+          "red": 200,
+          "green": 200,
+          "blue": 255,
+          "alpha": 255
+        }
+      }
+    ]
+  },
+  "Ban_State": {
+    "stateIndex": 1
+  },
+  "Choice_State": {
+    "stateIndex": 2
+  },
+  "Select_State": {
+    "stateIndex": 3
+  },
+  "Action_State": {
+    "stateIndex": 4
+  },
+  "Switch_State": {
+    "stateIndex": 5
+  },
+  "Wait_State": {
+    "stateIndex": 6
+  },
+  "TurnResult_State": {
+    "stateIndex": 7
+  },
+  "EndBattle_State": {
+    "stateIndex": 8
+  }
+}

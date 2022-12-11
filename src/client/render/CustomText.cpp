@@ -32,7 +32,7 @@ namespace render {
     //ALWAYS CALL BEFORE setPosition
     void CustomText::setCharacterSize(sf::View &view, unsigned int size) {
         text.setCharacterSize(size);
-        text.setScale(view.getSize().x/800, view.getSize().x/800);
+        text.setScale(view.getSize().x/2560, view.getSize().x/2560);
     }
 
     //ALWAYS CALL AFTER setCharacterSize
@@ -63,5 +63,4 @@ namespace render {
     sf::Text& CustomText::getText () {
         return text;
     }
-
 }

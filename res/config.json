@@ -9,7 +9,6 @@
   },
   "volume": 100,
   "jsonFiles" : {
-    "events": "events.json",
-    "assets": "assets.json"
+    "stateAssets": "stateAssets.json"
   }
 }

@@ -505,7 +505,7 @@ gen_class (umlclassnode *node)
         umlattrlist umla = node->key->attributes;
         emit ("\n");
         indentlevel--;
-        print ("private:  // State member implementation\n");
+        print ("private:  // StateHandler member implementation\n");
         indentlevel++;
         while (umla != NULL) {
             umlclassnode *ref = find_by_name (gb->classlist, umla->key.type);
@@ -683,6 +683,7 @@ struct stdlib_includes {
    int memory;
    int limits;
    int map;
+   int any;
    int unordered_map;
    int set;
    int list;
@@ -733,6 +734,10 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
            print ("#include <map>\n");
            si->map = 1;
        }
+       if (!si->any && strstr(name,"std::any")) {
+            print ("#include <any>\n");
+            si->any = 1;
+        }
         if (!si->function && strstr(name,"std::function")) {
             print ("#include <functional>\n");
             si->function = 1;

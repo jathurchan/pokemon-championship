@@ -6,7 +6,8 @@ namespace client {
 
     ClientEngine::ClientEngine() {
         eventHandler = std::make_unique<EventHandler>();
-        State::initStatesName();
+        stateHandler = std::make_unique<StateHandler>(Login_State);
+        render::ResourceHolder::getInstance();
     }
 
     void ClientEngine::run() {
@@ -17,6 +18,10 @@ namespace client {
         while (scene.getWindow()->isOpen()) {
 
             scene.getWindow()->clear();
+            for (render::CustomSprite sprite : *render::ResourceHolder::getInstance().getStateSpriteVector(stateHandler->getCurrentState()))
+                scene.getWindow()->draw(sprite.getSprite());
+            for (render::CustomText text : *render::ResourceHolder::getInstance().getStateTextVector(stateHandler->getCurrentState()))
+                scene.getWindow()->draw(text.getText());
             scene.getWindow()->display();
 
             sf::Event event{};

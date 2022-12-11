@@ -19,6 +19,7 @@ namespace render {
             (*configInfo)["window"]["fullscreen"] = false;
         }
         view = window.getDefaultView();
+        ResourceHolder::getInstance().loadStateAssets(view);
     }
 
     void GameScene::playMusic() {
