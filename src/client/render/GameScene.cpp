@@ -61,6 +61,15 @@ namespace render {
         }
     }
 
+    void GameScene::display(int state) {
+        window.clear();
+        for (render::CustomSprite sprite : *render::ResourceHolder::getInstance().getStateSpriteVector(state))
+            window.draw(sprite.getSprite());
+        for (render::CustomText text : *render::ResourceHolder::getInstance().getStateTextVector(state))
+            window.draw(text.getText());
+        window.display();
+    }
+
     sf::RenderWindow *GameScene::getWindow() {
         return &window;
     }

@@ -7,7 +7,6 @@ namespace client {
     ClientEngine::ClientEngine() {
         eventHandler = std::make_unique<EventHandler>();
         stateHandler = std::make_unique<StateHandler>(Login_State);
-        render::ResourceHolder::getInstance();
     }
 
     void ClientEngine::run() {
@@ -17,12 +16,7 @@ namespace client {
 
         while (scene.getWindow()->isOpen()) {
 
-            scene.getWindow()->clear();
-            for (render::CustomSprite sprite : *render::ResourceHolder::getInstance().getStateSpriteVector(stateHandler->getCurrentState()))
-                scene.getWindow()->draw(sprite.getSprite());
-            for (render::CustomText text : *render::ResourceHolder::getInstance().getStateTextVector(stateHandler->getCurrentState()))
-                scene.getWindow()->draw(text.getText());
-            scene.getWindow()->display();
+            scene.display(stateHandler->getCurrentState());
 
             sf::Event event{};
             while (scene.getWindow()->pollEvent(event)) {
@@ -50,5 +44,16 @@ namespace client {
 
     void ClientEngine::releasedKeysAction(sf::Event event) {
         eventHandler->getSupportedReleasedKeysMap()->find(event.key.code)->second(*this, event);
+    }
+
+    void ClientEngine::releasedButtonsAction(sf::Event event) {
+        if (event.mouseButton.button == sf::Mouse::Left) {
+            sf::Vector2i position(event.mouseButton.x, event.mouseButton.y);
+            for (auto button: *render::ResourceHolder::getInstance().getStateButtonVector(stateHandler->getCurrentState())) {
+                if (button.isInSprite(scene.getWindow()->mapPixelToCoords(position, scene.getWindow()->getView()))) {
+                    button.action();
+                }
+            }
+        }
     }
 }

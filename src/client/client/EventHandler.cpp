@@ -14,6 +14,7 @@ namespace client {
         eventsMap[0] = &ClientEngine::windowClose;
         eventsMap[1] = &ClientEngine::updateView;
         eventsMap[6] = &ClientEngine::releasedKeysAction;
+        eventsMap[10] = &ClientEngine::releasedButtonsAction;
     }
 
     void EventHandler::initSupportedReleasedKeysMap() {

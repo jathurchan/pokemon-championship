@@ -61,4 +61,8 @@ namespace render {
     sf::Sprite& CustomSprite::getSprite() {
         return sprite;
     }
+
+    sf::Image *&CustomSprite::getImagePtr() {
+        return imagePtr;
+    }
 }

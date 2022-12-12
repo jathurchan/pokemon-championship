@@ -5,6 +5,7 @@ namespace client {
 
     StateHandler::StateHandler(StatesName currentState) {
         this->currentState = currentState;
+        initStatesMap();
     }
 
     void StateHandler::initStatesMap() {
@@ -21,6 +22,10 @@ namespace client {
 
     StatesName StateHandler::getCurrentState() {
         return currentState;
+    }
+
+    void StateHandler::transitionToState(StatesName state) {
+
     }
 
 }
