@@ -11,3 +11,4 @@ src/*/*/*.out
 .idea
 .DS_Store
 .vscode
+*.json

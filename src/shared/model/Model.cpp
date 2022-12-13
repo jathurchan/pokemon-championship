@@ -61,7 +61,9 @@ namespace model {
         buildMap(itemDependencies, jsonItem, ITEM);
         buildMap(creatureDependencies, jsonCreature, CREATURE);
 
-        //Delete arrays
+        /*****************/
+        /* DELETE ARRAYS */
+        /*****************/
         delete[] jsonCreature;
         delete[] jsonItem;
         delete[] jsonMoves;
@@ -70,12 +72,39 @@ namespace model {
         delete[] jsonTriggers;
     }
 
+    void Model::dispAll() {
+        for(std::pair<std::string,Creature*> pair : this->creatures) {
+            printf("%s\n", pair.first.c_str());
+        }
+        printf("\n");
+        for(std::pair<std::string,Item*> pair : this->items) {
+            printf("%s\n", pair.first.c_str());
+        }
+        printf("\n");
+        for(std::pair<std::string,Move*> pair : this->moves) {
+            printf("%s\n", pair.first.c_str());
+        }
+        printf("\n");
+        for(std::pair<std::string,Type*> pair : this->types) {
+            printf("%s\n", pair.first.c_str());
+        }
+        printf("\n");
+        for(std::pair<std::string,Effect*> pair : this->effects) {
+            printf("%s\n", pair.first.c_str());
+        }
+        printf("\n");
+        for(std::pair<std::string,Trigger*> pair : this->triggers) {
+            printf("%s\n", pair.first.c_str());
+        }
+    }
+
     Json::Value* Model::parseFiles(std::set<std::string> dependenciesName, int expectedType) {
         int i = 0;
         int depSize = dependenciesName.size();
         Json::Value* jsonArr = new Json::Value[depSize];
         for(std::string name : dependenciesName) {
             struct stat buffer;
+            name += ".json";
             if (stat (name.c_str(), &buffer) != 0)
                 throw std::invalid_argument("File not found.");
 
@@ -105,7 +134,7 @@ namespace model {
         for(size_t i = 0; i < sourceLen; i++) {
             Json::Value val = dependencySources[i]["Dependencies"][type];
             for(Json::ValueIterator element = val.begin(); element != val.end(); element++) {
-                dependencyTarget.insert(val[element.name()].asString());
+                dependencyTarget.insert(val[element.index()].asString());
             }
             dependencySources[i]["Dependencies"].removeMember(type);
             if(dependencySources[i]["Dependencies"].size() <= 0) {
