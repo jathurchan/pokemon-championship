@@ -77,7 +77,9 @@
     ],
     "button": [
       {
-        "action": "test",
+        "activeAction": "testPress",
+        "holdAction": "testHold",
+        "unactiveAction": "testOff",
         "sprite": {
           "imageName": "loginButton",
           "smooth": true,

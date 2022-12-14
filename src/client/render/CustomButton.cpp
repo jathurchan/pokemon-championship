@@ -4,15 +4,25 @@
 
 namespace render {
 
-    std::unordered_map<std::string,std::function<void(CustomButton&)>> buttonActionsMap = {
-            {"test", &CustomButton::test}
+    std::unordered_map<std::string,std::function<void(CustomButton&)>> buttonActiveActionsMap = {
+
+    };
+
+    std::unordered_map<std::string,std::function<void(CustomButton&)>> buttonHoldActionsMap = {
+
+    };
+
+    std::unordered_map<std::string,std::function<void(CustomButton&)>> buttonDisactiveActionsMap = {
+
     };
 
     CustomButton::CustomButton() = default;
 
-    CustomButton::CustomButton(CustomSprite *sprite, std::string buttonFunction) {
+    CustomButton::CustomButton(CustomSprite *sprite, std::string buttonFunctionActive, std::string buttonFunctionHold, std::string buttonFunctionDisactive) {
         this->sprite = sprite;
-        this->buttonFunction = std::move(buttonFunction);
+        this->buttonFunctions.at(0) = std::move(buttonFunctionActive);
+        this->buttonFunctions.at(1) = std::move(buttonFunctionHold);
+        this->buttonFunctions.at(2) = std::move(buttonFunctionDisactive);
     }
 
     /*
@@ -28,15 +38,15 @@ namespace render {
                                                        sprite->getSprite().getScale().y)).a != 0);
     }
 
-    void CustomButton::action() {
-        buttonActionsMap[buttonFunction](*this);
-    }
-
     bool CustomButton::isActive() {
         return active;
     }
 
-    void CustomButton::test() {
-        std::cout << "CA MAAAAAAAAAAARCHE" << std::endl;
+    void CustomButton::setActive(bool status) {
+        active = status;
+    }
+
+    int CustomButton::getStateFunctionIndex() {
+        return stateFunctionIndex;
     }
 }

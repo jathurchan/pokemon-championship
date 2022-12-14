@@ -1,4 +1,3 @@
-#include <iostream>
 #include <memory>
 #include "ClientEngine.hpp"
 
@@ -18,15 +17,8 @@ namespace client {
 
             scene.display(stateHandler->getCurrentState());
 
-            sf::Event event{};
-            while (scene.getWindow()->pollEvent(event)) {
-                if (eventHandler->getEventsMap()->find(event.type) ==
-                    eventHandler->getEventsMap()->end())
-                    break;
-                else {
-                    eventHandler->getEventsMap()->find(event.type)->second(*this, event);
-                }
-            }
+            eventHandler->checkEvent(&scene, this);
+            eventHandler->updateActiveButtons();
         }
     }
 
@@ -43,15 +35,23 @@ namespace client {
     }
 
     void ClientEngine::releasedKeysAction(sf::Event event) {
-        eventHandler->getSupportedReleasedKeysMap()->find(event.key.code)->second(*this, event);
+        //eventHandler->getActionsMap()->find(event.key.code)->second(*this, event);
     }
 
     void ClientEngine::releasedButtonsAction(sf::Event event) {
         if (event.mouseButton.button == sf::Mouse::Left) {
             sf::Vector2i position(event.mouseButton.x, event.mouseButton.y);
-            for (auto button: *render::ResourceHolder::getInstance().getStateButtonVector(stateHandler->getCurrentState())) {
-                if (button.isInSprite(scene.getWindow()->mapPixelToCoords(position, scene.getWindow()->getView()))) {
-                    button.action();
+            for (auto &button: *render::ResourceHolder::getInstance().getStateButtonVector(
+                    stateHandler->getCurrentState())) {
+                if (button.isInSprite(
+                        scene.getWindow()->mapPixelToCoords(position, scene.getWindow()->getView()))) {
+                    if (!button.isActive()) {
+                        button.setActive(true);
+                        if (button.getStateFunctionIndex()) {
+
+                        }
+                        eventHandler->addToActiveButtons(&button);
+                    }
                 }
             }
         }

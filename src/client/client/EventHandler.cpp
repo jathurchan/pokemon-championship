@@ -3,30 +3,58 @@
 
 namespace client {
 
+    std::unordered_map<int, std::function<void(ClientEngine &, sf::Event)>> EventHandler::eventsMap =
+            {{0,  &ClientEngine::windowClose},
+             {1,  &ClientEngine::updateView},
+             {6,  &ClientEngine::releasedKeysAction},
+             {10, &ClientEngine::releasedButtonsAction}};
+
+    std::unordered_map<std::string, std::function<void(ClientEngine &, sf::Event)>> EventHandler::actionsMap =
+            {{"closeWindow", &ClientEngine::windowClose},
+             {"setOrUnsetFullscreen", &ClientEngine::changeScreenMode}};
+
+
     EventHandler::EventHandler() {
-        initEventMap();
-        initSupportedReleasedKeysMap();
+        keyFile = "res/" + (*utilities::JsonParser::getConfigInfo())["jsonFiles"]["supportedKeys"].asString();
+        initKeyMap();
     }
 
     EventHandler::~EventHandler() = default;
 
-    void EventHandler::initEventMap() {
-        eventsMap[0] = &ClientEngine::windowClose;
-        eventsMap[1] = &ClientEngine::updateView;
-        eventsMap[6] = &ClientEngine::releasedKeysAction;
-        eventsMap[10] = &ClientEngine::releasedButtonsAction;
+    void EventHandler::initKeyMap() {
+        Json::Value supportedKeysInfo = utilities::JsonParser::readJsonString(keyFile);
+        for (const Json::Value &supportedKeysPerState: supportedKeysInfo) {
+            auto index = StatesName(supportedKeysPerState["stateIndex"].asInt());
+            keyMap[index] = std::vector<std::pair<int, std::function<void(ClientEngine&, sf::Event)>>>{};
+            for (const Json::Value& supportedKeys : supportedKeysPerState["keys"]) {
+                keyMap[index].emplace((int) sf::Keyboard::Key(supportedKeys["keyIndex"].asInt()), actionsMap.at(supportedKeys["function"].asString()));
+            }
+        }
     }
 
-    void EventHandler::initSupportedReleasedKeysMap() {
-        supportedReleasedKeysMap[36] = &ClientEngine::windowClose;
-        supportedReleasedKeysMap[58] = &ClientEngine::changeScreenMode;
+    void EventHandler::checkEvent(render::GameScene* scene, ClientEngine* engine) {
+        sf::Event event{};
+        while (scene->getWindow()->pollEvent(event)) {
+            if (eventsMap.contains(event.type))
+                break;
+            else
+                eventsMap.find(event.type)->second(*engine, event);
+        }
     }
 
-    std::unordered_map<int, std::function<void(ClientEngine&, sf::Event)>>* EventHandler::getEventsMap() {
+    void EventHandler::addToActiveButtons(render::CustomButton* buttonPtr) {
+        activeButtons.push_back(buttonPtr);
+    }
+
+    void EventHandler::updateActiveButtons() {
+        for (auto buttonPtr : activeButtons) {
+            if (!buttonPtr->getStateFunctionIndex()) {
+
+            }
+        }
+    }
+
+    const std::unordered_map<int, std::function<void(ClientEngine &, sf::Event)>>* EventHandler::getEventsMap() {
         return &eventsMap;
-    }
-
-    std::unordered_map<int, std::function<void(ClientEngine &, sf::Event)>>* EventHandler::getSupportedReleasedKeysMap() {
-        return &supportedReleasedKeysMap;
     }
 }

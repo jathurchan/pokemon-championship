@@ -86,7 +86,9 @@ namespace render {
         loadStateSprite(stateButton["sprite"], index, view);
         stateButtonsMap[index].emplace(stateButtonsMap[index].end(),
                                        &stateAssetsMap[index].second.back(),
-                                       stateButton["action"].asString());
+                                       stateButton["activeAction"].asString(),
+                                       stateButton["holdAction"].asString(),
+                                       stateButton["unactiveAction"].asString());
     }
 
     /*

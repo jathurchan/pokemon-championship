@@ -1,0 +1,20 @@
+{
+  "general": {
+    "stateIndex": -1,
+    "keys": [
+      {
+        "keyName": "36",
+        "function": "closeWindow"
+      }
+    ]
+  },
+  "loginState": {
+    "stateIndex": 0,
+    "keys": [
+      {
+        "keyName": "58",
+        "function": "setOrUnsetFullscreen"
+      }
+    ]
+  }
+}

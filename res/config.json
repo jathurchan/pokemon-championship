@@ -9,6 +9,7 @@
   },
   "volume": 100,
   "jsonFiles" : {
-    "stateAssets": "stateAssets.json"
+    "stateAssets": "stateAssets.json",
+    "supportedKeys": "supportedKeys.json"
   }
 }
