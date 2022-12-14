@@ -126,8 +126,10 @@ namespace model {
         for(std::string name : dependenciesName) {
             struct stat buffer;
             name += ".json";
-            if (stat (name.c_str(), &buffer) != 0)
-                throw std::invalid_argument("File not found.");
+            if (stat (name.c_str(), &buffer) != 0) {
+                std::string err = "File not found : " + name;
+                throw std::runtime_error(err);
+            }
 
             std::fstream file;
             Json::CharReaderBuilder builder;
@@ -141,7 +143,7 @@ namespace model {
             if (json["Type"].asInt() != expectedType) {
                 char err[64];
                 sprintf(err, "File isn't of expected type. expected : %d. parsed : %d.", expectedType, json["Type"].asInt());
-                throw std::invalid_argument(err);
+                throw std::runtime_error(err);
             }
 
             json.removeMember("Type");
