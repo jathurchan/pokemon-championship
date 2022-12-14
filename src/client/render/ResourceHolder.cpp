@@ -66,9 +66,8 @@ namespace render {
     }
 
     void ResourceHolder::loadStateSprite(Json::Value stateSprite, int index, sf::View view) {
-        stateAssetsMap[index].second.emplace(stateAssetsMap[index].second.end(),
-                                             stateSprite["imageName"].asString(),
-                                             stateSprite["smooth"].asBool());
+        stateAssetsMap[index].second.emplace_back(stateSprite["imageName"].asString(),
+                                                  stateSprite["smooth"].asBool());
         stateAssetsMap[index].second.back().setScale(view,
                                                      stateSprite["scale"]["ratioOnX"].asBool(),
                                                      stateSprite["scale"]["percent"].asFloat(),
@@ -83,11 +82,10 @@ namespace render {
 
     void ResourceHolder::loadStateButton(Json::Value stateButton, int index, sf::View view) {
         loadStateSprite(stateButton["sprite"], index, view);
-        stateButtonsMap[index].emplace(stateButtonsMap[index].end(),
-                                       &stateAssetsMap[index].second.back(),
-                                       stateButton["activeAction"].asString(),
-                                       stateButton["holdAction"].asString(),
-                                       stateButton["unactiveAction"].asString());
+        stateButtonsMap[index].emplace_back(&stateAssetsMap[index].second.back(),
+                                            stateButton["activeAction"].asString(),
+                                            stateButton["holdAction"].asString(),
+                                            stateButton["unactiveAction"].asString());
     }
 
     /*

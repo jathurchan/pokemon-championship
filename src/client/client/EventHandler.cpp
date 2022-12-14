@@ -16,7 +16,7 @@ namespace client {
 
     EventHandler::EventHandler() {
         keysFile = "res/" + (*utilities::JsonParser::getConfigInfo())["jsonFiles"]["supportedKeys"].asString();
-        initKeysMap();
+        //initKeysMap();
     }
 
     EventHandler::~EventHandler() = default;
@@ -35,7 +35,7 @@ namespace client {
     void EventHandler::checkEvent(render::GameScene* scene, ClientEngine* engine) {
         sf::Event event{};
         while (scene->getWindow()->pollEvent(event)) {
-            if (eventsMap.contains(event.type))
+            if (!eventsMap.contains(event.type))
                 break;
             else
                 eventsMap.find(event.type)->second(*engine, event);
