@@ -25,9 +25,9 @@ namespace client {
         Json::Value supportedKeysInfo = utilities::JsonParser::readJsonString(keyFile);
         for (const Json::Value &supportedKeysPerState: supportedKeysInfo) {
             auto index = StatesName(supportedKeysPerState["stateIndex"].asInt());
-            keyMap[index] = std::vector<std::pair<int, std::function<void(ClientEngine&, sf::Event)>>>{};
+            keysMap[index] = std::vector<std::pair<int, std::function<void(ClientEngine&, sf::Event)>>>{};
             for (const Json::Value& supportedKeys : supportedKeysPerState["keys"]) {
-                keyMap[index].emplace((int) sf::Keyboard::Key(supportedKeys["keyIndex"].asInt()), actionsMap.at(supportedKeys["function"].asString()));
+                keysMap[index].emplace_back((int) sf::Keyboard::Key(supportedKeys["keyIndex"].asInt()), &ClientEngine::windowClose);
             }
         }
     }

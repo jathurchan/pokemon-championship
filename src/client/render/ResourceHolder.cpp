@@ -50,10 +50,9 @@ namespace render {
     }
 
     void ResourceHolder::loadStateText(Json::Value stateText, int index, sf::View view) {
-        stateAssetsMap[index].first.emplace(stateAssetsMap[index].first.end(),
-                                            stateText["fontName"].asString(),
-                                            stateText["string"].asString(),
-                                            sf::Text::Style(stateText["style"].asInt()));
+        stateAssetsMap[index].first.emplace_back(stateText["fontName"].asString(),
+                                                 stateText["string"].asString(),
+                                                 sf::Text::Style(stateText["style"].asInt()));
         stateAssetsMap[index].first.back().setCharacterSize(view,
                                                             stateText["characterSize"].asInt());
         stateAssetsMap[index].first.back().setXOrigin(stateText["origin"]["originX"].asFloat());
