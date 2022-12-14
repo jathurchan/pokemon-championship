@@ -3,26 +3,26 @@
 
 namespace client {
 
-    std::unordered_map<int, std::function<void(ClientEngine &, sf::Event)>> EventHandler::eventsMap =
+    const std::unordered_map<int, std::function<void(ClientEngine &, sf::Event)>> EventHandler::eventsMap =
             {{0,  &ClientEngine::windowClose},
              {1,  &ClientEngine::updateView},
              {6,  &ClientEngine::releasedKeysAction},
              {10, &ClientEngine::releasedButtonsAction}};
 
-    std::unordered_map<std::string, std::function<void(ClientEngine &, sf::Event)>> EventHandler::actionsMap =
+    const std::unordered_map<std::string, std::function<void(ClientEngine &, sf::Event)>> EventHandler::actionsMap =
             {{"closeWindow", &ClientEngine::windowClose},
              {"setOrUnsetFullscreen", &ClientEngine::changeScreenMode}};
 
 
     EventHandler::EventHandler() {
-        keyFile = "res/" + (*utilities::JsonParser::getConfigInfo())["jsonFiles"]["supportedKeys"].asString();
-        initKeyMap();
+        keysFile = "res/" + (*utilities::JsonParser::getConfigInfo())["jsonFiles"]["supportedKeys"].asString();
+        initKeysMap();
     }
 
     EventHandler::~EventHandler() = default;
 
-    void EventHandler::initKeyMap() {
-        Json::Value supportedKeysInfo = utilities::JsonParser::readJsonString(keyFile);
+    void EventHandler::initKeysMap() {
+        Json::Value supportedKeysInfo = utilities::JsonParser::readJsonString(keysFile);
         for (const Json::Value &supportedKeysPerState: supportedKeysInfo) {
             auto index = StatesName(supportedKeysPerState["stateIndex"].asInt());
             keysMap[index] = std::vector<std::pair<int, std::function<void(ClientEngine&, sf::Event)>>>{};
