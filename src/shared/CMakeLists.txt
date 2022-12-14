@@ -20,7 +20,6 @@ target_include_directories(${lib_shared_target} PUBLIC
   )
 target_link_libraries(${lib_shared_target} PUBLIC
         ${jsoncpp_sources}
-        $<TARGET_NAME:shared_static>
         )
 
 # Compile "shared" executable

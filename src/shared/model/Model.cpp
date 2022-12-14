@@ -72,6 +72,27 @@ namespace model {
         delete[] jsonTriggers;
     }
 
+    Model::~Model() {
+        for(std::pair<std::string, Creature*> creature : this->creatures) {
+            delete creature.second;
+        }
+        for(std::pair<std::string, Item*> item : this->items) {
+            delete item.second;
+        }
+        for(std::pair<std::string, Move*> move : this->moves) {
+            delete move.second;
+        }
+        for(std::pair<std::string, Type*> type : this->types) {
+            delete type.second;
+        }
+        for(std::pair<std::string, Effect*> effect : this->effects) {
+            delete effect.second;
+        }
+        for(std::pair<std::string, Trigger*> trigger : this->triggers) {
+            delete trigger.second;
+        }
+    }
+
     void Model::dispAll() {
         for(std::pair<std::string,Creature*> pair : this->creatures) {
             printf("%s\n", pair.first.c_str());
