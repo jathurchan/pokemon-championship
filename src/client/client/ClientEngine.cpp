@@ -16,8 +16,13 @@ namespace client {
         while (scene.getWindow()->isOpen()) {
 
             scene.display(stateHandler->getCurrentState());
-
-            eventHandler->checkEvent(&scene, this);
+            sf::Event event{};
+            while (scene.getWindow()->pollEvent(event)) {
+                if (eventHandler->getEventsMap()->count(event.type))
+                    break;
+                else
+                    eventHandler->getEventsMap()->find(event.type)->second(*this, event);
+            }
             eventHandler->updateActiveButtons();
         }
     }
@@ -35,7 +40,7 @@ namespace client {
     }
 
     void ClientEngine::releasedKeysAction(sf::Event event) {
-        //eventHandler->getActionsMap()->find(event.key.code)->second(*this, event);
+       // eventHandler->getKeysMap()->find(event.key.code)->second(*this, event);
     }
 
     void ClientEngine::releasedButtonsAction(sf::Event event) {

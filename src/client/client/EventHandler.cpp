@@ -16,7 +16,7 @@ namespace client {
 
     EventHandler::EventHandler() {
         keysFile = "res/" + (*utilities::JsonParser::getConfigInfo())["jsonFiles"]["supportedKeys"].asString();
-        //initKeysMap();
+        initKeysMap();
     }
 
     EventHandler::~EventHandler() = default;
@@ -27,18 +27,8 @@ namespace client {
             auto index = StatesName(supportedKeysPerState["stateIndex"].asInt());
             keysMap[index] = std::vector<std::pair<int, std::function<void(ClientEngine&, sf::Event)>>>{};
             for (const Json::Value& supportedKeys : supportedKeysPerState["keys"]) {
-                keysMap[index].emplace_back((int) sf::Keyboard::Key(supportedKeys["keyIndex"].asInt()), &ClientEngine::windowClose);
+                keysMap[index].emplace_back((int) sf::Keyboard::Key(supportedKeys["keyIndex"].asInt()), actionsMap.at(supportedKeys["keyIndex"].asString()));
             }
-        }
-    }
-
-    void EventHandler::checkEvent(render::GameScene* scene, ClientEngine* engine) {
-        sf::Event event{};
-        while (scene->getWindow()->pollEvent(event)) {
-            if (!eventsMap.contains(event.type))
-                break;
-            else
-                eventsMap.find(event.type)->second(*engine, event);
         }
     }
 
@@ -56,5 +46,10 @@ namespace client {
 
     const std::unordered_map<int, std::function<void(ClientEngine &, sf::Event)>>* EventHandler::getEventsMap() {
         return &eventsMap;
+    }
+
+    std::unordered_map<StatesName, std::vector<std::pair<int, std::function<void(ClientEngine &, sf::Event)>>>>*
+    EventHandler::getKeysMap() {
+        return &keysMap;
     }
 }
