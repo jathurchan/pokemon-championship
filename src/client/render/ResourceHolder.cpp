@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "ResourceHolder.hpp"
-#define stringify(name) #name
 
 /*
  * Contains the textures, images and fonts which were loaded by the render, each one of them is stored only once.
@@ -23,7 +22,7 @@ namespace render {
      */
     ResourceHolder::ResourceHolder() {
         assetsFile = "res/" + (*utilities::JsonParser::getConfigInfo())["jsonFiles"]["stateAssets"].asString();
-    };
+    }
 
     /*
      * Returns the single instance of the class.
@@ -34,8 +33,8 @@ namespace render {
     }
 
     void ResourceHolder::loadStateAssets(sf::View view) {
-        Json::Value stateAssetsInfo = utilities::JsonParser::readJsonString(assetsFile);
-        for (const Json::Value &stateAssets: stateAssetsInfo) {
+        Json::Value assetsInfo = utilities::JsonParser::readJsonString(assetsFile);
+        for (const Json::Value &stateAssets: assetsInfo) {
             if (stateAssets != Json::nullValue) {
                 int index = stateAssets["stateIndex"].asInt();
                 stateAssetsMap[index] = std::make_pair(std::vector<CustomText>{}, std::vector<CustomSprite>{});
@@ -82,10 +81,9 @@ namespace render {
 
     void ResourceHolder::loadStateButton(Json::Value stateButton, int index, sf::View view) {
         loadStateSprite(stateButton["sprite"], index, view);
-        stateButtonsMap[index].emplace_back(&stateAssetsMap[index].second.back(),
-                                            stateButton["activeAction"].asString(),
-                                            stateButton["holdAction"].asString(),
-                                            stateButton["unactiveAction"].asString());
+        stateButtonsMap[index].push_back(CustomButton::buttonFactory(ButtonsName(stateButton["type"].asInt())));
+        stateButtonsMap[index].back()->create(&stateAssetsMap[index].second.back(), stateButton["renderFunction"].asString(),
+                                              stateButton["engineFunction"].asString(), stateButton["parameters"]);
     }
 
     /*
@@ -153,7 +151,7 @@ namespace render {
         return &stateAssetsMap[state].second;
     }
 
-    std::vector<CustomButton> *ResourceHolder::getStateButtonVector(int state) {
-        return &stateButtonsMap[state];
+    std::vector<std::shared_ptr<CustomButton>> ResourceHolder::getStateButtonVector(int state) {
+        return stateButtonsMap[state];
     }
 }

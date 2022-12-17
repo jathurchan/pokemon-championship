@@ -7,11 +7,13 @@ namespace client {
             {{0,  &ClientEngine::windowClose},
              {1,  &ClientEngine::updateView},
              {6,  &ClientEngine::releasedKeysAction},
+             {9,  &ClientEngine::pressedButtonsAction},
              {10, &ClientEngine::releasedButtonsAction}};
 
     const std::unordered_map<std::string, std::function<void(ClientEngine &, sf::Event)>> EventHandler::actionsMap =
-            {{"closeWindow", &ClientEngine::windowClose},
-             {"setOrUnsetFullscreen", &ClientEngine::changeScreenMode}};
+            {{"closeWindow",          &ClientEngine::windowClose},
+             {"setOrUnsetFullscreen", &ClientEngine::changeScreenMode},
+             {"testTransition",       &ClientEngine::testTransition}};
 
 
     EventHandler::EventHandler() {
@@ -25,10 +27,9 @@ namespace client {
         Json::Value supportedKeysInfo = utilities::JsonParser::readJsonString(keysFile);
         for (const Json::Value &supportedKeysPerState: supportedKeysInfo) {
             auto index = StatesName(supportedKeysPerState["stateIndex"].asInt());
-            keysMap[index] = std::vector<std::pair<int, std::function<void(ClientEngine&, sf::Event)>>>{};
-            for (const Json::Value& supportedKeys : supportedKeysPerState["keys"]) {
-                keysMap[index].emplace_back((int) sf::Keyboard::Key(supportedKeys["keyIndex"].asInt()), actionsMap.at(supportedKeys["keyIndex"].asString()));
-            }
+            keysMap[index] = std::unordered_map<int, std::function<void(ClientEngine&, sf::Event)>>{};
+            for (const Json::Value& supportedKeys : supportedKeysPerState["keys"])
+                keysMap[index].emplace((int) sf::Keyboard::Key(supportedKeys["keyIndex"].asInt()), actionsMap.at(supportedKeys["function"].asString()));
         }
     }
 
@@ -37,10 +38,8 @@ namespace client {
     }
 
     void EventHandler::updateActiveButtons() {
-        for (auto buttonPtr : activeButtons) {
-            if (!buttonPtr->getStateFunctionIndex()) {
-
-            }
+        for (auto button : activeButtons) {
+            button->renderHold(clk.getElapsedTime());
         }
     }
 
@@ -48,8 +47,19 @@ namespace client {
         return &eventsMap;
     }
 
-    std::unordered_map<StatesName, std::vector<std::pair<int, std::function<void(ClientEngine &, sf::Event)>>>>*
-    EventHandler::getKeysMap() {
+    const std::unordered_map<std::string, std::function<void(ClientEngine &, sf::Event)>>* EventHandler::getActionsMap() {
+        return &actionsMap;
+    }
+
+    std::unordered_map<StatesName, std::unordered_map<int, std::function<void(ClientEngine &, sf::Event)>>>* EventHandler::getKeysMap() {
         return &keysMap;
+    }
+
+    sf::Time EventHandler::getTime() {
+        return clk.getElapsedTime();
+    }
+
+    std::vector<render::CustomButton *>* EventHandler::getActiveButtons() {
+        return &activeButtons;
     }
 }

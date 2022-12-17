@@ -77,9 +77,13 @@
     ],
     "button": [
       {
-        "activeAction": "testPress",
-        "holdAction": "testHold",
-        "unactiveAction": "testOff",
+        "type": 1,
+        "renderFunction": "",
+        "engineFunction": "testTransition",
+        "parameters" : [
+          "loginButtonPressed",
+          0.5
+        ],
         "sprite": {
           "imageName": "loginButton",
           "smooth": true,

@@ -3,7 +3,7 @@
     "stateIndex": -1,
     "keys": [
       {
-        "keyName": "36",
+        "keyIndex": 36,
         "function": "closeWindow"
       }
     ]
@@ -12,7 +12,7 @@
     "stateIndex": 0,
     "keys": [
       {
-        "keyName": "58",
+        "keyIndex": 58,
         "function": "setOrUnsetFullscreen"
       }
     ]

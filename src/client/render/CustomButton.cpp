@@ -1,28 +1,29 @@
 #include <iostream>
 #include <utility>
+#include <memory>
 #include "CustomButton.hpp"
+#include "PushButton.hpp"
 
 namespace render {
 
-    std::unordered_map<std::string,std::function<void(CustomButton&)>> buttonActiveActionsMap = {
-
-    };
-
-    std::unordered_map<std::string,std::function<void(CustomButton&)>> buttonHoldActionsMap = {
-
-    };
-
-    std::unordered_map<std::string,std::function<void(CustomButton&)>> buttonDisactiveActionsMap = {
-
-    };
-
     CustomButton::CustomButton() = default;
+    CustomButton::~CustomButton() = default;
 
-    CustomButton::CustomButton(CustomSprite *sprite, std::string buttonFunctionActive, std::string buttonFunctionHold, std::string buttonFunctionDisactive) {
+    void CustomButton::create(CustomSprite *sprite, std::string renderFunction, std::string engineFunction, Json::Value parameters) {
         this->sprite = sprite;
-        this->buttonFunctions.at(0) = std::move(buttonFunctionActive);
-        this->buttonFunctions.at(1) = std::move(buttonFunctionHold);
-        this->buttonFunctions.at(2) = std::move(buttonFunctionDisactive);
+        this->renderFunction = std::move(renderFunction);
+        this->engineFunction = std::move(engineFunction);
+        this->parameters = std::move(parameters);
+    }
+
+    // Si qq a du temps à perdre, je le laisse s'amuser à faire ca sans switch/case
+    std::shared_ptr<CustomButton> CustomButton::buttonFactory (ButtonsName buttonName) {
+        switch (buttonName) {
+            case Push_Button:
+                return std::make_shared<PushButton>();
+            default:
+                return nullptr;
+        }
     }
 
     /*
@@ -46,7 +47,19 @@ namespace render {
         active = status;
     }
 
-    int CustomButton::getStateFunctionIndex() {
-        return stateFunctionIndex;
+    std::string CustomButton::getEngineFunction() {
+        return engineFunction;
+    }
+
+    void CustomButton::setReleased(bool status) {
+        isReleased = status;
+    }
+
+    bool CustomButton::getCanBePressed() {
+        return canBePressed;
+    }
+
+    void CustomButton::setCanBePressed(bool status) {
+        canBePressed = status;
     }
 }

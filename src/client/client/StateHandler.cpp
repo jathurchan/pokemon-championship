@@ -3,27 +3,40 @@
 
 namespace client {
 
-    std::unordered_map<StatesName, std::vector<std::function<void(StateHandler&)>>> StateHandler::statesMap =
-            {{Login_State,      functionVector{}},
-             {Choice_State,     functionVector{}},
-             {Ban_State,        functionVector{}},
-             {Select_State,     functionVector{}},
-             {Action_State,     functionVector{}},
-             {Switch_State,     functionVector{}},
-             {Wait_State,       functionVector{}},
-             {TurnResult_State, functionVector{}},
-             {EndBattle_State,  functionVector{}}};
+    std::unordered_map<StatesName, std::unordered_map<std::string, render::CustomButton*>> StateHandler::statesMap =
+            {{Login_State,     {{"testTransition", nullptr}, {"AA", nullptr}}},
+            {Choice_State,     {}},
+            {Ban_State,        {}},
+            {Select_State,     {}},
+            {Action_State,     {}},
+            {Switch_State,     {}},
+            {Wait_State,       {}},
+            {TurnResult_State, {}},
+            {EndBattle_State,  {}}};
 
     StateHandler::StateHandler(StatesName currentState) {
         this->currentState = currentState;
     }
 
-    StatesName StateHandler::getCurrentState() {
-        return currentState;
+    void StateHandler::initStatesMap() {
+        for (auto &stateButtonMap: statesMap) {
+            for (auto &renderButton: render::ResourceHolder::getInstance().getStateButtonVector(stateButtonMap.first)) {
+                if (stateButtonMap.second.find(renderButton->getEngineFunction()) != stateButtonMap.second.end()) {
+                    stateButtonMap.second[renderButton->getEngineFunction()] = &*renderButton;
+                }
+            }
+        }
     }
 
     void StateHandler::transitionToState(StatesName state) {
         currentState = state;
     }
 
+    StatesName StateHandler::getCurrentState() {
+        return currentState;
+    }
+
+    std::unordered_map<std::string, render::CustomButton *> *StateHandler::getStateMap(StatesName state) {
+        return &statesMap[state];
+    }
 }

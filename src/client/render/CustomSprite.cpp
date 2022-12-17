@@ -19,6 +19,7 @@ namespace render {
      * Enable the smooth filter of the texture depending on the smooth argument. Disables it by default.
      */
     CustomSprite::CustomSprite(const std::string& fileName, bool smooth) {
+        this->fileName = fileName;
         imagePtr = ResourceHolder::getInstance().getImage(fileName);
         texturePtr = ResourceHolder::getInstance().getTexture(fileName);
         texturePtr->setSmooth(smooth);
@@ -64,5 +65,9 @@ namespace render {
 
     sf::Image *&CustomSprite::getImagePtr() {
         return imagePtr;
+    }
+
+    std::string CustomSprite::getFileName() {
+        return fileName;
     }
 }
