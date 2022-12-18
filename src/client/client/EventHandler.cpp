@@ -6,6 +6,7 @@ namespace client {
     const std::unordered_map<int, std::function<void(ClientEngine &, sf::Event)>> EventHandler::eventsMap =
             {{0,  &ClientEngine::windowClose},
              {1,  &ClientEngine::updateView},
+             {4,  &ClientEngine::textEnteredAction},
              {6,  &ClientEngine::releasedKeysAction},
              {9,  &ClientEngine::pressedButtonsAction},
              {10, &ClientEngine::releasedButtonsAction}};
@@ -35,6 +36,8 @@ namespace client {
 
     void EventHandler::addToActiveButtons(render::CustomButton* buttonPtr) {
         activeButtons.push_back(buttonPtr);
+        if (typeid(*buttonPtr) == typeid(render::TextBox))
+            allowTextEntered = true;
     }
 
     void EventHandler::updateActiveButtons() {
@@ -66,5 +69,18 @@ namespace client {
 
     std::vector<render::CustomButton *>* EventHandler::getActiveButtons() {
         return &activeButtons;
+    }
+
+    bool EventHandler::getAllowTextEntered() {
+        return allowTextEntered;
+    }
+
+    void EventHandler::clearActiveButtons(std::shared_ptr<render::CustomButton> button) {
+        if (button->getDeactivateOthers()) {
+            for (auto otherButton : activeButtons)
+                otherButton->renderDeactivate();
+            activeButtons.clear();
+            allowTextEntered = false;
+        }
     }
 }

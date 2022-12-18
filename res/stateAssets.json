@@ -80,6 +80,7 @@
         "type": 1,
         "renderFunction": "",
         "engineFunction": "testTransition",
+        "deactivateOthers": true,
         "parameters": [
           "loginButtonPressed",
           0.5,
@@ -126,11 +127,10 @@
         "type": 2,
         "renderFunction": "",
         "engineFunction": "testTextBox",
+        "deactivateOthers": true,
         "parameters": [
           "loginTextBoxPressed",
-          0.5,
-          0,
-          1
+          0.45
         ],
         "sprite": {
           "imageName": "loginTextBox",
@@ -150,14 +150,59 @@
         },
         "text": {
           "fontName": "textFont",
-          "string": "aZAEZAEZ",
+          "string": "",
           "style" : 0,
           "characterSize": 45,
           "origin": {
-            "originX": 0
+            "originX": -10
           },
           "position": {
-            "ratioX": -30,
+            "ratioX": -41.5,
+            "ratioY": -36.5
+          },
+          "color" : {
+            "red" : 10,
+            "green" : 23,
+            "blue" : 41,
+            "alpha" : 255
+          }
+        }
+      },
+      {
+        "type": 2,
+        "renderFunction": "",
+        "engineFunction": "testTextBox",
+        "deactivateOthers": true,
+        "parameters": [
+          "loginTextBoxPressed",
+          0.45
+        ],
+        "sprite": {
+          "imageName": "loginTextBox",
+          "smooth": true,
+          "scale": {
+            "ratioOnX": false,
+            "percent": 7.5
+          },
+          "origin": {
+            "originX": 0,
+            "originY": 0
+          },
+          "position": {
+            "posX": 30,
+            "posY": -33
+          }
+        },
+        "text": {
+          "fontName": "textFont",
+          "string": "",
+          "style" : 0,
+          "characterSize": 45,
+          "origin": {
+            "originX": -10
+          },
+          "position": {
+            "ratioX": 18.5,
             "ratioY": -36.5
           },
           "color" : {

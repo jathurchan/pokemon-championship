@@ -87,6 +87,7 @@ namespace render {
         stateButtonsMap[index].back()->create(&stateAssetsMap[index].second.back(),
                                               stateButton["renderFunction"].asString(),
                                               stateButton["engineFunction"].asString(),
+                                              stateButton["deactivateOthers"].asBool(),
                                               stateButton["parameters"]);
         if (stateButton["text"] != Json::nullValue) {
             loadStateText(stateButton["text"], index, view);

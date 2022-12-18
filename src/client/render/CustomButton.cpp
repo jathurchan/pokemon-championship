@@ -10,10 +10,11 @@ namespace render {
     CustomButton::CustomButton() = default;
     CustomButton::~CustomButton() = default;
 
-    void CustomButton::create(CustomSprite* initSprite, std::string renderFunction, std::string engineFunction, Json::Value parameters) {
+    void CustomButton::create(CustomSprite* initSprite, std::string renderFunction, std::string engineFunction, bool deactivateOthers, Json::Value parameters) {
         this->sprite = initSprite;
         this->renderFunction = std::move(renderFunction);
         this->engineFunction = std::move(engineFunction);
+        this->deactivateOthers = deactivateOthers;
         this->parameters = std::move(parameters);
     }
 
@@ -76,5 +77,13 @@ namespace render {
 
     CustomSprite *CustomButton::getSprite() {
         return sprite;
+    }
+
+    CustomText *CustomButton::getText() {
+        return text;
+    }
+
+    bool CustomButton::getDeactivateOthers() {
+        return deactivateOthers;
     }
 }

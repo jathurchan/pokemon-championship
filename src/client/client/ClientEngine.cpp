@@ -62,6 +62,7 @@ namespace client {
                     stateHandler->getCurrentState())) {
                 if (button->isInSprite(scene.getWindow()->mapPixelToCoords(position, scene.getWindow()->getView()))) {
                     if (!button->isActive() && button->getCanBePressed()) {
+                        eventHandler->clearActiveButtons(button);
                         button->setActive(true);
                         button->setReleased(false);
                         button->renderActivate(eventHandler->getTime(), scene.getView());
@@ -89,6 +90,36 @@ namespace client {
                                 eventHandler->getActionsMap()->at(button->getEngineFunction())(*this, event);
                                 button->setCanBePressed(false);
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    void ClientEngine::textEnteredAction(sf::Event event) {
+        if (eventHandler->getAllowTextEntered()) {
+            for (auto button: *eventHandler->getActiveButtons()) {
+                if (typeid(*button) == typeid(render::TextBox)) {
+                    std::string tmp = button->getText()->getText().getString();
+                    if (event.text.unicode > 32 && event.text.unicode < 168 && event.text.unicode != 124) {
+                        if (button->getText()->getText().getString().getSize() <= 9) {
+                            if (((std::string) button->getText()->getText().getString()).back() == '|')
+                                tmp.insert(tmp.end() - 1, static_cast<char>(event.text.unicode));
+                            else
+                                 tmp += static_cast<char>(event.text.unicode);
+                            button->getText()->changeText(tmp);
+                        }
+                    }
+                    else if (event.text.unicode == 8) {
+                        if (!((std::string) button->getText()->getText().getString()).empty() &&
+                            button->getText()->getText().getString() != "|") {
+                            if (((std::string) button->getText()->getText().getString()).back() == '|') {
+                                tmp.erase(tmp.end() - 2);
+                            } else {
+                                tmp.pop_back();
+                            }
+                            button->getText()->changeText(tmp);
                         }
                     }
                 }
