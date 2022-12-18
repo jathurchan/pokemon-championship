@@ -73,4 +73,8 @@ namespace render {
     sf::RenderWindow *GameScene::getWindow() {
         return &window;
     }
+
+    sf::View *GameScene::getView() {
+        return &view;
+    }
 }

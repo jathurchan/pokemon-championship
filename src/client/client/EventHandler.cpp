@@ -38,8 +38,13 @@ namespace client {
     }
 
     void EventHandler::updateActiveButtons() {
-        for (auto button : activeButtons) {
-            button->renderHold(clk.getElapsedTime());
+        auto buttonIt = activeButtons.begin();
+        while (buttonIt != activeButtons.end()) {
+            (*buttonIt)->renderHold(clk.getElapsedTime());
+            if (!(*buttonIt)->isActive())
+                activeButtons.erase(buttonIt);
+            else
+                buttonIt++;
         }
     }
 

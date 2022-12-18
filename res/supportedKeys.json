@@ -5,16 +5,21 @@
       {
         "keyIndex": 36,
         "function": "closeWindow"
+      },
+      {
+        "keyIndex": 58,
+        "function": "setOrUnsetFullscreen"
       }
     ]
   },
   "loginState": {
     "stateIndex": 0,
     "keys": [
-      {
-        "keyIndex": 58,
-        "function": "setOrUnsetFullscreen"
-      }
+    ]
+  },
+  "banState": {
+    "stateIndex": 1,
+    "keys": [
     ]
   }
 }

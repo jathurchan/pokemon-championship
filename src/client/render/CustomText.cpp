@@ -1,3 +1,4 @@
+#include <iostream>
 #include "CustomText.hpp"
 
 /*
@@ -53,8 +54,8 @@ namespace render {
     }
 
     void CustomText::move(sf::View &view, float posX, float posY) {
-        text.move((posX+100) * view.getSize().x/200,
-                  (posY+100) * view.getSize().y/200);
+        text.move(posX * view.getSize().x/100,
+                  posY * view.getSize().y/100);
     }
 
     /*

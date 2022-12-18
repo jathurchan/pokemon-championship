@@ -20,7 +20,7 @@ namespace client {
 
     void StateHandler::initStatesMap() {
         for (auto &stateButtonMap: statesMap) {
-            for (auto &renderButton: render::ResourceHolder::getInstance().getStateButtonVector(stateButtonMap.first)) {
+            for (auto &renderButton: *render::ResourceHolder::getInstance().getStateButtonVector(stateButtonMap.first)) {
                 if (stateButtonMap.second.find(renderButton->getEngineFunction()) != stateButtonMap.second.end()) {
                     stateButtonMap.second[renderButton->getEngineFunction()] = &*renderButton;
                 }

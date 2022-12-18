@@ -80,16 +80,18 @@
         "type": 1,
         "renderFunction": "",
         "engineFunction": "testTransition",
-        "parameters" : [
+        "parameters": [
           "loginButtonPressed",
-          0.5
+          0.5,
+          0,
+          1
         ],
         "sprite": {
           "imageName": "loginButton",
           "smooth": true,
           "scale": {
-            "ratioOnX": true,
-            "percent": 12
+            "ratioOnX": false,
+            "percent": 7.5
           },
           "origin": {
             "originX": 0,
@@ -98,6 +100,71 @@
           "position": {
             "posX": 0,
             "posY": -10
+          }
+        },
+        "text": {
+          "fontName": "textFont",
+          "string": "Connect",
+          "style" : 1,
+          "characterSize": 45,
+          "origin": {
+            "originX": 0
+          },
+          "position": {
+            "ratioX": 0,
+            "ratioY": -14.6
+          },
+          "color" : {
+            "red" : 10,
+            "green" : 23,
+            "blue" : 41,
+            "alpha" : 255
+          }
+        }
+      },
+      {
+        "type": 2,
+        "renderFunction": "",
+        "engineFunction": "testTextBox",
+        "parameters": [
+          "loginTextBoxPressed",
+          0.5,
+          0,
+          1
+        ],
+        "sprite": {
+          "imageName": "loginTextBox",
+          "smooth": true,
+          "scale": {
+            "ratioOnX": false,
+            "percent": 7.5
+          },
+          "origin": {
+            "originX": 0,
+            "originY": 0
+          },
+          "position": {
+            "posX": -30,
+            "posY": -33
+          }
+        },
+        "text": {
+          "fontName": "textFont",
+          "string": "aZAEZAEZ",
+          "style" : 0,
+          "characterSize": 45,
+          "origin": {
+            "originX": 0
+          },
+          "position": {
+            "ratioX": -30,
+            "ratioY": -36.5
+          },
+          "color" : {
+            "red" : 10,
+            "green" : 23,
+            "blue" : 41,
+            "alpha" : 255
           }
         }
       }

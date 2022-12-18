@@ -3,17 +3,22 @@
 #include <memory>
 #include "CustomButton.hpp"
 #include "PushButton.hpp"
+#include "TextBox.hpp"
 
 namespace render {
 
     CustomButton::CustomButton() = default;
     CustomButton::~CustomButton() = default;
 
-    void CustomButton::create(CustomSprite *sprite, std::string renderFunction, std::string engineFunction, Json::Value parameters) {
-        this->sprite = sprite;
+    void CustomButton::create(CustomSprite* initSprite, std::string renderFunction, std::string engineFunction, Json::Value parameters) {
+        this->sprite = initSprite;
         this->renderFunction = std::move(renderFunction);
         this->engineFunction = std::move(engineFunction);
         this->parameters = std::move(parameters);
+    }
+
+    void CustomButton::setText(CustomText* initText) {
+        this->text = initText;
     }
 
     // Si qq a du temps à perdre, je le laisse s'amuser à faire ca sans switch/case
@@ -21,6 +26,8 @@ namespace render {
         switch (buttonName) {
             case Push_Button:
                 return std::make_shared<PushButton>();
+            case Text_Box:
+                return std::make_shared<TextBox>();
             default:
                 return nullptr;
         }
@@ -51,6 +58,10 @@ namespace render {
         return engineFunction;
     }
 
+    const std::string &CustomButton::getRenderFunction() const {
+        return renderFunction;
+    }
+
     void CustomButton::setReleased(bool status) {
         isReleased = status;
     }
@@ -61,5 +72,9 @@ namespace render {
 
     void CustomButton::setCanBePressed(bool status) {
         canBePressed = status;
+    }
+
+    CustomSprite *CustomButton::getSprite() {
+        return sprite;
     }
 }
