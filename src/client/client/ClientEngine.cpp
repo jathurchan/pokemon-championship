@@ -130,4 +130,5 @@ namespace client {
     }
 
     void ClientEngine::nothingAction(sf::Event event) {}
+
 }
