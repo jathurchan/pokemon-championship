@@ -4,7 +4,7 @@
 namespace client {
 
     std::unordered_map<StatesName, std::unordered_map<std::string, render::CustomButton*>> StateHandler::statesMap =
-            {{Login_State,     {{"testTransition", nullptr}, {"AA", nullptr}}},
+            {{Login_State,     {{"testTransition", nullptr}, {"saveUsername", nullptr}, {"saveLinkCode", nullptr}}},
             {Choice_State,     {}},
             {Ban_State,        {}},
             {Select_State,     {}},
@@ -24,6 +24,10 @@ namespace client {
                 if (stateButtonMap.second.find(renderButton->getEngineFunction()) != stateButtonMap.second.end()) {
                     stateButtonMap.second[renderButton->getEngineFunction()] = &*renderButton;
                 }
+            }
+            for (const auto& buttonPair: stateButtonMap.second) {
+                if (buttonPair.second == nullptr)
+                    std::cout << "Error : no " + buttonPair.first + "function loaded" << std::endl;
             }
         }
     }

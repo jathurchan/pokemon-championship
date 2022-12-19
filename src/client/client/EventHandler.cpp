@@ -14,7 +14,9 @@ namespace client {
     const std::unordered_map<std::string, std::function<void(ClientEngine &, sf::Event)>> EventHandler::actionsMap =
             {{"closeWindow",          &ClientEngine::windowClose},
              {"setOrUnsetFullscreen", &ClientEngine::changeScreenMode},
-             {"testTransition",       &ClientEngine::testTransition}};
+             {"testTransition",       &ClientEngine::testTransition},
+             {"saveUsername",         &ClientEngine::nothingAction},
+             {"saveLinkCode",         &ClientEngine::nothingAction}};
 
 
     EventHandler::EventHandler() {

@@ -100,7 +100,7 @@
           },
           "position": {
             "posX": 0,
-            "posY": -10
+            "posY": -6
           }
         },
         "text": {
@@ -113,7 +113,7 @@
           },
           "position": {
             "ratioX": 0,
-            "ratioY": -14.6
+            "ratioY": -10.6
           },
           "color" : {
             "red" : 10,
@@ -126,7 +126,7 @@
       {
         "type": 2,
         "renderFunction": "",
-        "engineFunction": "testTextBox",
+        "engineFunction": "saveUsername",
         "deactivateOthers": true,
         "parameters": [
           "loginTextBoxPressed",
@@ -171,7 +171,7 @@
       {
         "type": 2,
         "renderFunction": "",
-        "engineFunction": "testTextBox",
+        "engineFunction": "saveLinkCode",
         "deactivateOthers": true,
         "parameters": [
           "loginTextBoxPressed",
