@@ -9,7 +9,7 @@ int main(int argc,char* argv[])
 
     std::cout << "Parsed successfully!" << std::endl;
 
-    model.dispAll();
+    model.DispAll();
 
     return 0;
 }
