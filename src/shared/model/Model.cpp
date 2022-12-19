@@ -31,35 +31,35 @@ namespace model {
         Json::Value* jsonEffects;
         Json::Value* jsonTriggers;
 
-        jsonCreature = parseFiles(creatureDependencies, CREATURE);
+        jsonCreature = ParseFiles(creatureDependencies, CREATURE);
 
-        jsonItem = parseFiles(itemDependencies, ITEM);
+        jsonItem = ParseFiles(itemDependencies, ITEM);
 
-        fetchDependencies(jsonCreature, 1, moveDependencies, "Moves");
+        FetchDependencies(jsonCreature, 1, moveDependencies, "Moves");
         int moveDepSize = moveDependencies.size();
-        jsonMoves = parseFiles(moveDependencies, MOVE);
+        jsonMoves = ParseFiles(moveDependencies, MOVE);
 
-        fetchDependencies(jsonCreature, 1, typeDependencies, "Types");
-        fetchDependencies(jsonMoves, moveDepSize, typeDependencies, "Types");
-        jsonTypes = parseFiles(typeDependencies, TYPE);
+        FetchDependencies(jsonCreature, 1, typeDependencies, "Types");
+        FetchDependencies(jsonMoves, moveDepSize, typeDependencies, "Types");
+        jsonTypes = ParseFiles(typeDependencies, TYPE);
 
-        fetchDependencies(jsonItem, 1, effectDependencies, "Effects");
-        fetchDependencies(jsonMoves, moveDepSize, effectDependencies, "Effects");
-        jsonEffects = parseFiles(effectDependencies, EFFECT);
+        FetchDependencies(jsonItem, 1, effectDependencies, "Effects");
+        FetchDependencies(jsonMoves, moveDepSize, effectDependencies, "Effects");
+        jsonEffects = ParseFiles(effectDependencies, EFFECT);
 
-        fetchDependencies(jsonItem, 1, triggerDependencies, "Triggers");
-        jsonTriggers = parseFiles(triggerDependencies, TRIGGER);
+        FetchDependencies(jsonItem, 1, triggerDependencies, "Triggers");
+        jsonTriggers = ParseFiles(triggerDependencies, TRIGGER);
 
 
         /***************/
         /* BUILD MODEL */
         /***************/
-        buildMap(triggerDependencies, jsonTriggers, TRIGGER);
-        buildMap(effectDependencies, jsonEffects, EFFECT);
-        buildMap(typeDependencies, jsonTypes, TYPE);
-        buildMap(moveDependencies, jsonMoves, MOVE);
-        buildMap(itemDependencies, jsonItem, ITEM);
-        buildMap(creatureDependencies, jsonCreature, CREATURE);
+        BuildMap(triggerDependencies, jsonTriggers, TRIGGER);
+        BuildMap(effectDependencies, jsonEffects, EFFECT);
+        BuildMap(typeDependencies, jsonTypes, TYPE);
+        BuildMap(moveDependencies, jsonMoves, MOVE);
+        BuildMap(itemDependencies, jsonItem, ITEM);
+        BuildMap(creatureDependencies, jsonCreature, CREATURE);
 
         /*****************/
         /* DELETE ARRAYS */
@@ -93,7 +93,7 @@ namespace model {
         }
     }
 
-    void Model::dispAll() {
+    void Model::DispAll() {
         for(std::pair<std::string,Creature*> pair : this->creatures) {
             printf("%s\n", pair.first.c_str());
         }
@@ -119,7 +119,7 @@ namespace model {
         }
     }
 
-    Json::Value* Model::parseFiles(std::set<std::string> dependenciesName, int expectedType) {
+    Json::Value* Model::ParseFiles(std::set<std::string> dependenciesName, int expectedType) {
         int i = 0;
         int depSize = dependenciesName.size();
         Json::Value* jsonArr = new Json::Value[depSize];
@@ -153,7 +153,7 @@ namespace model {
         return jsonArr;
     }
 
-    void Model::fetchDependencies(Json::Value* dependencySources, size_t sourceLen, std::set<std::string> &dependencyTarget, std::string type) {
+    void Model::FetchDependencies(Json::Value* dependencySources, size_t sourceLen, std::set<std::string> &dependencyTarget, std::string type) {
         for(size_t i = 0; i < sourceLen; i++) {
             Json::Value val = dependencySources[i]["Dependencies"][type];
             for(Json::ValueIterator element = val.begin(); element != val.end(); element++) {
@@ -166,30 +166,30 @@ namespace model {
         }
     }
 
-    void Model::buildMap(std::set<std::string> dependenciesNames, Json::Value* dependencies, int type) {
+    void Model::BuildMap(std::set<std::string> dependenciesNames, Json::Value* dependencies, int type) {
         switch(type) {
             case CREATURE:
-                this->buildCreatureMap(dependenciesNames, dependencies);
+                this->BuildCreatureMap(dependenciesNames, dependencies);
                 break;
             case ITEM:
-                this->buildItemMap(dependenciesNames, dependencies);
+                this->BuildItemMap(dependenciesNames, dependencies);
                 break;
             case MOVE:
-                this->buildMoveMap(dependenciesNames, dependencies);
+                this->BuildMoveMap(dependenciesNames, dependencies);
                 break;
             case TYPE:
-                this->buildTypeMap(dependenciesNames, dependencies);
+                this->BuildTypeMap(dependenciesNames, dependencies);
                 break;
             case EFFECT:
-                this->buildEffectMap(dependenciesNames, dependencies);
+                this->BuildEffectMap(dependenciesNames, dependencies);
                 break;
             case TRIGGER:
-                this->buildTriggerMap(dependenciesNames, dependencies);
+                this->BuildTriggerMap(dependenciesNames, dependencies);
                 break;
         }
     }
 
-    void Model::buildCreatureMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
+    void Model::BuildCreatureMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;
         char* name = new char[128];
         for(std::string depName : dependenciesNames) {
@@ -201,7 +201,7 @@ namespace model {
         }
         delete[] name;
     }
-    void Model::buildItemMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
+    void Model::BuildItemMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;
         char* name = new char[128];
         for(std::string depName : dependenciesNames) {
@@ -213,7 +213,7 @@ namespace model {
         }
         delete[] name;
     }
-    void Model::buildMoveMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
+    void Model::BuildMoveMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;
         char* name = new char[128];
         for(std::string depName : dependenciesNames) {
@@ -225,7 +225,7 @@ namespace model {
         }
         delete[] name;
     }
-    void Model::buildTypeMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
+    void Model::BuildTypeMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;
         char* name = new char[128];
         for(std::string depName : dependenciesNames) {
@@ -237,7 +237,7 @@ namespace model {
         }
         delete[] name;
     }
-    void Model::buildEffectMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
+    void Model::BuildEffectMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;
         char* name = new char[128];
         for(std::string depName : dependenciesNames) {
@@ -249,7 +249,7 @@ namespace model {
         }
         delete[] name;
     }
-    void Model::buildTriggerMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
+    void Model::BuildTriggerMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;
         char* name = new char[128];
         for(std::string depName : dependenciesNames) {

@@ -13,4 +13,12 @@ namespace model {
             this->factors[factor.name()] = val[factor.name()].asFloat();
         }
     }
+    
+    std::string Type::GetName() {
+        return this->name;
+    }
+
+    std::unordered_map<std::string, float> Type::GetFactors() {
+        return this->factors;
+    }
 }

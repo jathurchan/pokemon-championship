@@ -12,4 +12,20 @@ namespace model {
         
         this->type = typeDependencies[val["type"].asString()];
     }
+
+    std::string Creature::GetName() {
+        return this->name;
+    }
+
+    int* Creature::GetStats() {
+        return this->stats;
+    }
+
+    Move** Creature::GetMoves() {
+        return this->moves;
+    }
+
+    Type* Creature::GetType() {
+        return this->type;
+    }
 }
