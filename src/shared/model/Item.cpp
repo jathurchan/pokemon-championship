@@ -1,9 +1,9 @@
 #include "Item.hpp"
 
 namespace model {
-        Item::Item (Json::Value val, std::unordered_map<std::string, Effect*> effectDependencies, std::unordered_map<std::string, Trigger*> triggerDependencies){
+        Item::Item (Json::Value val, std::unordered_map<std::string, Aura*> auraDependencies, std::unordered_map<std::string, Trigger*> triggerDependencies){
         this->trigger = triggerDependencies[val["trigger"].asString()];
-        this->effect = effectDependencies[val["effect"].asString()];
+        this->aura = auraDependencies[val["aura"].asString()];
     }
 
     std::string Item::GetName() {
@@ -14,7 +14,7 @@ namespace model {
         return this->trigger;
     }
 
-    Effect* Item::GetEffect() {
-        return this->effect;
+    Aura* Item::GetAura() {
+        return this->aura;
     }
 }

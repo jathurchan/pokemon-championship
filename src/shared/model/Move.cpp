@@ -1,12 +1,12 @@
 #include "Move.hpp"
 
 namespace model {
-    Move::Move (Json::Value val, std::unordered_map<std::string, Type*> typeDependencies, std::unordered_map<std::string, Effect*> effectDependencies) {
+    Move::Move (Json::Value val, std::unordered_map<std::string, Type*> typeDependencies, std::unordered_map<std::string, Aura*> auraDependencies) {
         this->power = val["power"].asInt();
         this->type = typeDependencies[val["type"].asString()];
         this->powerPoints = val["max"].asInt();
         this->priority = val["priority"].asBool();
-        this->effect = effectDependencies[val["effect"].asString()];
+        this->aura = auraDependencies[val["aura"].asString()];
     }
 
     std::string Move::GetName() {
@@ -29,7 +29,7 @@ namespace model {
         return this->priority;
     }
 
-    Effect* Move::GetEffect() {
-        return this->effect;
+    Aura* Move::GetAura() {
+        return this->aura;
     }
 }

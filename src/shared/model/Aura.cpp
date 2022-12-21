@@ -1,25 +1,25 @@
-#include "Effect.hpp"
+#include "Aura.hpp"
 
 namespace model {
-    Effect::Effect (Json::Value val){
+    Aura::Aura (Json::Value val){
         this->targetSelf = val["targetSelf"].asBool();
         this->targetStat = val["stat"].asInt();
         this->value = val["value"].asFloat();
     }
 
-    std::string Effect::GetName() {
+    std::string Aura::GetName() {
         return this->name;
     }
 
-    float Effect::GetValue() {
+    float Aura::GetValue() {
         return this->value;
     }
 
-    bool Effect::TargetsSelf() {
+    bool Aura::TargetsSelf() {
         return this->targetSelf;
     }
 
-    int Effect::GetTargetStat() {
+    int Aura::GetTargetStat() {
         return this->targetStat;
     }
 }

@@ -17,7 +17,7 @@ namespace model {
         std::set<std::string> itemDependencies; itemDependencies.insert(itemPackage);
         std::set<std::string> moveDependencies;
         std::set<std::string> typeDependencies;
-        std::set<std::string> effectDependencies;
+        std::set<std::string> auraDependencies;
         std::set<std::string> triggerDependencies;
 
 
@@ -28,7 +28,7 @@ namespace model {
         Json::Value* jsonItem;
         Json::Value* jsonMoves;
         Json::Value* jsonTypes;
-        Json::Value* jsonEffects;
+        Json::Value* jsonAuras;
         Json::Value* jsonTriggers;
 
         jsonCreature = ParseFiles(creatureDependencies, CREATURE);
@@ -43,9 +43,9 @@ namespace model {
         FetchDependencies(jsonMoves, moveDepSize, typeDependencies, "Types");
         jsonTypes = ParseFiles(typeDependencies, TYPE);
 
-        FetchDependencies(jsonItem, 1, effectDependencies, "Effects");
-        FetchDependencies(jsonMoves, moveDepSize, effectDependencies, "Effects");
-        jsonEffects = ParseFiles(effectDependencies, EFFECT);
+        FetchDependencies(jsonItem, 1, auraDependencies, "Auras");
+        FetchDependencies(jsonMoves, moveDepSize, auraDependencies, "Auras");
+        jsonAuras = ParseFiles(auraDependencies, EFFECT);
 
         FetchDependencies(jsonItem, 1, triggerDependencies, "Triggers");
         jsonTriggers = ParseFiles(triggerDependencies, TRIGGER);
@@ -55,7 +55,7 @@ namespace model {
         /* BUILD MODEL */
         /***************/
         BuildMap(triggerDependencies, jsonTriggers, TRIGGER);
-        BuildMap(effectDependencies, jsonEffects, EFFECT);
+        BuildMap(auraDependencies, jsonAuras, EFFECT);
         BuildMap(typeDependencies, jsonTypes, TYPE);
         BuildMap(moveDependencies, jsonMoves, MOVE);
         BuildMap(itemDependencies, jsonItem, ITEM);
@@ -68,7 +68,7 @@ namespace model {
         delete[] jsonItem;
         delete[] jsonMoves;
         delete[] jsonTypes;
-        delete[] jsonEffects;
+        delete[] jsonAuras;
         delete[] jsonTriggers;
     }
 
@@ -85,8 +85,8 @@ namespace model {
         for(std::pair<std::string, Type*> type : this->types) {
             delete type.second;
         }
-        for(std::pair<std::string, Effect*> effect : this->effects) {
-            delete effect.second;
+        for(std::pair<std::string, Aura*> aura : this->auras) {
+            delete aura.second;
         }
         for(std::pair<std::string, Trigger*> trigger : this->triggers) {
             delete trigger.second;
@@ -110,7 +110,7 @@ namespace model {
             printf("%s\n", pair.first.c_str());
         }
         printf("\n");
-        for(std::pair<std::string,Effect*> pair : this->effects) {
+        for(std::pair<std::string,Aura*> pair : this->auras) {
             printf("%s\n", pair.first.c_str());
         }
         printf("\n");
@@ -181,7 +181,7 @@ namespace model {
                 this->BuildTypeMap(dependenciesNames, dependencies);
                 break;
             case EFFECT:
-                this->BuildEffectMap(dependenciesNames, dependencies);
+                this->BuildAuraMap(dependenciesNames, dependencies);
                 break;
             case TRIGGER:
                 this->BuildTriggerMap(dependenciesNames, dependencies);
@@ -208,7 +208,7 @@ namespace model {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
                 sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
-                this->items[name] = new Item(dependency[element.name()], this->effects, this->triggers);
+                this->items[name] = new Item(dependency[element.name()], this->auras, this->triggers);
             }
         }
         delete[] name;
@@ -220,7 +220,7 @@ namespace model {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
                 sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
-                this->moves[name] = new Move(dependency[element.name()], this->types, this->effects);
+                this->moves[name] = new Move(dependency[element.name()], this->types, this->auras);
             }
         }
         delete[] name;
@@ -237,14 +237,14 @@ namespace model {
         }
         delete[] name;
     }
-    void Model::BuildEffectMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
+    void Model::BuildAuraMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;
         char* name = new char[128];
         for(std::string depName : dependenciesNames) {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
                 sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
-                this->effects[name] = new Effect(dependency[element.name()]);
+                this->auras[name] = new Aura(dependency[element.name()]);
             }
         }
         delete[] name;
