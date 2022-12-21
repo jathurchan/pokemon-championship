@@ -17,11 +17,11 @@ namespace model {
         return this->name;
     }
 
-    int* Creature::GetStats() {
+    std::array<int, 4> Creature::GetStats() {
         return this->stats;
     }
 
-    Move** Creature::GetMoves() {
+    std::array<Move*, 4> Creature::GetMoves() {
         return this->moves;
     }
 

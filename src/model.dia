@@ -531,10 +531,10 @@
         </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#stats[4]#</dia:string>
+            <dia:string>#stats#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#int#</dia:string>
+            <dia:string>#std::array&lt;int, 4&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
@@ -554,10 +554,10 @@
         </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#moves[4]#</dia:string>
+            <dia:string>#moves#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#Move*#</dia:string>
+            <dia:string>#std::array&lt;Move*, 4&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
@@ -720,7 +720,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#int*#</dia:string>
+            <dia:string>#std::array&lt;int, 4&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -750,7 +750,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#Move**#</dia:string>
+            <dia:string>#std::array&lt;Move*, 4&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
