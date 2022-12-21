@@ -1,27 +1,40 @@
 #include "Trainer.hpp"
 
-state::Trainer::Trainer(std::string name)
-{
-    this->name = name;
-    //this->party = new Party();
-}
 
-state::Trainer::~Trainer()
-{
-    delete(party); 
-}
+namespace state {
+    
 
-void state::Trainer::SetState(TrainerState newState)
-{
-    this->trainerState = newState;
-}
+    Trainer::Trainer() = default;
 
-std::string state::Trainer::GetName()
-{
-    return name;
-}
+    Trainer::Trainer(std::string name)
+    {
+        this->name = name;
+    }
 
-state::Party state::Trainer::GetParty()
-{
-    return *party;
+    Trainer::~Trainer() = default;
+
+    void Trainer::SetState(TrainerState newState)
+    {
+        this->trainerState = newState;
+    }
+
+    std::string Trainer::GetName()
+    {
+        return name;
+    }
+
+    Party* Trainer::GetParty()
+    {
+        return &party;
+    }
+
+    TrainerState Trainer::GetState()
+    {
+        return trainerState;
+    }
+
+    Creature* Trainer::GetActiveCreature()
+    {
+        return &party.GetActiveCreature();
+    }
 }

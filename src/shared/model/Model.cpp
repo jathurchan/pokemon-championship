@@ -12,6 +12,9 @@
 #define TYPE 5
 
 namespace model {
+
+    Model::Model() = default;
+    
     Model::Model(std::string creaturePackage, std::string itemPackage) {
         std::set<std::string> creatureDependencies; creatureDependencies.insert(creaturePackage);
         std::set<std::string> itemDependencies; itemDependencies.insert(itemPackage);
@@ -93,7 +96,18 @@ namespace model {
         }
     }
 
-    void Model::DispAll() {
+    Creature* Model::GetCreature(std::string name)
+    {
+        return creatures[name];
+    }
+
+    Item* Model::GetItem(std::string name)
+    {
+        return items[name];
+    }
+
+    void Model::DispAll()
+    {
         for(std::pair<std::string,Creature*> pair : this->creatures) {
             printf("%s\n", pair.first.c_str());
         }

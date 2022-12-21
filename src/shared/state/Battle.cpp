@@ -1,71 +1,32 @@
 #include "Battle.hpp"
 
-// Constructors
+namespace state {
 
-state::Battle::Battle(std::string trainerA, std::string trainerB, int actionTimeout)
-{
-  this->trainerA = new Trainer(trainerA);
-  this->trainerB = new Trainer(trainerB);
-  this->actionTimeout = actionTimeout;
-  this->numberOfBans = numberOfBans;
-  this->participatingSize = participatingSize;
-  this->numberOfItems = numberOfItems;
+    Battle::Battle(Trainer *trainerA, Trainer *trainerB, int actionTimeout)
+    {
+        this->trainers[0] = trainerA;
+        this->trainers[1] = trainerB;
+        this->actionTimeout = actionTimeout;
+    }
 
-  Init();
-}
+    Battle::~Battle() = default;
 
-// Destructors
+    BattleState Battle::GetState()
+    {
+        return state;
+    }
+    int Battle::GetTurn()
+    {
+        return turn;
+    }
+    Trainer* Battle::GetTrainerA()
+    {
+        return trainers[0];
+    }
 
-state::Battle::~Battle()
-{
-  delete(trainerA);
-  delete(trainerB);
-}
-
-// Init
-
-void state::Battle::Init()
-{
-  turn = 0;
-  this->state = BattleState::waitState;
-}
-
-// Methods
-
-void state::Battle::Update()
-{
+    Trainer* Battle::GetTrainerB()
+    {
+        return trainers[1];
+    }
 
 }
-
-// Getters
-
-state::Trainer &state::Battle::GetTrainerA()
-{
-  return *trainerA;
-}
-
-state::Trainer &state::Battle::GetTrainerB()
-{
-  return *trainerB;
-}
-
-int state::Battle::GetNumberOfBans()
-{
-  return numberOfBans;
-}
-
-int state::Battle::GetParticipatingSize()
-{
-  return participatingSize;
-}
-
-int state::Battle::GetNumberOfItems()
-{
-  return numberOfItems;
-}
-
-int state::Battle::GetTurn()
-{
-  return turn;
-}
-

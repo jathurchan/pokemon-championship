@@ -4,12 +4,12 @@ namespace state {
 
     Item::Item () = default;
 
-    Item::Item (model::Item modelItem)
+    Item::Item (model::Item* modelItem)
     {
-        this->name = modelItem.GetName();
-        this->threshold = modelItem.GetTrigger()->GetThreshold();
+        this->name = modelItem->GetName();
+        this->threshold = modelItem->GetTrigger()->GetThreshold();
         this->permanent = (threshold < 100) ? false : true;
-        this->aura = Aura(*modelItem.GetAura());
+        this->aura = Aura(*modelItem->GetAura());
     }
 
     Item::~Item () = default;

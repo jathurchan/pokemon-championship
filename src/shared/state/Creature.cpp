@@ -12,7 +12,7 @@ namespace state {
         InitMoves(modelCreature.GetMoves());
     }
 
-    
+    Creature::~Creature() = default;
 
     void Creature::InitStats(std::array<int, 4> stats)
     {
@@ -46,13 +46,52 @@ namespace state {
         return stats[statName].GetCurrent();
     }
 
+    Move* Creature::GetMove(int moveIndex)
+    {
+        return &moves[moveIndex];
+    }
+
+    Item* Creature::GetItem()
+    {
+        return item;
+    }
+
     CreatureState Creature::GetState()
     {
         return creatureState;
     }
 
+    void Creature::Reset()
+    {
+        for(size_t i = 1; i < stats.size(); i++)
+        {
+            stats[i].Update(stats[i].GetBase());
+        }
+    }
+
     void Creature::UpdateState(CreatureState newState)
     {
         creatureState = newState;
+        if(newState == CreatureState::sub)
+        {
+            Reset();
+        }
     }
+
+    void Creature::GiveItem(Item* item)
+    {
+        this->item = item;
+    }
+
+    void Creature::UseItem()
+    {
+        Stat* affected = &stats[item->GetStatName()];
+        affected->Update(affected->GetCurrent() + (affected->GetBase() * item->GetMultiplier()));
+    }
+
+    void Creature::RemoveItem()
+    {
+        delete(item);
+    }
+
 }
