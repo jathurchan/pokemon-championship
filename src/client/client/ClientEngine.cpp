@@ -7,18 +7,18 @@ namespace client {
     ClientEngine::ClientEngine() {
         eventHandler = std::make_unique<EventHandler>();
         stateHandler = std::make_unique<StateHandler>(Login_State);
-    }
-
-    void ClientEngine::run() {
 
         scene.initWindow();
         stateHandler->initStatesMap();
         scene.playMusic();
+    }
 
+    void ClientEngine::run() {
         sf::Event event{};
         while (scene.getWindow()->isOpen()) {
 
             scene.display(stateHandler->getCurrentState());
+
             while (scene.getWindow()->pollEvent(event)) {
                 if (!eventHandler->getEventsMap()->count(event.type))
                     break;
@@ -42,7 +42,7 @@ namespace client {
         scene.changeScreenMode();
     }
 
-    void ClientEngine::testTransition(sf::Event event) {
+    void ClientEngine::connect(sf::Event event) {
         std::cout << "Username: " + (std::string) stateHandler->getStateMap(stateHandler->getCurrentState())->at("saveUsername")->getText()->getText().getString() << std::endl;
         std::cout << "Link Code: " + (std::string) stateHandler->getStateMap(stateHandler->getCurrentState())->at("saveLinkCode")->getText()->getText().getString() << std::endl;
         stateHandler->transitionToState(StatesName::Wait_State);
@@ -130,5 +130,4 @@ namespace client {
     }
 
     void ClientEngine::nothingAction(sf::Event event) {}
-
 }

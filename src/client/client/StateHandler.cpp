@@ -4,15 +4,16 @@
 namespace client {
 
     std::unordered_map<StatesName, std::unordered_map<std::string, render::CustomButton*>> StateHandler::statesMap =
-            {{Login_State,     {{"testTransition", nullptr}, {"saveUsername", nullptr}, {"saveLinkCode", nullptr}}},
-            {Choice_State,     {}},
-            {Ban_State,        {}},
-            {Select_State,     {}},
-            {Action_State,     {}},
-            {Switch_State,     {}},
-            {Wait_State,       {}},
-            {TurnResult_State, {}},
-            {EndBattle_State,  {}}};
+            {{Login_State,          {{"connection", nullptr}, {"saveUsername", nullptr}, {"saveLinkCode", nullptr}}},
+            {Team_Choice_State,     {}},
+            {Creature_Ban_State,    {}},
+            {Creature_Choice_State, {}},
+            {Action_Choice_State,   {}},
+            {Move_Choice_State,     {}},
+            {Creature_Switch_State, {}},
+            {Wait_State,            {}},
+            {Turn_Result_State,     {}},
+            {End_Battle_State,      {}}};
 
     StateHandler::StateHandler(StatesName currentState) {
         this->currentState = currentState;

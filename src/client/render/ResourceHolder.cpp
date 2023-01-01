@@ -21,7 +21,7 @@ namespace render {
      * Private constructor
      */
     ResourceHolder::ResourceHolder() {
-        assetsFile = "res/" + (*utilities::JsonParser::getConfigInfo())["jsonFiles"]["stateAssets"].asString();
+        stateAssetsFile = "res/" + (*utilities::JsonParser::getConfigInfo())["jsonFiles"]["stateAssets"].asString();
     }
 
     /*
@@ -33,7 +33,7 @@ namespace render {
     }
 
     void ResourceHolder::loadStateAssets(sf::View &view) {
-        Json::Value assetsInfo = utilities::JsonParser::readJsonString(assetsFile);
+        Json::Value assetsInfo = utilities::JsonParser::readJsonString(stateAssetsFile );
         for (const Json::Value &stateAssets: assetsInfo) {
             if (stateAssets != Json::nullValue) {
                 int index = stateAssets["stateIndex"].asInt();
@@ -93,6 +93,29 @@ namespace render {
             loadStateText(stateButton["text"], index, view);
             stateButtonsMap[index].back()->setText(&stateAssetsMap[index].first.back());
         }
+    }
+
+    void ResourceHolder::loadCreatures() {
+        fakedex.emplace_back();
+        fakedex.back().name = "Aevituu", fakedex.back().fileName = "Aevituu";
+        fakedex.emplace_back();
+        fakedex.back().name = "Flarezael", fakedex.back().fileName = "Flarezael";
+        fakedex.emplace_back();
+        fakedex.back().name = "Gramavorg", fakedex.back().fileName = "Gramavorg";
+        fakedex.emplace_back();
+        fakedex.back().name = "Timbrian", fakedex.back().fileName = "Timbrian";
+        fakedex.emplace_back();
+        fakedex.back().name = "Unex", fakedex.back().fileName = "Unex";
+        fakedex.emplace_back();
+        fakedex.back().name = "Veilow", fakedex.back().fileName = "Veilow";
+        fakedex.emplace_back();
+        fakedex.back().name = "Shijami", fakedex.back().fileName = "Shijami";
+        fakedex.emplace_back();
+        fakedex.back().name = "Malraja", fakedex.back().fileName = "Malraja";
+        fakedex.emplace_back();
+        fakedex.back().name = "Esterrix", fakedex.back().fileName = "Esterrix";
+        fakedex.emplace_back();
+        fakedex.back().name = "Esperug", fakedex.back().fileName = "Esperug";
     }
 
     /*
@@ -159,5 +182,9 @@ namespace render {
 
     std::vector<std::shared_ptr<CustomButton>> *ResourceHolder::getStateButtonVector(int state) {
         return &stateButtonsMap[state];
+    }
+
+    std::vector<struct client::Creature>* ResourceHolder::getFakedex() {
+        return &fakedex;
     }
 }

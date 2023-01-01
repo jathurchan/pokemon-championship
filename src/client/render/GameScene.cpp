@@ -63,11 +63,19 @@ namespace render {
 
     void GameScene::display(int state) {
         window.clear();
+        displayBackground(state);
         for (render::CustomSprite sprite : *render::ResourceHolder::getInstance().getStateSpriteVector(state))
             window.draw(sprite.getSprite());
         for (render::CustomText text : *render::ResourceHolder::getInstance().getStateTextVector(state))
             window.draw(text.getText());
         window.display();
+    }
+
+    void GameScene::displayBackground(int state) {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<int> distrib(1, 6);
+        static int numberBackground = distrib(gen);
     }
 
     sf::RenderWindow *GameScene::getWindow() {
