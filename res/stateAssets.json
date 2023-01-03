@@ -215,28 +215,49 @@
       }
     ]
   },
+  "Team_Choice_State": {
+    "stateIndex": 1,
+    "sprite": [
+      {
+        "imageName": "selectionBackground",
+        "smooth": false,
+        "scale": {
+          "ratioOnX" : true,
+          "percent": 100
+        },
+        "origin": {
+          "originX": -10,
+          "originY": -10
+        },
+        "position": {
+          "posX": -100,
+          "posY": -100
+        }
+      }
+    ]
+  },
   "Ban_State": {
-    "stateIndex": 1
+    "stateIndex": 2,
   },
   "Choice_State": {
-    "stateIndex": 2
-  },
-  "Select_State": {
     "stateIndex": 3
   },
-  "Action_State": {
+  "Select_State": {
     "stateIndex": 4
   },
-  "Switch_State": {
+  "Action_State": {
     "stateIndex": 5
   },
-  "Wait_State": {
+  "Switch_State": {
     "stateIndex": 6
   },
-  "TurnResult_State": {
+  "Wait_State": {
     "stateIndex": 7
   },
-  "EndBattle_State": {
+  "TurnResult_State": {
     "stateIndex": 8
+  },
+  "EndBattle_State": {
+    "stateIndex": 9
   }
 }

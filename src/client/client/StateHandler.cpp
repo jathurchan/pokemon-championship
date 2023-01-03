@@ -5,6 +5,7 @@ namespace client {
 
     std::unordered_map<StatesName, std::unordered_map<std::string, render::CustomButton*>> StateHandler::statesMap =
             {{Login_State,     {{"testTransition", nullptr}, {"saveUsername", nullptr}, {"saveLinkCode", nullptr}}},
+             {{T}}
             {Choice_State,     {}},
             {Ban_State,        {}},
             {Select_State,     {}},
