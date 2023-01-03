@@ -1,7 +1,5 @@
 #include <sys/stat.h>
 #include <fstream>
-#include <set>
-#include <memory>
 #include "Model.hpp"
 
 #define CREATURE 0
@@ -96,18 +94,15 @@ namespace model {
         }
     }
 
-    Creature* Model::GetCreature(std::string name)
-    {
+    Creature* Model::GetCreature(std::string name) {
         return creatures[name];
     }
 
-    Item* Model::GetItem(std::string name)
-    {
+    Item* Model::GetItem(std::string name) {
         return items[name];
     }
 
-    void Model::DispAll()
-    {
+    void Model::DispAll() {
         for(std::pair<std::string,Creature*> pair : this->creatures) {
             printf("%s\n", pair.second->GetName().c_str());
         }

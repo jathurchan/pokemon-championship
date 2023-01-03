@@ -1,11 +1,9 @@
 #include "Creature.hpp"
-#include <iostream>
 
 #define NMOVES 4
 
 namespace model {
-    Creature::Creature (char* name, Json::Value val, std::unordered_map<std::string, Move*> moveDependencies, std::unordered_map<std::string, Type*> typeDependencies)
-    {
+    Creature::Creature (char* name, Json::Value val, std::unordered_map<std::string, Move*> moveDependencies, std::unordered_map<std::string, Type*> typeDependencies) {
         this->name = name;
 
         for (int i = 0; i < 4; i++)

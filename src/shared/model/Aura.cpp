@@ -1,7 +1,7 @@
 #include "Aura.hpp"
 
 namespace model {
-    Aura::Aura (char* name, Json::Value val){
+    Aura::Aura (char* name, Json::Value val) {
         this->name = name;
         this->targetSelf = val["targetSelf"].asBool();
         this->targetStat = val["stat"].asInt();
