@@ -10,7 +10,6 @@
   "volume": 100,
   "jsonFiles" : {
     "stateAssets": "stateAssets.json",
-    "generalAssets": "generalAssets.json",
     "supportedKeys": "supportedKeys.json"
   }
 }
