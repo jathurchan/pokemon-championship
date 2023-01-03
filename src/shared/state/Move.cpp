@@ -15,6 +15,8 @@ namespace state {
         this->type = Type(*modelMove.GetType());
     }
 
+    Move::~Move() = default;
+
     std::string Move::GetName()
     {
         return name;

@@ -4,8 +4,9 @@ namespace model {
 
     Item::Item() = default;
     
-    Item::Item (Json::Value val, std::unordered_map<std::string, Aura*> auraDependencies, std::unordered_map<std::string, Trigger*> triggerDependencies)
+    Item::Item (char* name, Json::Value val, std::unordered_map<std::string, Aura*> auraDependencies, std::unordered_map<std::string, Trigger*> triggerDependencies)
     {
+        this->name = name;
         this->trigger = triggerDependencies[val["trigger"].asString()];
         this->aura = auraDependencies[val["aura"].asString()];
     }

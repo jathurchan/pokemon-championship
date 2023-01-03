@@ -4,7 +4,7 @@ enable_testing()
 
 # Custom "check" target that enable Boost unit test output on CTest failure.
 # Create an alias target "unittest" for "check".
-add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
+add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-)
 add_custom_target(unittest DEPENDS check)
 
 # Find library Boost for unit test framework

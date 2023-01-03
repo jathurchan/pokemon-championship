@@ -17,25 +17,26 @@ namespace state {
 
     void Party::LoadFromModel(model::Model* modelData, std::array<std::string, 6> creatureNameList)
     {
-        for(int i = 0; i < (int)creatures.size(); i++)
+        for(size_t i = 0; i < creatures.size(); i++)
         {
             creatures[i] = modelData->GetCreature(creatureNameList[i]);
-        } 
+        }
+        std::cout << creatures.size() << std::endl;
     }
 
     void Party::SetParticipatingTeam(std::array<int,3> creaturesIndexes)
     {
-        participatingCreatures[0] = Creature(*creatures[creaturesIndexes[0]]);
+        participatingCreatures[0] = new Creature(creatures[creaturesIndexes[0]]);
         SwitchCreatureState(0, CreatureState::active );
-        participatingCreatures[1] = Creature(*creatures[creaturesIndexes[1]]);
+        participatingCreatures[1] = new Creature(creatures[creaturesIndexes[1]]);
         SwitchCreatureState(1, CreatureState::sub );
-        participatingCreatures[2] = Creature(*creatures[creaturesIndexes[2]]);
+        participatingCreatures[2] = new Creature(creatures[creaturesIndexes[2]]);
         SwitchCreatureState(2, CreatureState::sub );
     }
 
     void Party::SwitchCreatureState(int creatureIndex, CreatureState newCreatureState)
     {
-        participatingCreatures[creatureIndex].UpdateState(newCreatureState);
+        participatingCreatures[creatureIndex]->UpdateState(newCreatureState);
     }
 
     void Party::GiveItem(model::Model* modelData, std::string itemName, int creatureIndex)
@@ -43,7 +44,7 @@ namespace state {
         if(remainingItems > 0)
         {
             Item* item = new Item(modelData->GetItem(itemName));
-            participatingCreatures[creatureIndex].GiveItem(item);
+            participatingCreatures[creatureIndex]->GiveItem(item);
             remainingItems--;
         }
         else
@@ -54,24 +55,24 @@ namespace state {
 
     std::string Party::GetName(int creatureIndex)
     {
-        return participatingCreatures[creatureIndex].GetName();
+        return participatingCreatures[creatureIndex]->GetName();
     }
 
     int Party::GetBaseHP(int creatureIndex)
     {
-        return participatingCreatures[creatureIndex].GetStatBase(StatName::hp);
+        return participatingCreatures[creatureIndex]->GetStatBase(StatName::hp);
     }
 
     int Party::GetCurrentHP(int creatureIndex)
     {
-        return participatingCreatures[creatureIndex].GetStatCurrent(StatName::hp);
+        return participatingCreatures[creatureIndex]->GetStatCurrent(StatName::hp);
     }
 
     Item* Party::GetItem(int creatureIndex)
     {
-        if(participatingCreatures[creatureIndex].GetItem() != nullptr)
+        if(participatingCreatures[creatureIndex]->GetItem() != nullptr)
         {
-            return participatingCreatures[creatureIndex].GetItem();
+            return participatingCreatures[creatureIndex]->GetItem();
         }
         else
         {
@@ -89,9 +90,9 @@ namespace state {
     {
         for(auto c : participatingCreatures)
         {
-            if(c.GetState() == CreatureState::active) 
+            if(c->GetState() == CreatureState::active) 
             {
-                activeCreature = c;
+                activeCreature = *c;
                 break;
             }
         }

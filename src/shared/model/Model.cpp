@@ -210,7 +210,7 @@ namespace model {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
                 sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
-                this->creatures[name] = new Creature(dependency[element.name()], this->moves, this->types);
+                this->creatures[name] = new Creature(name, dependency[element.name()], this->moves, this->types);
             }
         }
         delete[] name;
@@ -222,7 +222,7 @@ namespace model {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
                 sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
-                this->items[name] = new Item(dependency[element.name()], this->auras, this->triggers);
+                this->items[name] = new Item(name, dependency[element.name()], this->auras, this->triggers);
             }
         }
         delete[] name;
@@ -234,7 +234,7 @@ namespace model {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
                 sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
-                this->moves[name] = new Move(dependency[element.name()], this->types, this->auras);
+                this->moves[name] = new Move(name, dependency[element.name()], this->types, this->auras);
             }
         }
         delete[] name;
@@ -246,7 +246,7 @@ namespace model {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
                 sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
-                this->types[name] = new Type(dependency[element.name()]);
+                this->types[name] = new Type(name, dependency[element.name()]);
             }
         }
         delete[] name;

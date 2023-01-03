@@ -1,7 +1,9 @@
 #include "Move.hpp"
 
 namespace model {
-    Move::Move (Json::Value val, std::unordered_map<std::string, Type*> typeDependencies, std::unordered_map<std::string, Aura*> auraDependencies) {
+    Move::Move (char* name, Json::Value val, std::unordered_map<std::string, Type*> typeDependencies, std::unordered_map<std::string, Aura*> auraDependencies) 
+    {
+        this->name = name;
         this->power = val["power"].asInt();
         this->type = typeDependencies[val["type"].asString()];
         this->powerPoints = val["max"].asInt();
@@ -9,27 +11,33 @@ namespace model {
         this->aura = auraDependencies[val["aura"].asString()];
     }
 
-    std::string Move::GetName() {
-        return this->name;
+    std::string Move::GetName() 
+    {
+        return name;
     }
 
-    int Move::GetPower() {
+    int Move::GetPower()
+    {
         return this->power;
     }
 
-    Type* Move::GetType() {
+    Type* Move::GetType()
+    {
         return this->type;
     }
 
-    int Move::GetPP() {
+    int Move::GetPP()
+    {
         return this->powerPoints;
     }
 
-    bool Move::HasPriority() {
+    bool Move::HasPriority()
+    {
         return this->priority;
     }
 
-    Aura* Move::GetAura() {
+    Aura* Move::GetAura()
+    {
         return this->aura;
     }
 }

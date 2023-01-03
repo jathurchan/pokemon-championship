@@ -2,10 +2,11 @@
 #include "Type.hpp"
 
 namespace model {
-    Type::Type (Json::Value val) {
+    Type::Type (char* name, Json::Value val) {
         Json::CharReaderBuilder builder;
         std::unique_ptr<Json::CharReader> reader = std::unique_ptr<Json::CharReader> (builder.newCharReader());
         std::string err {};
+        this->name = name;
         this->factors = std::unordered_map<std::string, float>();
         this->factors.reserve(val.size());
 

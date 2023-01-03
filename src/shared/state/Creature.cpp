@@ -4,12 +4,12 @@ namespace state {
 
     Creature::Creature() = default;
     
-    Creature::Creature(model::Creature modelCreature)
+    Creature::Creature(model::Creature *modelCreature)
     {
-        this->name = modelCreature.GetName();
+        this->name = modelCreature->GetName();
         
-        InitStats(modelCreature.GetStats());
-        InitMoves(modelCreature.GetMoves());
+        InitStats(modelCreature->GetStats());
+        InitMoves(modelCreature->GetMoves());
     }
 
     Creature::~Creature() = default;
