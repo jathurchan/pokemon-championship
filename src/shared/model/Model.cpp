@@ -245,6 +245,7 @@ namespace model {
             }
         }
         delete[] name;
+        this->types[""] = new Type();
     }
     void Model::BuildAuraMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;
@@ -256,8 +257,8 @@ namespace model {
                 this->auras[name] = new Aura(name, dependency[element.name()]);
             }
         }
-        this->auras[""] = new Aura();
         delete[] name;
+        this->auras[""] = new Aura();
     }
     void Model::BuildTriggerMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;

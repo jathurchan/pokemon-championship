@@ -15,6 +15,10 @@ namespace model {
         }
     }
     
+    Type::Type () {
+        this->name = "Normal";
+    }
+
     std::string Type::GetName() {
         return this->name;
     }
