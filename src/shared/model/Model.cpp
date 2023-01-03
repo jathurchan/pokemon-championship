@@ -5,7 +5,7 @@
 #include "Model.hpp"
 
 #define CREATURE 0
-#define EFFECT 1
+#define AURA 1
 #define ITEM 2
 #define MOVE 3
 #define TRIGGER 4
@@ -48,7 +48,7 @@ namespace model {
 
         FetchDependencies(jsonItem, 1, auraDependencies, "Auras");
         FetchDependencies(jsonMoves, moveDepSize, auraDependencies, "Auras");
-        jsonAuras = ParseFiles(auraDependencies, EFFECT);
+        jsonAuras = ParseFiles(auraDependencies, AURA);
 
         FetchDependencies(jsonItem, 1, triggerDependencies, "Triggers");
         jsonTriggers = ParseFiles(triggerDependencies, TRIGGER);
@@ -58,7 +58,7 @@ namespace model {
         /* BUILD MODEL */
         /***************/
         BuildMap(triggerDependencies, jsonTriggers, TRIGGER);
-        BuildMap(auraDependencies, jsonAuras, EFFECT);
+        BuildMap(auraDependencies, jsonAuras, AURA);
         BuildMap(typeDependencies, jsonTypes, TYPE);
         BuildMap(moveDependencies, jsonMoves, MOVE);
         BuildMap(itemDependencies, jsonItem, ITEM);
@@ -109,23 +109,23 @@ namespace model {
     void Model::DispAll()
     {
         for(std::pair<std::string,Creature*> pair : this->creatures) {
-            printf("%s\n", pair.first.c_str());
+            printf("%s\n", pair.second->GetName().c_str());
         }
         printf("\n");
         for(std::pair<std::string,Item*> pair : this->items) {
-            printf("%s\n", pair.first.c_str());
+            printf("%s\n", pair.second->GetName().c_str());
         }
         printf("\n");
         for(std::pair<std::string,Move*> pair : this->moves) {
-            printf("%s\n", pair.first.c_str());
+            printf("%s\n", pair.second->GetName().c_str());
         }
         printf("\n");
         for(std::pair<std::string,Type*> pair : this->types) {
-            printf("%s\n", pair.first.c_str());
+            printf("%s\n", pair.second->GetName().c_str());
         }
         printf("\n");
         for(std::pair<std::string,Aura*> pair : this->auras) {
-            printf("%s\n", pair.first.c_str());
+            printf("%s\n", pair.second->GetName().c_str());
         }
         printf("\n");
         for(std::pair<std::string,Trigger*> pair : this->triggers) {
@@ -194,7 +194,7 @@ namespace model {
             case TYPE:
                 this->BuildTypeMap(dependenciesNames, dependencies);
                 break;
-            case EFFECT:
+            case AURA:
                 this->BuildAuraMap(dependenciesNames, dependencies);
                 break;
             case TRIGGER:
@@ -258,9 +258,10 @@ namespace model {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
                 sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
-                this->auras[name] = new Aura(dependency[element.name()]);
+                this->auras[name] = new Aura(name, dependency[element.name()]);
             }
         }
+        this->auras[""] = new Aura();
         delete[] name;
     }
     void Model::BuildTriggerMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
