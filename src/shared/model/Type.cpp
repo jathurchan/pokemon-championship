@@ -23,7 +23,11 @@ namespace model {
         return this->name;
     }
 
-    std::unordered_map<std::string, float> Type::GetFactors() {
-        return this->factors;
+    float Type::GetFactor(std::string targetType) {
+        if(this->factors.count(targetType)) {
+            return this->factors[targetType];
+        } else {
+            return 1.f;
+        }
     }
 }
