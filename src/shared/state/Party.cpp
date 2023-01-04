@@ -32,6 +32,8 @@ namespace state {
         SwitchCreatureState(1, CreatureState::sub );
         participatingCreatures[2] = new Creature(creatures[creaturesIndexes[2]]);
         SwitchCreatureState(2, CreatureState::sub );
+        
+        UpdateActiveCreature();
     }
 
     void Party::SwitchCreatureState(int creatureIndex, CreatureState newCreatureState)

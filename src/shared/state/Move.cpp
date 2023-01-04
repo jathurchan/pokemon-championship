@@ -12,7 +12,7 @@ namespace state {
         this->priority = modelMove.HasPriority();
         this->power = modelMove.GetPower();
         this->aura = Aura(*modelMove.GetAura());
-        this->type = Type(*modelMove.GetType());
+        this->type = modelMove.GetType();
     }
 
     Move::~Move() = default;

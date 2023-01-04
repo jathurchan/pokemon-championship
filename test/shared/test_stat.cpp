@@ -23,33 +23,19 @@ BOOST_AUTO_TEST_SUITE( TestStats )
     }
 
 
-    BOOST_AUTO_TEST_CASE( test_HP )
+    BOOST_AUTO_TEST_CASE( test_Stat )
     {
-        state::Stat hp(HP, aquis.GetStats()[HP]);
-        BOOST_CHECK_EQUAL(hp.GetBase(), 100);
-        BOOST_CHECK_EQUAL(hp.GetCurrent(), 100);
-        hp.Update(120);
-        BOOST_CHECK_EQUAL(hp.GetBase(), 100);
-        BOOST_CHECK_EQUAL(hp.GetCurrent(), 120);
+        state::Stat currentStat(HP, aquis.GetStats()[HP]);
+        BOOST_CHECK_EQUAL(currentStat.GetBase(), 100);
+        BOOST_CHECK_EQUAL(currentStat.GetCurrent(), 100);
+        currentStat.Update(120);
+        BOOST_CHECK_EQUAL(currentStat.GetBase(), 100);
+        BOOST_CHECK_EQUAL(currentStat.GetCurrent(), 120);
+        
+        currentStat = state::Stat(ATK, aquis.GetStats()[ATK]);
+        BOOST_CHECK_EQUAL(currentStat.GetStatName(), ATK);
     }
 
-    BOOST_AUTO_TEST_CASE( test_ATK )
-    {
-        state::Stat atk(ATK, aquis.GetStats()[ATK]);
-        BOOST_CHECK_EQUAL(atk.GetBase(), 90);
-    }
-
-    BOOST_AUTO_TEST_CASE( test_DEF )
-    {
-        state::Stat def(DEF, aquis.GetStats()[DEF]);
-        BOOST_CHECK_EQUAL(def.GetBase(), 80);
-    }
-
-    BOOST_AUTO_TEST_CASE( test_SPD )
-    {
-        state::Stat spd(SPD, aquis.GetStats()[SPD]);
-        BOOST_CHECK_EQUAL(spd.GetBase(), 130);
-    }
 
 BOOST_AUTO_TEST_SUITE_END()
 

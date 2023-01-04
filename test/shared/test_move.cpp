@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_SUITE( TestMoves )
     BOOST_AUTO_TEST_CASE( test_Move_0 )
     {
         state::Move move(*aquis.GetMoves()[0]);
-        BOOST_CHECK_EQUAL(move.GetName(), "100");
+        BOOST_CHECK_EQUAL(move.GetName(), "defaultMoves/WaterSpray");
     }
 
     BOOST_AUTO_TEST_CASE( test_ATK )

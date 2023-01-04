@@ -7,7 +7,7 @@ namespace state {
     Creature::Creature(model::Creature *modelCreature)
     {
         this->name = modelCreature->GetName();
-        
+        this->type = modelCreature->GetType();        
         InitStats(modelCreature->GetStats());
         InitMoves(modelCreature->GetMoves());
     }

@@ -12,7 +12,7 @@ int main(int argc,char* argv[])
     
     model.DispAll();
 
-    /*state::Trainer* trainerA = new state::Trainer("Rémi");
+    state::Trainer* trainerA = new state::Trainer("Rémi");
     state::Trainer* trainerB = new state::Trainer("Alex");
 
     std::cout << trainerA->GetName() << std::endl;
@@ -32,7 +32,13 @@ int main(int argc,char* argv[])
     std::cout << trainerA->GetName() << std::endl;
     std::cout << trainerA->GetParty()->GetActiveCreature().GetName() << std::endl;
     std::cout << trainerB->GetName() << std::endl;
-    std::cout << trainerB->GetParty()->GetActiveCreature().GetName() << std::endl;*/
+    std::cout << trainerB->GetParty()->GetActiveCreature().GetName() << std::endl;
+
+
+    
+
+    delete(trainerA);
+    delete(trainerB);
     
 
     return 0;
