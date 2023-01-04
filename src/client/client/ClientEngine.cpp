@@ -45,7 +45,7 @@ namespace client {
     void ClientEngine::testTransition(sf::Event event) {
         std::cout << "Username: " + (std::string) stateHandler->getStateMap(stateHandler->getCurrentState())->at("saveUsername")->getText()->getText().getString() << std::endl;
         std::cout << "Link Code: " + (std::string) stateHandler->getStateMap(stateHandler->getCurrentState())->at("saveLinkCode")->getText()->getText().getString() << std::endl;
-        stateHandler->transitionToState(StatesName::Wait_State);
+        stateHandler->transitionToState(StatesName::Team_Choice_State);
     }
 
     void ClientEngine::releasedKeysAction(sf::Event event) {

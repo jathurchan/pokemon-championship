@@ -236,28 +236,28 @@
       }
     ]
   },
-  "Ban_State": {
-    "stateIndex": 2,
+  "Creature_Ban_State": {
+    "stateIndex": 2
   },
-  "Choice_State": {
+  "Creature_Choice_State": {
     "stateIndex": 3
   },
-  "Select_State": {
+  "Action_Choice_State": {
     "stateIndex": 4
   },
-  "Action_State": {
+  "Move_Choice_State": {
     "stateIndex": 5
   },
-  "Switch_State": {
+  "Creature_Switch_State": {
     "stateIndex": 6
   },
   "Wait_State": {
     "stateIndex": 7
   },
-  "TurnResult_State": {
+  "Turn_Result_State": {
     "stateIndex": 8
   },
-  "EndBattle_State": {
+  "End_Battle_State": {
     "stateIndex": 9
   }
 }
