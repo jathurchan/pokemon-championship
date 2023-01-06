@@ -4,6 +4,7 @@
 #include "CustomButton.hpp"
 #include "PushButton.hpp"
 #include "TextBox.hpp"
+#include "ToggleButton.hpp"
 
 namespace render {
 
@@ -29,6 +30,8 @@ namespace render {
                 return std::make_shared<PushButton>();
             case Text_Box:
                 return std::make_shared<TextBox>();
+            case Toggle_Button:
+                return std::make_shared<ToggleButton>();
             default:
                 return nullptr;
         }

@@ -233,6 +233,369 @@
           "posX": -100,
           "posY": -100
         }
+      },
+      {
+        "imageName": "creatureSelectionBackground",
+        "smooth": true,
+        "scale": {
+          "ratioOnX" : true,
+          "percent": 15.55
+        },
+        "origin": {
+          "originX": -10,
+          "originY": -10
+        },
+        "position": {
+          "posX": -100,
+          "posY": -100
+        }
+      },
+      {
+        "imageName": "creatureSelectionInfoBackground",
+        "smooth": true,
+        "scale": {
+          "ratioOnX" : true,
+          "percent": 31.1
+        },
+        "origin": {
+          "originX": -10,
+          "originY": -10
+        },
+        "position": {
+          "posX": -68.9,
+          "posY": -100
+        }
+      },
+      {
+        "imageName": "Flarezael",
+        "smooth": false,
+        "scale": {
+          "ratioOnX" : true,
+          "percent": 40
+        },
+        "origin": {
+          "originX": 10,
+          "originY": 10
+        },
+        "position": {
+          "posX": 85,
+          "posY": 85
+        }
+      }
+    ],
+    "button": [
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX" : true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": -85.8
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX" : true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": -71.6
+          }
+        }
+      },
+
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX" : true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": -57.4
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX" : true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": -43.2
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX" : true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": -29
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX" : true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": -14.8
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX" : true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": -0.6
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX" : true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": 13.6
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX" : true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": 27.8
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX": true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": 42
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX": true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": 56.2
+          }
+        }
+      },
+      {
+        "type": 3,
+        "renderFunction": "",
+        "engineFunction": "",
+        "deactivateOthers": false,
+        "parameters": [
+          "creatureSelectionButtonPressed",
+          0
+        ],
+        "sprite": {
+          "imageName": "creatureSelectionButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX": true,
+            "percent": 15.35
+          },
+          "origin": {
+            "originX": 0,
+            "originY": -10
+          },
+          "position": {
+            "posX": -84.6,
+            "posY": 70.4
+          }
+        }
       }
     ]
   },
