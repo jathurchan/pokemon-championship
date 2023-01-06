@@ -22,29 +22,21 @@ BOOST_AUTO_TEST_SUITE( TestMoves )
         BOOST_CHECK_EQUAL(aquis.GetName(), "defaultCreatures/Aquis");
     }
 
-
     BOOST_AUTO_TEST_CASE( test_Move_0 )
     {
         state::Move move(*aquis.GetMoves()[0]);
         BOOST_CHECK_EQUAL(move.GetName(), "defaultMoves/WaterSpray");
-    }
-
-    BOOST_AUTO_TEST_CASE( test_ATK )
-    {
-        state::Stat atk(ATK, aquis.GetStats()[ATK]);
-        BOOST_CHECK_EQUAL(atk.GetBase(), 90);
-    }
-
-    BOOST_AUTO_TEST_CASE( test_DEF )
-    {
-        state::Stat def(DEF, aquis.GetStats()[DEF]);
-        BOOST_CHECK_EQUAL(def.GetBase(), 80);
-    }
-
-    BOOST_AUTO_TEST_CASE( test_SPD )
-    {
-        state::Stat spd(SPD, aquis.GetStats()[SPD]);
-        BOOST_CHECK_EQUAL(spd.GetBase(), 130);
+        BOOST_CHECK_EQUAL(move.GetBasePP(), 5);
+        BOOST_CHECK_EQUAL(move.GetCurrPP(), 5);
+        move.DecrementPP();
+        BOOST_CHECK_EQUAL(move.GetCurrPP(), 4);
+        BOOST_TEST(move.GetAura()->GetValue() == 0.85f, boost::test_tools::tolerance(0.001));
+        BOOST_CHECK_EQUAL(move.GetPower(), 90);
+        BOOST_CHECK_EQUAL(move.GetAura()->GetName(), "defaultAuras/DefDebuf");
+        BOOST_CHECK_EQUAL(move.GetAura()->TargetsSelf(), false);
+        BOOST_CHECK_EQUAL(move.GetAura()->GetTargetStat(), DEF);
+        BOOST_CHECK_EQUAL(move.HasPriority(), true);
+        BOOST_CHECK_EQUAL(move.GetType()->GetName(), "defaultTypes/Water"); 
     }
 
 BOOST_AUTO_TEST_SUITE_END()

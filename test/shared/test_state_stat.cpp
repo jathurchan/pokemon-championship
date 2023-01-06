@@ -15,7 +15,6 @@ BOOST_AUTO_TEST_SUITE( TestStats )
 
     model::Model model("defaultCreatures", "defaultItems");
     model::Creature aquis = *model.GetCreature("defaultCreatures/Aquis");
-
     
     BOOST_AUTO_TEST_CASE( test_modelCreature )
     {
@@ -31,6 +30,10 @@ BOOST_AUTO_TEST_SUITE( TestStats )
         currentStat.Update(120);
         BOOST_CHECK_EQUAL(currentStat.GetBase(), 100);
         BOOST_CHECK_EQUAL(currentStat.GetCurrent(), 120);
+        
+        currentStat.Update(-120);
+        BOOST_CHECK_EQUAL(currentStat.GetBase(), 100);
+        BOOST_CHECK_EQUAL(currentStat.GetCurrent(), 0);
         
         currentStat = state::Stat(ATK, aquis.GetStats()[ATK]);
         BOOST_CHECK_EQUAL(currentStat.GetStatName(), ATK);

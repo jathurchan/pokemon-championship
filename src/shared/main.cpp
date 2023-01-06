@@ -32,10 +32,7 @@ int main(int argc,char* argv[])
     std::cout << trainerA->GetName() << std::endl;
     std::cout << trainerA->GetParty()->GetActiveCreature().GetName() << std::endl;
     std::cout << trainerB->GetName() << std::endl;
-    std::cout << trainerB->GetParty()->GetActiveCreature().GetName() << std::endl;
-
-
-    
+    std::cout << trainerB->GetParty()->GetActiveCreature().GetName() << std::endl;    
 
     delete(trainerA);
     delete(trainerB);

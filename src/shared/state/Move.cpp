@@ -2,7 +2,10 @@
 
 namespace state {
     
-    Move::Move() = default;
+    Move::Move()
+    {
+        
+    }
     
     Move::Move(model::Move modelMove)
     {
@@ -11,11 +14,14 @@ namespace state {
         currentPP = basePP;
         this->priority = modelMove.HasPriority();
         this->power = modelMove.GetPower();
-        this->aura = Aura(*modelMove.GetAura());
+        this->aura = modelMove.GetAura();
         this->type = modelMove.GetType();
     }
 
-    Move::~Move() = default;
+    Move::~Move()
+    {
+
+    }
 
     std::string Move::GetName()
     {
@@ -37,21 +43,6 @@ namespace state {
         return power;
     }
 
-    StatName Move::GetStatName()
-    {
-        return aura.GetStatName();
-    }
-
-    float Move::GetMultiplier()
-    {
-        return aura.GetMultiplier();
-    }
-    
-    bool Move::GetSelfTarget()
-    {
-        return aura.GetSelfTarget();
-    }
-
     bool Move::HasPriority()
     {
         return priority;
@@ -60,5 +51,15 @@ namespace state {
     void Move::DecrementPP()
     {
         --currentPP;
+    }
+
+    model::Type* Move::GetType ()
+    {
+        return type;
+    }
+
+    model::Aura* Move::GetAura()
+    {
+        return aura;
     }
 }

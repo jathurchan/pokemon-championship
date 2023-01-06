@@ -2,7 +2,10 @@
 
 namespace state {
     
-    Stat::Stat() = default;
+    Stat::Stat()
+    {
+
+    }
 
     Stat::Stat(StatName statName, int baseValue)
     {
@@ -11,7 +14,10 @@ namespace state {
         currentValue = baseValue;
     }
 
-    Stat::~Stat() = default;
+    Stat::~Stat()
+    {
+        
+    }
     
     int Stat::GetBase()
     {

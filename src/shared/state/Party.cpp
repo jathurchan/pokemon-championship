@@ -13,7 +13,10 @@ namespace state {
         Reset();
     }
 
-    Party::~Party() = default;
+    Party::~Party()
+    {
+
+    }
 
     void Party::LoadFromModel(model::Model* modelData, std::array<std::string, 6> creatureNameList)
     {

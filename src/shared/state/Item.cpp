@@ -2,17 +2,23 @@
 
 namespace state {
 
-    Item::Item () = default;
+    Item::Item ()
+    {
+
+    }
 
     Item::Item (model::Item* modelItem)
     {
         this->name = modelItem->GetName();
         this->threshold = modelItem->GetTrigger()->GetThreshold();
         this->permanent = (threshold < 100) ? false : true;
-        this->aura = Aura(*modelItem->GetAura());
+        this->aura = modelItem->GetAura();
     }
 
-    Item::~Item () = default;
+    Item::~Item ()
+    {
+        
+    }
 
     std::string Item::GetName ()
     {
@@ -21,7 +27,7 @@ namespace state {
 
     StatName Item::GetStatName ()
     {
-        return aura.GetStatName();
+        return (state::StatName) aura->GetTargetStat();
     }
 
     int Item::GetThreshold ()
@@ -31,7 +37,7 @@ namespace state {
 
     float Item::GetMultiplier ()
     {
-        return aura.GetMultiplier();
+        return aura->GetValue();
     }
 
     bool Item::IsPermanent ()

@@ -4,14 +4,20 @@
 namespace state {
     
 
-    Trainer::Trainer() = default;
+    Trainer::Trainer()
+    {
+
+    }
 
     Trainer::Trainer(std::string name)
     {
         this->name = name;
     }
 
-    Trainer::~Trainer() = default;
+    Trainer::~Trainer()
+    {
+        
+    }
 
     void Trainer::SetState(TrainerState newState)
     {

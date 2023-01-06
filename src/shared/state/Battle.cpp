@@ -9,7 +9,10 @@ namespace state {
         this->actionTimeout = actionTimeout;
     }
 
-    Battle::~Battle() = default;
+    Battle::~Battle()
+    {
+
+    }
 
     BattleState Battle::GetState()
     {

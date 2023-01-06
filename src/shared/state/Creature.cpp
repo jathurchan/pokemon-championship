@@ -2,17 +2,24 @@
 
 namespace state {
 
-    Creature::Creature() = default;
+    Creature::Creature()
+    {
+
+    }
     
     Creature::Creature(model::Creature *modelCreature)
     {
         this->name = modelCreature->GetName();
-        this->type = modelCreature->GetType();        
+        this->type = modelCreature->GetType();
+        this->creatureState = CreatureState::sub;        
         InitStats(modelCreature->GetStats());
         InitMoves(modelCreature->GetMoves());
     }
 
-    Creature::~Creature() = default;
+    Creature::~Creature()
+    {
+        
+    }    
 
     void Creature::InitStats(std::array<int, 4> stats)
     {
@@ -92,6 +99,11 @@ namespace state {
     void Creature::RemoveItem()
     {
         delete(item);
+    }
+
+    model::Type* Creature::GetType()
+    {
+        return type;
     }
 
 }
