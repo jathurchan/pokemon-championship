@@ -11,7 +11,9 @@
 
 namespace model {
 
-    Model::Model() = default;
+    Model::Model() {
+        
+    }
     
     Model::Model(std::string creaturePackage, std::string itemPackage) {
         std::set<std::string> creatureDependencies; creatureDependencies.insert(creaturePackage);

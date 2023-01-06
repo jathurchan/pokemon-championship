@@ -4,6 +4,7 @@
 
 BOOST_AUTO_TEST_SUITE( TestModel )
 
+    model::Model empty = model::Model();
     model::Model model("defaultCreatures", "defaultItems");
 
     BOOST_AUTO_TEST_CASE( test_model_getCreature )
