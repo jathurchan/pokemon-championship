@@ -18,7 +18,7 @@ namespace state {
 
     Creature::~Creature()
     {
-        
+
     }    
 
     void Creature::InitStats(std::array<int, 4> stats)
@@ -31,10 +31,10 @@ namespace state {
 
     void Creature::InitMoves(std::array<model::Move*, 4> moves)
     {
-        this->moves[0] = Move(*moves[0]);
-        this->moves[1] = Move(*moves[1]);
-        this->moves[2] = Move(*moves[2]);
-        this->moves[3] = Move(*moves[3]);
+        this->moves[0] = Move(moves[0]);
+        this->moves[1] = Move(moves[1]);
+        this->moves[2] = Move(moves[2]);
+        this->moves[3] = Move(moves[3]);
 
     }
 
@@ -98,7 +98,7 @@ namespace state {
 
     void Creature::RemoveItem()
     {
-        delete(item);
+        item = nullptr;
     }
 
     model::Type* Creature::GetType()

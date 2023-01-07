@@ -41,6 +41,6 @@ namespace state {
 
     Creature* Trainer::GetActiveCreature()
     {
-        return &party.GetActiveCreature();
+        return party.GetActiveCreature();
     }
 }

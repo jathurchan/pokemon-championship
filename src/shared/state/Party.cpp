@@ -24,11 +24,12 @@ namespace state {
         {
             creatures[i] = modelData->GetCreature(creatureNameList[i]);
         }
-        std::cout << creatures.size() << std::endl;
     }
 
     void Party::SetParticipatingTeam(std::array<int,3> creaturesIndexes)
     {
+        Reset();
+
         participatingCreatures[0] = new Creature(creatures[creaturesIndexes[0]]);
         SwitchCreatureState(0, CreatureState::active );
         participatingCreatures[1] = new Creature(creatures[creaturesIndexes[1]]);
@@ -36,7 +37,7 @@ namespace state {
         participatingCreatures[2] = new Creature(creatures[creaturesIndexes[2]]);
         SwitchCreatureState(2, CreatureState::sub );
         
-        UpdateActiveCreature();
+        activeCreature = participatingCreatures[0];
     }
 
     void Party::SwitchCreatureState(int creatureIndex, CreatureState newCreatureState)
@@ -54,7 +55,7 @@ namespace state {
         }
         else
         {
-            std::cout << "No more items available !" << std::endl;
+            throw std::invalid_argument("Action not allowed (No more Items available)");
         }        
     }
 
@@ -86,30 +87,57 @@ namespace state {
         }
     }
 
-    Creature& Party::GetActiveCreature()
+    Creature* Party::GetActiveCreature()
     {
         return activeCreature;
     }
 
-    void Party::UpdateActiveCreature()
-    {
-        for(auto c : participatingCreatures)
-        {
-            if(c->GetState() == CreatureState::active) 
-            {
-                activeCreature = *c;
-                break;
-            }
-        }
-        if(!(&activeCreature))
-        {
-            std::cout << "Unitialized Active Creature" << std::endl;
-        }
-    }
-
-
     void Party::Reset()
     {
+        for(int i = 0; i < (int)participatingCreatures.size(); i++)
+        {
+            if(participatingCreatures[i] != nullptr)
+            {
+                participatingCreatures[i] = nullptr;
+            }
+        }
+
         remainingItems = 2;
+        bannedCreature = -1;
+        activeCreature = nullptr;
+    }
+
+    void Party::SetBannedCreature(int creatureIndex)
+    {
+        if(creatureIndex >= 0 && creatureIndex < 6)
+        {
+            bannedCreature = creatureIndex;
+        }
+        else
+        {
+            throw std::invalid_argument("Index out of bounds (Must be between 0 and 5)");
+        }
+            
+    }
+
+    void Party::SetActiveCreature(int creatureIndex)
+    {
+        if(creatureIndex >= 0 && creatureIndex < (int)participatingCreatures.size())
+        {
+            if(participatingCreatures[creatureIndex]->GetState() == CreatureState::sub)
+            {
+                activeCreature->UpdateState(CreatureState::sub);
+                participatingCreatures[creatureIndex]->UpdateState(CreatureState::active);
+                activeCreature = participatingCreatures[creatureIndex];
+            }
+            else
+            {
+                throw std::invalid_argument("Invalid state (Is either Active or KO)");
+            }
+        }
+        else
+        {
+            throw std::invalid_argument("Index out of bounds (Must be between 0 and 2)");
+        }
     }
 }

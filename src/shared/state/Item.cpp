@@ -2,11 +2,6 @@
 
 namespace state {
 
-    Item::Item ()
-    {
-
-    }
-
     Item::Item (model::Item* modelItem)
     {
         this->name = modelItem->GetName();
@@ -17,7 +12,7 @@ namespace state {
 
     Item::~Item ()
     {
-        
+                
     }
 
     std::string Item::GetName ()

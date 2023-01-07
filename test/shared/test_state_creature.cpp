@@ -12,6 +12,7 @@ BOOST_AUTO_TEST_SUITE( TestStats )
 
     model::Model model("defaultCreatures", "defaultItems");
     state::Creature aquis(model.GetCreature("defaultCreatures/Aquis"));
+    state::Item item(model.GetItem("defaultItems/Healing_Flask"));
     
     BOOST_AUTO_TEST_CASE( test_stateCreature )
     {
@@ -24,7 +25,6 @@ BOOST_AUTO_TEST_SUITE( TestStats )
         BOOST_CHECK_EQUAL(aquis.GetStatBase(HP), 100);
         BOOST_CHECK_EQUAL(aquis.GetStatCurrent(HP), 100);
 
-        BOOST_CHECK_EQUAL(aquis.GetItem(), nullptr);
         BOOST_CHECK_EQUAL(aquis.GetMove(0)->GetName(), "defaultMoves/WaterSpray");
         
         BOOST_CHECK_EQUAL(aquis.GetState(), state::CreatureState::sub );
@@ -36,6 +36,15 @@ BOOST_AUTO_TEST_SUITE( TestStats )
 
         aquis.UpdateState(state::CreatureState::active);
         BOOST_CHECK_EQUAL(aquis.GetState(), state::CreatureState::active);
+
+        aquis.UpdateState(state::CreatureState::sub);
+        BOOST_CHECK_EQUAL(aquis.GetState(), state::CreatureState::sub);
+
+        aquis.GiveItem(&item);
+        BOOST_CHECK_EQUAL(aquis.GetItem(), &item);
+        
+        aquis.RemoveItem();
+        BOOST_CHECK_EQUAL(aquis.GetItem(), nullptr);
         
     }
 

@@ -7,7 +7,7 @@ namespace engine {
     }
 
     void engine::MoveCommand::Execute(state::Battle *battle) {
-        state::Creature creature = (trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty()->GetActiveCreature();
+        state::Creature creature = *(trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty()->GetActiveCreature();
         state::Move* move = creature.GetMove(moveId);
         if (move->GetCurrPP() == 0)
             return;

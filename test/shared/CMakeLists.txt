@@ -9,6 +9,7 @@ add_custom_test(shared_dummy)
 add_custom_test(state_stat)
 add_custom_test(state_creature)
 add_custom_test(state_move)
+add_custom_test(state_item)
 
 # vim: set sw=2 sts=2 et:
 

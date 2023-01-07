@@ -30,9 +30,9 @@ int main(int argc,char* argv[])
     trainerB->GetParty()->SetParticipatingTeam({1,2,3});
 
     std::cout << trainerA->GetName() << std::endl;
-    std::cout << trainerA->GetParty()->GetActiveCreature().GetName() << std::endl;
+    std::cout << trainerA->GetParty()->GetActiveCreature()->GetName() << std::endl;
     std::cout << trainerB->GetName() << std::endl;
-    std::cout << trainerB->GetParty()->GetActiveCreature().GetName() << std::endl;    
+    std::cout << trainerB->GetParty()->GetActiveCreature()->GetName() << std::endl;    
 
     delete(trainerA);
     delete(trainerB);

@@ -7,20 +7,20 @@ namespace state {
         
     }
     
-    Move::Move(model::Move modelMove)
+    Move::Move(model::Move* modelMove)
     {
-        this->name = modelMove.GetName();
-        this->basePP = modelMove.GetPP();
+        this->name = modelMove->GetName();
+        this->basePP = modelMove->GetPP();
         currentPP = basePP;
-        this->priority = modelMove.HasPriority();
-        this->power = modelMove.GetPower();
-        this->aura = modelMove.GetAura();
-        this->type = modelMove.GetType();
+        this->priority = modelMove->HasPriority();
+        this->power = modelMove->GetPower();
+        this->aura = modelMove->GetAura();
+        this->type = modelMove->GetType();
     }
 
     Move::~Move()
     {
-
+        
     }
 
     std::string Move::GetName()
