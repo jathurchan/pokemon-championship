@@ -11,7 +11,7 @@ namespace engine {
 
     }
 
-    void Engine::ResolveTurn(state::Battle battle)
+    void Engine::ResolveTurn(state::Battle* battle)
     {
         
     }

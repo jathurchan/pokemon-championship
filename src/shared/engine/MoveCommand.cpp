@@ -18,7 +18,7 @@ namespace engine {
         int procSpeed = creature.GetStatCurrent(state::spd) + move->HasPriority() ? 1000 : 0;
         int rawDamage = creature.GetStatCurrent(state::atk) * move->GetPower() / 200;
         model::Type* type = move->GetType();
-        bool auraTargetsSelf = move->GetAura();
+        model::Aura* aura = move->GetAura();
         //TODO : get all this data back up to the engine for further process
     }
 }

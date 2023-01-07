@@ -6,7 +6,7 @@ BOOST_AUTO_TEST_SUITE( TestModelItem )
 
     model::Model model("defaultCreatures", "defaultItems");
     model::Item healingFlask = *model.GetItem("defaultItems/Healing_Flask");
-    model::Item none = model::Item();
+    model::Item none = *model.GetItem("");
 
     BOOST_AUTO_TEST_CASE( test_item_getName )
     {
