@@ -274,5 +274,6 @@ namespace model {
             }
         }
         delete[] name;
+        this->triggers[""] = new Trigger();
     }
 }
