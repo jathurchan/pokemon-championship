@@ -13,12 +13,12 @@ namespace engine {
     }
 
     void Engine::ResolveTurn(state::Battle* battle) {
-        state::PendingMove pMove;
+        state::PendingMove* pMove;
         while (pMove = battle->PopQueue()) {
-            state::Creature* target = (pMove.source ? battle->GetTrainerB() : battle->GetTrainerA())->GetActiveCreature();
-            target->ReceiveDamage(pMove.rawDamage, pMove.type);
-            target = (!pMove.source != pMove.aura->TargetsSelf() ? battle->GetTrainerA() : battle->GetTrainerB())->GetActiveCreature();
-            target->ApplyAura(pMove.aura);
+            state::Creature* target = (pMove->source ? battle->GetTrainerB() : battle->GetTrainerA())->GetActiveCreature();
+            target->ReceiveDamage(pMove->rawDamage, pMove->type);
+            target = (!pMove->source != pMove->aura->TargetsSelf() ? battle->GetTrainerA() : battle->GetTrainerB())->GetActiveCreature();
+            target->ApplyAura(pMove->aura);
         }
     }
 }

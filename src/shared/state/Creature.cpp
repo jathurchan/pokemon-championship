@@ -15,7 +15,7 @@ namespace state {
 
     Creature::~Creature()
     {
-        delete item;
+        RemoveItem();
     }    
 
     void Creature::InitStats(std::array<int, 4> stats)
@@ -82,11 +82,11 @@ namespace state {
         }
     }
 
-    void Creature::GiveItem(Item* item)
+    void Creature::GiveItem(model::Item* modelItem)
     {
         if(this->item == nullptr)
         {
-            this->item = item;
+            this->item = new state::Item(modelItem);
         }
         else
         {
@@ -104,7 +104,7 @@ namespace state {
     {
         if(item != nullptr)
         {
-            //delete item;
+            delete item;
             item = nullptr;
         }
         else

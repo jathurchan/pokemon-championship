@@ -47,12 +47,11 @@ namespace state {
         participatingCreatures[creatureIndex]->UpdateState(newCreatureState);
     }
 
-    void Party::GiveItem(model::Model* modelData, std::string itemName, int creatureIndex)
+    void Party::GiveItem(model::Item* modelItem, int creatureIndex)
     {
         if(remainingItems > 0)
         {
-            Item* item = new Item(modelData->GetItem(itemName));
-            participatingCreatures[creatureIndex]->GiveItem(item);
+            participatingCreatures[creatureIndex]->GiveItem(modelItem);
             remainingItems--;
         }
         else
