@@ -1,6 +1,7 @@
 #include "Battle.hpp"
 
-namespace state {
+namespace state 
+{
 
     Battle::Battle(Trainer *trainerA, Trainer *trainerB, int actionTimeout)
     {
@@ -18,10 +19,12 @@ namespace state {
     {
         return state;
     }
+
     int Battle::GetTurn()
     {
         return turn;
     }
+
     Trainer* Battle::GetTrainerA()
     {
         return trainers[0];

@@ -41,11 +41,14 @@ BOOST_AUTO_TEST_SUITE( TestStats )
         BOOST_CHECK_EQUAL(aquis.GetState(), state::CreatureState::sub);
 
         aquis.GiveItem(model.GetItem("defaultItems/Healing_Flask"));
-        BOOST_CHECK_EQUAL(aquis.GetItem(), item);
+        aquis.GiveItem(model.GetItem("defaultItems/Healing_Flask"));
+        aquis.GiveItem(model.GetItem("defaultItems/Healing_Flask"));
+        BOOST_CHECK_EQUAL(aquis.GetItem()->GetName(), item->GetName());
         
         aquis.RemoveItem();
         BOOST_CHECK_EQUAL(aquis.GetItem(), nullptr);
         
+        delete item;
     }
 
 

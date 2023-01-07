@@ -1,0 +1,49 @@
+1. Implement Unit Tests for :
+    - State::Party
+    - State::Trainer
+    - State::Battle
+    - Engine
+
+2. Implement methods for Battle :
+    - UpdateState()  // Check for current state. Set New State if matching Exit Conditions.
+    - CheckLosingCondition()   // Return True if a Traner matches the Losing Condition and Sets Trainers' new States.
+
+3. Implement methods for Engine :
+
+4. Implementation of Engine.ResolveTurn() :
+    - PopQueue 
+    - ActiveCreature.ReceiveDamage()  // Check For NewCreatureState ()
+    - ActiveCreature.ApplyAura()
+    - ActiveCreature.IsKo()           // Retunrs True if state == ko else false
+        - Case True :
+            - Trainer.CheckLosingCodition()
+                Case True :
+                    - UpdateTrainerState()
+                    - UpdateBattleState()
+                Case False:
+                    - PopQueue.Erase()
+                    - 
+        Case False :
+            - ActiveCreature.Item.CheckTrigger()
+                Case True : 
+                    - ActiveCreature.UseItem()
+            - PopQueue 
+            - ActiveCreature.ReceiveDamage()  // Check For NewCreatureState ()
+            - ActiveCreature.ApplyAura()
+            - ActiveCreature.IsKo()           // Retunrs True if state == ko else false
+                - Case True :
+                    - Trainer.CheckLosingCodition()
+                        Case True :
+                            - UpdateTrainerState()
+                            - UpdateBattleState()
+                        Case False:
+                            - PopQueue.Erase()
+                            - 
+                Case False :
+                    - ActiveCreature.Item.CheckTrigger()
+                        Case True : 
+                            - ActiveCreature.UseItem()
+                
+            
+            
+
