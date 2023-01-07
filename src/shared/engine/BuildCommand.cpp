@@ -15,7 +15,7 @@ namespace engine {
         party->SetParticipatingTeam(creatures);
 
         for (int i = 0; i < 3; i++) {
-            party->GiveItem(creatureItemPairings[i].second, i);   // !!! NEED TO FIX MODEL DEPENDENCY; CURRENTLY USING EMPTY MODEL !!!
+            party->GiveItem(creatureItemPairings[i].second, i);
         }
     }
 }

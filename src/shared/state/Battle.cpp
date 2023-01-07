@@ -35,4 +35,23 @@ namespace state
         return trainers[1];
     }
 
+    void Battle::PushQueue(PendingMove pMove)
+    {
+        this->actionQueue.push(pMove);
+    }
+
+    PendingMove Battle::PopQueue()
+    {
+        PendingMove out;
+        if (actionQueue.size())
+        {
+            out = actionQueue.top();
+            this->actionQueue.pop();
+        }
+        else
+        {
+            out.procSpeed = 0;
+        }
+        return out;
+    }
 }

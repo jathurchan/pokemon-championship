@@ -12,4 +12,8 @@ namespace state
 
     }
 
+    bool operator<(const PendingMove &lhs, const PendingMove &rhs)
+    {
+        return lhs.procSpeed < rhs.procSpeed;
+    }
 }

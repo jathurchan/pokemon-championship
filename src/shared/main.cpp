@@ -10,7 +10,7 @@ int main(int argc,char* argv[])
 
     std::cout << "Parsed successfully!" << std::endl;
     
-    model.DispAll();
+    //model.DispAll();
 
     state::Trainer* trainerA = new state::Trainer("Rémi");
     state::Trainer* trainerB = new state::Trainer("Alex");
@@ -38,8 +38,27 @@ int main(int argc,char* argv[])
     trainerA->GetParty()->GiveItem(model.GetItem("defaultItems/Berserker_Shell"), 0);
     trainerA->GetActiveCreature()->RemoveItem();
 
+    state::PendingMove pMove1 = state::PendingMove();
+    state::PendingMove pMove2 = state::PendingMove();
+    state::PendingMove pMove3 = state::PendingMove();
+    state::PendingMove pMove4 = state::PendingMove();
+    pMove1.procSpeed = 200;
+    pMove2.procSpeed = 220;
+    pMove3.procSpeed = 180;
+    pMove4.procSpeed = 210;
+    battle.PushQueue(pMove1);
+    battle.PushQueue(pMove2);
+    battle.PushQueue(pMove3);
+    battle.PushQueue(pMove4);
+    printf("%d\n", battle.PopQueue().procSpeed);
+    printf("%d\n", battle.PopQueue().procSpeed);
+    printf("%d\n", battle.PopQueue().procSpeed);
+    printf("%d\n", battle.PopQueue().procSpeed);
+    printf("%d\n", battle.PopQueue().procSpeed);
+
     delete(trainerA);
     delete(trainerB);
+
 
     return 0;
 }
