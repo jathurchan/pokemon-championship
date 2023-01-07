@@ -18,7 +18,7 @@ namespace state {
 
     Creature::~Creature()
     {
-
+        delete item;
     }    
 
     void Creature::InitStats(std::array<int, 4> stats)

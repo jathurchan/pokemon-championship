@@ -36,7 +36,6 @@ int main(int argc,char* argv[])
 
     delete(trainerA);
     delete(trainerB);
-    
 
     return 0;
 }

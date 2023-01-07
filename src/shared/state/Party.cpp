@@ -10,12 +10,14 @@ namespace state {
 
     Party::Party()
     {
+        participatingCreatures.fill(nullptr);
+        creatures.fill(nullptr);
         Reset();
     }
 
     Party::~Party()
     {
-
+        Reset();
     }
 
     void Party::LoadFromModel(model::Model* modelData, std::array<std::string, 6> creatureNameList)
@@ -98,6 +100,7 @@ namespace state {
         {
             if(participatingCreatures[i] != nullptr)
             {
+                delete participatingCreatures[i];
                 participatingCreatures[i] = nullptr;
             }
         }
