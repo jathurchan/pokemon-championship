@@ -3029,7 +3029,7 @@
                 <dia:string>#aura#</dia:string>
               </dia:attribute>
               <dia:attribute name="type">
-                <dia:string>#model::Aura#</dia:string>
+                <dia:string>#model::Aura*#</dia:string>
               </dia:attribute>
               <dia:attribute name="value">
                 <dia:string>##</dia:string>
@@ -5520,7 +5520,7 @@
                 <dia:string>#pMove#</dia:string>
               </dia:attribute>
               <dia:attribute name="type">
-                <dia:string>#PendingMove#</dia:string>
+                <dia:string>#PendingMove*#</dia:string>
               </dia:attribute>
               <dia:attribute name="value">
                 <dia:string>##</dia:string>
@@ -5542,7 +5542,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#PendingMove#</dia:string>
+            <dia:string>#PendingMove*#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>

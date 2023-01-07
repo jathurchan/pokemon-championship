@@ -1,7 +1,7 @@
 #include "BuildCommand.hpp"
 
 namespace engine {
-    engine::BuildCommand::BuildCommand(int trainer, std::array<std::pair<int, std::string>, 3> pairings) {
+    engine::BuildCommand::BuildCommand(int trainer, std::array<std::pair<int, model::Item*>, 3> pairings) {
         this->trainer = trainer;
         this->creatureItemPairings = pairings;
     }
@@ -15,7 +15,7 @@ namespace engine {
         party->SetParticipatingTeam(creatures);
 
         for (int i = 0; i < 3; i++) {
-            party->GiveItem(new model::Model, creatureItemPairings[i].second, i);   // !!! NEED TO FIX MODEL DEPENDENCY; CURRENTLY USING EMPTY MODEL !!!
+            party->GiveItem(creatureItemPairings[i].second, i);   // !!! NEED TO FIX MODEL DEPENDENCY; CURRENTLY USING EMPTY MODEL !!!
         }
     }
 }

@@ -19,6 +19,7 @@ namespace engine {
             target->ReceiveDamage(pMove->rawDamage, pMove->type);
             target = (!pMove->source != pMove->aura->TargetsSelf() ? battle->GetTrainerA() : battle->GetTrainerB())->GetActiveCreature();
             target->ApplyAura(pMove->aura);
+            delete pMove;
         }
     }
 }
