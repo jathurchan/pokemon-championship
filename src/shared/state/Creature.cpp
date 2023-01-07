@@ -1,4 +1,5 @@
 #include "Creature.hpp"
+#include <iostream>
 
 namespace state {
 
@@ -89,7 +90,7 @@ namespace state {
         }
         else
         {
-            throw std::invalid_argument("Action not allowed (An item is alreay equipped)");    
+            std::cout <<"Action not allowed (An item is alreay equipped)" << std::endl;;    
         }
     }
 
@@ -108,7 +109,7 @@ namespace state {
         }
         else
         {
-            throw std::invalid_argument("Action not allowed (No Item equipped)");  
+            std::cout << "Action not allowed (No Item equipped)" << std::endl;  
         }
     }
 

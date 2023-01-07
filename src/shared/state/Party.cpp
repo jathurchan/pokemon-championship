@@ -57,7 +57,7 @@ namespace state {
         }
         else
         {
-            throw std::invalid_argument("Action not allowed (No more Items available)");
+            std::cout << "Action not allowed (No more Items available)" << std::endl;
         }        
     }
 
@@ -118,7 +118,7 @@ namespace state {
         }
         else
         {
-            throw std::invalid_argument("Index out of bounds (Must be between 0 and 5)");
+            std::cout << "Index out of bounds (Must be between 0 and 5)" << std::endl;
         }
             
     }
@@ -135,12 +135,12 @@ namespace state {
             }
             else
             {
-                throw std::invalid_argument("Invalid state (Is either Active or KO)");
+                std::cout << "Invalid state (Is either Active or KO)" << std::endl;
             }
         }
         else
         {
-            throw std::invalid_argument("Index out of bounds (Must be between 0 and 2)");
+            std::cout << "Index out of bounds (Must be between 0 and 2)" << std::endl;
         }
     }
 }
