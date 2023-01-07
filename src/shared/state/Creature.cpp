@@ -2,16 +2,12 @@
 
 namespace state {
 
-    Creature::Creature()
-    {
-
-    }
-    
     Creature::Creature(model::Creature *modelCreature)
     {
         this->name = modelCreature->GetName();
         this->type = modelCreature->GetType();
-        this->creatureState = CreatureState::sub;        
+        this->creatureState = CreatureState::sub;  
+        this->item = nullptr;      
         InitStats(modelCreature->GetStats());
         InitMoves(modelCreature->GetMoves());
     }
@@ -87,7 +83,14 @@ namespace state {
 
     void Creature::GiveItem(Item* item)
     {
-        this->item = item;
+        if(this->item == nullptr)
+        {
+            this->item = item;
+        }
+        else
+        {
+            throw std::invalid_argument("Action not allowed (An item is alreay equipped)");    
+        }
     }
 
     void Creature::UseItem()
@@ -98,7 +101,15 @@ namespace state {
 
     void Creature::RemoveItem()
     {
-        item = nullptr;
+        if(item != nullptr)
+        {
+            //delete item;
+            item = nullptr;
+        }
+        else
+        {
+            throw std::invalid_argument("Action not allowed (No Item equipped)");  
+        }
     }
 
     model::Type* Creature::GetType()

@@ -223,7 +223,7 @@ namespace model {
             }
         }
         delete[] name;
-        this->items[""] = new Item("None", this->triggers[""], this->auras[""]);
+        this->items[""] = new Item((char*)"None", this->triggers[""], this->auras[""]);
     }
     void Model::BuildMoveMap(std::set<std::string> dependenciesNames, Json::Value* dependencies) {
         int i = 0;

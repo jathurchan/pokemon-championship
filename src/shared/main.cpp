@@ -32,7 +32,10 @@ int main(int argc,char* argv[])
     std::cout << trainerA->GetName() << std::endl;
     std::cout << trainerA->GetParty()->GetActiveCreature()->GetName() << std::endl;
     std::cout << trainerB->GetName() << std::endl;
-    std::cout << trainerB->GetParty()->GetActiveCreature()->GetName() << std::endl;    
+    std::cout << trainerB->GetParty()->GetActiveCreature()->GetName() << std::endl;
+
+    trainerA->GetParty()->GiveItem(&model, "defaultItems/Berserker_Shell", 0);
+    trainerA->GetActiveCreature()->RemoveItem();
 
     delete(trainerA);
     delete(trainerB);
