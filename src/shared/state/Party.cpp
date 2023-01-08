@@ -1,5 +1,6 @@
 #include "Party.hpp"
 #include <iostream>
+#include "unordered_map"
 
 namespace model
 {
@@ -12,13 +13,12 @@ namespace state {
     {
         participatingCreatures.fill(nullptr);
         creatures.fill(nullptr);
-        bannedCreature = -1;
         Reset();
     }
 
     Party::~Party()
     {
-        Reset();
+        FreeParticipatingTeam();
     }
 
     void Party::LoadFromModel(model::Model* modelData, std::array<std::string, 6> creatureNameList)
@@ -31,8 +31,15 @@ namespace state {
 
     void Party::SetParticipatingTeam(std::array<int,3> creaturesIndexes)
     {
-        Reset();
-
+        FreeParticipatingTeam();
+        for(int i = 0; i < (int)creaturesIndexes.size(); i++)
+        {
+            if(bannedCreature == creaturesIndexes[i])
+            {
+                std::cout << "Index :" << creaturesIndexes[i] << "is equal to the banned creature" << std::endl; 
+                return;
+            }
+        }
         participatingCreatures[0] = new Creature(creatures[creaturesIndexes[0]]);
         SetCreatureActive(0);
         participatingCreatures[1] = new Creature(creatures[creaturesIndexes[1]]);
@@ -77,6 +84,13 @@ namespace state {
 
     void Party::Reset()
     {
+        bannedCreature = -1;
+        remainingItems = 2;
+        activeCreature = nullptr;
+    }
+
+    void Party::FreeParticipatingTeam()
+    {
         for(int i = 0; i < (int)participatingCreatures.size(); i++)
         {
             if(participatingCreatures[i] != nullptr)
@@ -85,9 +99,6 @@ namespace state {
                 participatingCreatures[i] = nullptr;
             }
         }
-
-        remainingItems = 2;
-        activeCreature = nullptr;
     }
 
     bool Party::SetBannedCreature(int creatureIndex)
@@ -134,22 +145,5 @@ namespace state {
     {
         return remainingItems;
     }
-
-    bool Party::SetCreatureKo(int creatureIndex)
-    {
-        if(creatureIndex >= 0 && creatureIndex < (int)participatingCreatures.size())
-        {
-            if(participatingCreatures[creatureIndex]->GetState() == CreatureState::active)
-            {
-                activeCreature = nullptr;
-            }
-            participatingCreatures[creatureIndex]->UpdateState(CreatureState::ko);
-        }
-        else
-        {
-            std::cout << "Index out of bounds (Must be between 0 and 2)" << std::endl;
-            return false;
-        }
-        return (participatingCreatures[creatureIndex]->GetState() == CreatureState::ko);
-    }    
+   
 }
