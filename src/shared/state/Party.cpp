@@ -29,21 +29,22 @@ namespace state {
         }
     }
 
-    void Party::SetParticipatingTeam(std::array<int,3> creaturesIndexes)
+    bool Party::SetParticipatingTeam(std::array<int,3> creaturesIndexes)
     {
         FreeParticipatingTeam();
         for(int i = 0; i < (int)creaturesIndexes.size(); i++)
         {
             if(bannedCreature == creaturesIndexes[i])
             {
-                std::cout << "Index :" << creaturesIndexes[i] << "is equal to the banned creature" << std::endl; 
-                return;
+                std::cout << "Index : " << creaturesIndexes[i] << " is equal to the banned creature" << std::endl; 
+                return false;
             }
         }
         participatingCreatures[0] = new Creature(creatures[creaturesIndexes[0]]);
         SetCreatureActive(0);
         participatingCreatures[1] = new Creature(creatures[creaturesIndexes[1]]);
         participatingCreatures[2] = new Creature(creatures[creaturesIndexes[2]]);
+        return true;
     }
 
     void Party::GiveItem(model::Item* modelItem, int creatureIndex)
