@@ -8,47 +8,58 @@
 
 using namespace std;
 
-BOOST_AUTO_TEST_SUITE( TestStats )
+BOOST_AUTO_TEST_SUITE( TestParty )
 
     model::Model model("defaultCreatures", "defaultItems");
-    state::Creature aquis(model.GetCreature("defaultCreatures/Aquis"));
-    state::Item* item = new state::Item(model.GetItem("defaultItems/Healing_Flask"));
-    
-    BOOST_AUTO_TEST_CASE( test_stateCreature )
+    std::array<std::string, 6> pokemon = {"defaultCreatures/FireSheep", "defaultCreatures/DisGrass", "defaultCreatures/Aquis", "defaultCreatures/FireSheep", "defaultCreatures/DisGrass", "defaultCreatures/Aquis"};
+    std::array<int, 3> order = {0,1,2};
+    state::Party party;
+
+    BOOST_AUTO_TEST_CASE( test_Init )
     {
-        BOOST_CHECK_EQUAL(aquis.GetName(), "defaultCreatures/Aquis");
+        party.LoadFromModel(&model, pokemon);
+
+        BOOST_CHECK_EQUAL(party.SetBannedCreature(6), false);
+        BOOST_CHECK_EQUAL(party.SetBannedCreature(2), true);
+        
+        party.SetParticipatingTeam(order);
+
+        BOOST_CHECK_EQUAL(party.GetName(0), "defaultCreatures/FireSheep");
+        BOOST_CHECK_EQUAL(party.GetName(1), "defaultCreatures/DisGrass");
+        BOOST_CHECK_EQUAL(party.GetName(2), "defaultCreatures/Aquis");
     }
 
-
-    BOOST_AUTO_TEST_CASE( test_Stat )
+    BOOST_AUTO_TEST_CASE( test_GivingResources )
     {
-        BOOST_CHECK_EQUAL(aquis.GetStatBase(HP), 100);
-        BOOST_CHECK_EQUAL(aquis.GetStatCurrent(HP), 100);
+        party.GiveItem(model.GetItem("defaultItems/Healing_Flask"), 0);
+        BOOST_CHECK_EQUAL(party.GetRemainingItems(), 1);
+        party.GiveItem(model.GetItem("defaultItems/Healing_Flask"), 1);
+        BOOST_CHECK_EQUAL(party.GetRemainingItems(), 0);
+        party.GiveItem(model.GetItem("defaultItems/Healing_Flask"), 2);
+        BOOST_CHECK_EQUAL(party.GetRemainingItems(), 0);
 
-        BOOST_CHECK_EQUAL(aquis.GetMove(0)->GetName(), "defaultMoves/WaterSpray");
-        
-        BOOST_CHECK_EQUAL(aquis.GetState(), state::CreatureState::sub );
+        BOOST_CHECK_EQUAL(party.GetItem(0)->GetName(), "defaultItems/Healing_Flask");
+        BOOST_CHECK_EQUAL(party.GetItem(1)->GetName(), "defaultItems/Healing_Flask");
+        BOOST_CHECK_EQUAL(party.GetItem(2), nullptr);
 
-        BOOST_CHECK_EQUAL(aquis.GetType()->GetName(), "defaultTypes/Water");
-        BOOST_CHECK_EQUAL(aquis.GetType()->GetFactor("Fire"), 2);
-        BOOST_CHECK_EQUAL(aquis.GetType()->GetFactor("Grass"), 0.5);
-        BOOST_CHECK_EQUAL(aquis.GetType()->GetFactor("OtherType"), 1);
 
-        aquis.UpdateState(state::CreatureState::active);
-        BOOST_CHECK_EQUAL(aquis.GetState(), state::CreatureState::active);
+    }
 
-        aquis.UpdateState(state::CreatureState::sub);
-        BOOST_CHECK_EQUAL(aquis.GetState(), state::CreatureState::sub);
+    BOOST_AUTO_TEST_CASE( test_States )
+    {
+        BOOST_CHECK_EQUAL(party.GetActiveCreature()->GetName(), "defaultCreatures/FireSheep");
 
-        aquis.GiveItem(model.GetItem("defaultItems/Healing_Flask"));
-        aquis.GiveItem(model.GetItem("defaultItems/Healing_Flask"));
-        aquis.GiveItem(model.GetItem("defaultItems/Healing_Flask"));
-        BOOST_CHECK_EQUAL(aquis.GetItem(), item);
-        
-        aquis.RemoveItem();
-        BOOST_CHECK_EQUAL(aquis.GetItem(), nullptr);
+        BOOST_CHECK_EQUAL(party.SetCreatureActive(3), false);
+        BOOST_CHECK_EQUAL(party.SetCreatureKo(3), false);
 
-        delete item;
+        BOOST_CHECK_EQUAL(party.SetCreatureActive(1), true);
+        BOOST_CHECK_EQUAL(party.GetActiveCreature()->GetName(), "defaultCreatures/DisGrass");
+
+        party.SetCreatureActive(1);
+        BOOST_CHECK_EQUAL(party.SetCreatureKo(1), true);
+        BOOST_CHECK_EQUAL(party.GetActiveCreature(), nullptr);
+
+        BOOST_CHECK_EQUAL(party.SetCreatureActive(1), false);   // Creature is ko, cannot become active  
     }
 
 

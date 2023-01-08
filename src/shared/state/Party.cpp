@@ -12,6 +12,7 @@ namespace state {
     {
         participatingCreatures.fill(nullptr);
         creatures.fill(nullptr);
+        bannedCreature = -1;
         Reset();
     }
 
@@ -33,18 +34,9 @@ namespace state {
         Reset();
 
         participatingCreatures[0] = new Creature(creatures[creaturesIndexes[0]]);
-        SwitchCreatureState(0, CreatureState::active );
+        SetCreatureActive(0);
         participatingCreatures[1] = new Creature(creatures[creaturesIndexes[1]]);
-        SwitchCreatureState(1, CreatureState::sub );
         participatingCreatures[2] = new Creature(creatures[creaturesIndexes[2]]);
-        SwitchCreatureState(2, CreatureState::sub );
-        
-        activeCreature = participatingCreatures[0];
-    }
-
-    void Party::SwitchCreatureState(int creatureIndex, CreatureState newCreatureState)
-    {
-        participatingCreatures[creatureIndex]->UpdateState(newCreatureState);
     }
 
     void Party::GiveItem(model::Item* modelItem, int creatureIndex)
@@ -63,16 +55,6 @@ namespace state {
     std::string Party::GetName(int creatureIndex)
     {
         return participatingCreatures[creatureIndex]->GetName();
-    }
-
-    int Party::GetBaseHP(int creatureIndex)
-    {
-        return participatingCreatures[creatureIndex]->GetStatBase(StatName::hp);
-    }
-
-    int Party::GetCurrentHP(int creatureIndex)
-    {
-        return participatingCreatures[creatureIndex]->GetStatCurrent(StatName::hp);
     }
 
     Item* Party::GetItem(int creatureIndex)
@@ -105,11 +87,10 @@ namespace state {
         }
 
         remainingItems = 2;
-        bannedCreature = -1;
         activeCreature = nullptr;
     }
 
-    void Party::SetBannedCreature(int creatureIndex)
+    bool Party::SetBannedCreature(int creatureIndex)
     {
         if(creatureIndex >= 0 && creatureIndex < 6)
         {
@@ -119,27 +100,56 @@ namespace state {
         {
             std::cout << "Index out of bounds (Must be between 0 and 5)" << std::endl;
         }
-            
+        return (bannedCreature != -1);            
     }
 
-    void Party::SetActiveCreature(int creatureIndex)
+    bool Party::SetCreatureActive(int creatureIndex)
     {
         if(creatureIndex >= 0 && creatureIndex < (int)participatingCreatures.size())
         {
             if(participatingCreatures[creatureIndex]->GetState() == CreatureState::sub)
             {
-                activeCreature->UpdateState(CreatureState::sub);
+                if(activeCreature != nullptr)
+                {
+                    activeCreature->UpdateState(CreatureState::sub);
+                }
                 participatingCreatures[creatureIndex]->UpdateState(CreatureState::active);
                 activeCreature = participatingCreatures[creatureIndex];
             }
             else
             {
-                std::cout << "Invalid state (Is either Active or KO)" << std::endl;
+                std::cout << "Invalid state (Is either Active or KO)" << std::endl;                
             }
         }
         else
         {
             std::cout << "Index out of bounds (Must be between 0 and 2)" << std::endl;
+            return false;
         }
+
+        return participatingCreatures[creatureIndex]->GetState() == CreatureState::active;
     }
+
+    int Party::GetRemainingItems()
+    {
+        return remainingItems;
+    }
+
+    bool Party::SetCreatureKo(int creatureIndex)
+    {
+        if(creatureIndex >= 0 && creatureIndex < (int)participatingCreatures.size())
+        {
+            if(participatingCreatures[creatureIndex]->GetState() == CreatureState::active)
+            {
+                activeCreature = nullptr;
+            }
+            participatingCreatures[creatureIndex]->UpdateState(CreatureState::ko);
+        }
+        else
+        {
+            std::cout << "Index out of bounds (Must be between 0 and 2)" << std::endl;
+            return false;
+        }
+        return (participatingCreatures[creatureIndex]->GetState() == CreatureState::ko);
+    }    
 }

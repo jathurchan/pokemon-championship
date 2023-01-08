@@ -75,10 +75,17 @@ namespace state {
 
     void Creature::UpdateState(CreatureState newState)
     {
-        creatureState = newState;
-        if(newState == CreatureState::sub)
+        if(creatureState != CreatureState::ko)
         {
-            Reset();
+            creatureState = newState;
+            if(newState == CreatureState::sub)
+            {
+                Reset();
+            }
+        }
+        else
+        {
+            std::cout << "This creature is ko. CreatureState connt be changed" << std::endl;
         }
     }
 

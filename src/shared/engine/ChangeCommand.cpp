@@ -8,6 +8,6 @@ namespace engine {
 
     void engine::ChangeCommand::Execute(state::Battle *battle) {
         state::Party* party = (trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty();
-        party->SetActiveCreature(replaceId);
+        party->SetCreatureActive(replaceId);
     }
 }
