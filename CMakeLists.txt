@@ -15,7 +15,7 @@ include(GenerateDiaHeader)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 # Enable C++11
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Enable Debug and Release builds
@@ -25,8 +25,8 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 IF(CMAKE_COMPILER_IS_GNUCC)
-  SET(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -Wall -std=c11 -pg  -pthread -g")
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -pg -pthread -g")
+  SET(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -Wall -std=c2x -pg  -pthread -g")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++2a -pg -pthread -g")
 ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
 
@@ -99,7 +99,7 @@ if(${MACHINE_ENSEA})
 endif()
 find_package(SFML 2 COMPONENTS graphics network window system)
 if(NOT ${MACHINE_ENSEA})
-  set(SFML_LIBRARIES sfml-graphics sfml-network sfml-window sfml-system)
+  set(SFML_LIBRARIES sfml-graphics sfml-audio sfml-network sfml-window sfml-system)
 endif()
 
 # Find library libmicrohttpd
@@ -112,7 +112,7 @@ find_library(
 # Add source subdirectories
 add_subdirectory(src/shared)
 add_subdirectory(src/client)
-#add_subdirectory(src/server)
+add_subdirectory(src/server)
 
 # Rapport generation
 #add_subdirectory(docs)

@@ -505,7 +505,7 @@ gen_class (umlclassnode *node)
         umlattrlist umla = node->key->attributes;
         emit ("\n");
         indentlevel--;
-        print ("private:  // State member implementation\n");
+        print ("private:  // StateHandler member implementation\n");
         indentlevel++;
         while (umla != NULL) {
             umlclassnode *ref = find_by_name (gb->classlist, umla->key.type);
@@ -683,6 +683,7 @@ struct stdlib_includes {
    int memory;
    int limits;
    int map;
+   int any;
    int unordered_map;
    int set;
    int list;
@@ -695,6 +696,7 @@ struct stdlib_includes {
    int mutex;
    int random;
    int sfmlGraphics;
+   int sfmlAudio;
    int jsoncpp;
 };
 
@@ -732,6 +734,10 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
            print ("#include <map>\n");
            si->map = 1;
        }
+       if (!si->any && strstr(name,"std::any")) {
+            print ("#include <any>\n");
+            si->any = 1;
+        }
         if (!si->function && strstr(name,"std::function")) {
             print ("#include <functional>\n");
             si->function = 1;
@@ -781,25 +787,32 @@ void print_include_stdlib(struct stdlib_includes* si,char* name) {
            print ("#include <memory>\n");
            si->memory = 1;
        }
-       if (!si->random 
-       && (strstr(name,"std::mt19937")
-       ||  strstr(name,"std::random_device")
-       ||  strstr(name,"std::uniform_int_distribution"))) {
-           print ("#include <random>\n");
-           si->random = 1;
-       }
-       if (!si->sfmlGraphics 
-       && (strstr(name,"sf::RenderWindow")
-       ||  strstr(name,"sf::VertexArray")
-       ||  strstr(name,"sf::Texture"))) {
-           print ("#include <SFML/Graphics.hpp>\n");
-           si->sfmlGraphics = 1;
-       }       
-       if (!si->jsoncpp
-       && (strstr(name,"Json::") == name)) {
-           print ("#include <json/json.h>\n");
-           si->jsoncpp = 1;
-       }       
+        if (!si->random
+            && (strstr(name,"std::mt19937")
+                ||  strstr(name,"std::random_device")
+                ||  strstr(name,"std::uniform_int_distribution"))) {
+            print ("#include <random>\n");
+            si->random = 1;
+        }
+        if (!si->sfmlGraphics
+            && (strstr(name,"sf::RenderWindow")
+                ||  strstr(name,"sf::VertexArray")
+                ||  strstr(name,"sf::Texture")
+                ||  strstr(name,"sf::Event"))) {
+            print ("#include <SFML/Graphics.hpp>\n");
+            si->sfmlGraphics = 1;
+        }
+        if (!si->sfmlAudio
+            && (strstr(name,"sf::Sound")
+                ||  strstr(name,"sf::Music"))) {
+            print ("#include <SFML/Audio.hpp>\n");
+            si->sfmlAudio = 1;
+        }
+        if (!si->jsoncpp
+            && (strstr(name,"Json::Value"))) {
+            print ("#include <json/json.h>\n");
+            si->jsoncpp = 1;
+        }
     }
 }
 

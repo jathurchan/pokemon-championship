@@ -1,0 +1,242 @@
+{
+  "Login_State": {
+    "stateIndex": 0,
+    "sprite": [
+      {
+        "imageName": "loginBackground",
+        "smooth": false,
+        "scale": {
+          "ratioOnX" : true,
+          "percent": 100
+        },
+        "origin": {
+          "originX": -10,
+          "originY": -10
+        },
+        "position": {
+          "posX": -100,
+          "posY": -100
+        }
+      }
+    ],
+    "text": [
+      {
+        "fontName": "titleFont",
+        "string": "Fakemon Projekt",
+        "characterSize": 160,
+        "origin": {
+          "originX": 0
+        },
+        "position": {
+          "ratioX": 0,
+          "ratioY": -95
+        },
+        "color": {
+          "red": 200,
+          "green": 200,
+          "blue": 255,
+          "alpha": 255
+        }
+      },
+      {
+        "fontName": "textFont",
+        "string": "Username",
+        "characterSize": 50,
+        "origin": {
+          "originX": 0
+        },
+        "position": {
+          "ratioX": -30,
+          "ratioY": -50
+        },
+        "color": {
+          "red": 200,
+          "green": 200,
+          "blue": 255,
+          "alpha": 255
+        }
+      },
+      {
+        "fontName": "textFont",
+        "string": "Link Code",
+        "characterSize": 50,
+        "origin": {
+          "originX": 0
+        },
+        "position": {
+          "ratioX": 30,
+          "ratioY": -50
+        },
+        "color": {
+          "red": 200,
+          "green": 200,
+          "blue": 255,
+          "alpha": 255
+        }
+      }
+    ],
+    "button": [
+      {
+        "type": 1,
+        "renderFunction": "",
+        "engineFunction": "testTransition",
+        "deactivateOthers": true,
+        "parameters": [
+          "loginButtonPressed",
+          0.5,
+          0,
+          1
+        ],
+        "sprite": {
+          "imageName": "loginButton",
+          "smooth": true,
+          "scale": {
+            "ratioOnX": false,
+            "percent": 7.5
+          },
+          "origin": {
+            "originX": 0,
+            "originY": 0
+          },
+          "position": {
+            "posX": 0,
+            "posY": -6
+          }
+        },
+        "text": {
+          "fontName": "textFont",
+          "string": "Connect",
+          "style" : 1,
+          "characterSize": 45,
+          "origin": {
+            "originX": 0
+          },
+          "position": {
+            "ratioX": 0,
+            "ratioY": -10.6
+          },
+          "color" : {
+            "red" : 10,
+            "green" : 23,
+            "blue" : 41,
+            "alpha" : 255
+          }
+        }
+      },
+      {
+        "type": 2,
+        "renderFunction": "",
+        "engineFunction": "saveUsername",
+        "deactivateOthers": true,
+        "parameters": [
+          "loginTextBoxPressed",
+          0.45
+        ],
+        "sprite": {
+          "imageName": "loginTextBox",
+          "smooth": true,
+          "scale": {
+            "ratioOnX": false,
+            "percent": 7.5
+          },
+          "origin": {
+            "originX": 0,
+            "originY": 0
+          },
+          "position": {
+            "posX": -30,
+            "posY": -33
+          }
+        },
+        "text": {
+          "fontName": "textFont",
+          "string": "",
+          "style" : 0,
+          "characterSize": 45,
+          "origin": {
+            "originX": -10
+          },
+          "position": {
+            "ratioX": -41.5,
+            "ratioY": -36.5
+          },
+          "color" : {
+            "red" : 10,
+            "green" : 23,
+            "blue" : 41,
+            "alpha" : 255
+          }
+        }
+      },
+      {
+        "type": 2,
+        "renderFunction": "",
+        "engineFunction": "saveLinkCode",
+        "deactivateOthers": true,
+        "parameters": [
+          "loginTextBoxPressed",
+          0.45
+        ],
+        "sprite": {
+          "imageName": "loginTextBox",
+          "smooth": true,
+          "scale": {
+            "ratioOnX": false,
+            "percent": 7.5
+          },
+          "origin": {
+            "originX": 0,
+            "originY": 0
+          },
+          "position": {
+            "posX": 30,
+            "posY": -33
+          }
+        },
+        "text": {
+          "fontName": "textFont",
+          "string": "",
+          "style" : 0,
+          "characterSize": 45,
+          "origin": {
+            "originX": -10
+          },
+          "position": {
+            "ratioX": 18.5,
+            "ratioY": -36.5
+          },
+          "color" : {
+            "red" : 10,
+            "green" : 23,
+            "blue" : 41,
+            "alpha" : 255
+          }
+        }
+      }
+    ]
+  },
+  "Ban_State": {
+    "stateIndex": 1
+  },
+  "Choice_State": {
+    "stateIndex": 2
+  },
+  "Select_State": {
+    "stateIndex": 3
+  },
+  "Action_State": {
+    "stateIndex": 4
+  },
+  "Switch_State": {
+    "stateIndex": 5
+  },
+  "Wait_State": {
+    "stateIndex": 6
+  },
+  "TurnResult_State": {
+    "stateIndex": 7
+  },
+  "EndBattle_State": {
+    "stateIndex": 8
+  }
+}

@@ -1,11 +1,13 @@
 #include <client.hpp>
 #include <iostream>
+#include "utilities.hpp"
 
 int main(int argc,char* argv[])
 {
     std::cout << "It Works !" <<std::endl;
 
-    client::BattleScene battleScene(std::make_shared<client::LoginState>());
+    client::ClientEngine engine;
+    engine.run();
 
     return 0;
 }
