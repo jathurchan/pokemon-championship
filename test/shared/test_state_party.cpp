@@ -21,7 +21,8 @@ BOOST_AUTO_TEST_SUITE( TestParty )
 
         BOOST_CHECK_EQUAL(party.SetBannedCreature(6), false);
         BOOST_CHECK_EQUAL(party.SetBannedCreature(2), true);
-        
+        BOOST_CHECK_EQUAL(party.SetBannedCreature(3), true);
+
         party.SetParticipatingTeam(order);
 
         BOOST_CHECK_EQUAL(party.GetName(0), "FireSheep");
@@ -50,15 +51,13 @@ BOOST_AUTO_TEST_SUITE( TestParty )
         BOOST_CHECK_EQUAL(party.GetActiveCreature()->GetName(), "FireSheep");
 
         BOOST_CHECK_EQUAL(party.SetCreatureActive(3), false);
-        BOOST_CHECK_EQUAL(party.SetCreatureKo(3), false);
 
         BOOST_CHECK_EQUAL(party.SetCreatureActive(1), true);
         BOOST_CHECK_EQUAL(party.GetActiveCreature()->GetName(), "DisGrass");
 
         party.SetCreatureActive(1);
-        BOOST_CHECK_EQUAL(party.SetCreatureKo(1), true);
-        BOOST_CHECK_EQUAL(party.GetActiveCreature(), nullptr);
-
+        party.GetActiveCreature()->UpdateState(state::CreatureState::ko);
+        BOOST_CHECK_EQUAL(party.SetCreatureActive(2), true); 
         BOOST_CHECK_EQUAL(party.SetCreatureActive(1), false);   // Creature is ko, cannot become active  
     }
 
