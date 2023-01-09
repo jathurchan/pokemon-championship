@@ -5,11 +5,11 @@
 BOOST_AUTO_TEST_SUITE( TestModelType )
 
     model::Model model("defaultCreatures", "defaultItems");
-    model::Type fire = *model.GetCreature("defaultCreatures/FireSheep")->GetType();
+    model::Type fire = *model.GetCreature("FireSheep")->GetType();
 
     BOOST_AUTO_TEST_CASE( test_type_getName )
     {
-        BOOST_CHECK_EQUAL(fire.GetName(), "defaultTypes/Fire");
+        BOOST_CHECK_EQUAL(fire.GetName(), "Fire");
     }
 
     BOOST_AUTO_TEST_CASE( test_type_getFactor )

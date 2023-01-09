@@ -73,6 +73,25 @@ namespace state {
         }
     }
 
+    void Creature::ReceiveDamage(int rawDamage, model::Type *type)
+    {
+        int totalDamage = rawDamage * type->GetFactor(this->type->GetName()) - this->stats[state::def].GetCurrent() / 5;
+        if (totalDamage < 1)
+            totalDamage = 1;
+        this->stats[state::hp].Update(this->stats[state::hp].GetCurrent() - totalDamage);
+        if (this->stats[state::hp].GetCurrent() <= 0)
+        {
+            creatureState = CreatureState::ko;
+        }
+    }
+
+    void Creature::ApplyAura(model::Aura *aura)
+    {
+        int targetStat = aura->GetTargetStat();
+        int bonus = this->stats[targetStat].GetBase() * aura->GetValue();
+        this->stats[targetStat].Update(this->stats[targetStat].GetCurrent() + bonus);
+    }
+
     void Creature::UpdateState(CreatureState newState)
     {
         if(creatureState != CreatureState::ko)
@@ -85,7 +104,7 @@ namespace state {
         }
         else
         {
-            std::cout << "This creature is ko. CreatureState connt be changed" << std::endl;
+            std::cout << "This creature is ko. CreatureState cannot be changed" << std::endl;
         }
     }
 

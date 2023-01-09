@@ -9,12 +9,12 @@ BOOST_AUTO_TEST_SUITE( TestModel )
 
     BOOST_AUTO_TEST_CASE( test_model_getCreature )
     {
-        BOOST_CHECK_EQUAL(model.GetCreature("defaultCreatures/FireSheep")->GetName(), "defaultCreatures/FireSheep");
+        BOOST_CHECK_EQUAL(model.GetCreature("FireSheep")->GetName(), "FireSheep");
     }
 
     BOOST_AUTO_TEST_CASE( test_model_getItem )
     {
-        BOOST_CHECK_EQUAL(model.GetItem("defaultItems/Healing_Flask")->GetName(), "defaultItems/Healing_Flask");
+        BOOST_CHECK_EQUAL(model.GetItem("Healing_Flask")->GetName(), "Healing_Flask");
     }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -1,25 +1,26 @@
 #include <boost/test/unit_test.hpp>
 #include <model.hpp>
+#include <state.hpp>
 #include <iostream>
 
 BOOST_AUTO_TEST_SUITE( TestModelAura )
 
     model::Model model("defaultCreatures", "defaultItems");
-    model::Aura defBuf = *(model.GetCreature("defaultCreatures/DisGrass")->GetMoves()[0]->GetAura());
+    model::Aura defBuf = *(model.GetCreature("DisGrass")->GetMoves()[0]->GetAura());
 
     BOOST_AUTO_TEST_CASE( test_aura_getName )
     {
-        BOOST_CHECK_EQUAL(defBuf.GetName(), "defaultAuras/DefBuf");
+        BOOST_CHECK_EQUAL(defBuf.GetName(), "DefBuf");
     }
 
     BOOST_AUTO_TEST_CASE( test_aura_getTargetStat )
     {
-        BOOST_CHECK_EQUAL(defBuf.GetTargetStat(), 2);   //DEF
+        BOOST_CHECK_EQUAL(defBuf.GetTargetStat(), state::StatName::def);
     }
 
     BOOST_AUTO_TEST_CASE( test_aura_getValue )
     {
-        BOOST_CHECK_EQUAL(defBuf.GetValue(), 1.15f);
+        BOOST_TEST(defBuf.GetValue() == 0.15f, boost::test_tools::tolerance(0.001));
     }
 
     BOOST_AUTO_TEST_CASE( test_aura_TargetsSelf )

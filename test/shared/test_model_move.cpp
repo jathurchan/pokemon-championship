@@ -5,16 +5,16 @@
 BOOST_AUTO_TEST_SUITE( TestModelMove )
 
     model::Model model("defaultCreatures", "defaultItems");
-    model::Move thorns = *(model.GetCreature("defaultCreatures/DisGrass")->GetMoves()[0]);
+    model::Move thorns = *(model.GetCreature("DisGrass")->GetMoves()[0]);
 
     BOOST_AUTO_TEST_CASE( test_move_getName )
     {
-        BOOST_CHECK_EQUAL(thorns.GetName(), "defaultMoves/Thorns");
+        BOOST_CHECK_EQUAL(thorns.GetName(), "Thorns");
     }
 
     BOOST_AUTO_TEST_CASE( test_move_getAura )
     {
-        BOOST_CHECK_EQUAL(thorns.GetAura()->GetName(), "defaultAuras/DefBuf");
+        BOOST_CHECK_EQUAL(thorns.GetAura()->GetName(), "DefBuf");
     }
 
     BOOST_AUTO_TEST_CASE( test_move_getPP )
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_SUITE( TestModelMove )
 
     BOOST_AUTO_TEST_CASE( test_move_getType )
     {
-        BOOST_CHECK_EQUAL(thorns.GetType()->GetName(), "defaultTypes/Grass");
+        BOOST_CHECK_EQUAL(thorns.GetType()->GetName(), "Grass");
     }
 
 BOOST_AUTO_TEST_SUITE_END()

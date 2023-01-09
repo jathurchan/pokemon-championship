@@ -14,11 +14,11 @@ using namespace std;
 BOOST_AUTO_TEST_SUITE( TestStats )
 
     model::Model model("defaultCreatures", "defaultItems");
-    model::Creature aquis = *model.GetCreature("defaultCreatures/Aquis");
+    model::Creature aquis = *model.GetCreature("Aquis");
     
     BOOST_AUTO_TEST_CASE( test_modelCreature )
     {
-        BOOST_CHECK_EQUAL(aquis.GetName(), "defaultCreatures/Aquis");
+        BOOST_CHECK_EQUAL(aquis.GetName(), "Aquis");
     }
 
 

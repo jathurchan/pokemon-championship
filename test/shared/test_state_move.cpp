@@ -14,25 +14,25 @@ using namespace std;
 BOOST_AUTO_TEST_SUITE( TestMove )
 
     model::Model model("defaultCreatures", "defaultItems");
-    model::Move modelMove(*model.GetCreature("defaultCreatures/Aquis")->GetMoves().at(0));
+    model::Move modelMove(*model.GetCreature("Aquis")->GetMoves().at(0));
 
     BOOST_AUTO_TEST_CASE( test_Move_0 )
     {
         state::Move move(&modelMove);
-        BOOST_CHECK_EQUAL(move.GetName(), "defaultMoves/WaterSpray");
+        BOOST_CHECK_EQUAL(move.GetName(), "WaterSpray");
 
         BOOST_CHECK_EQUAL(move.GetBasePP(), 5);
         BOOST_CHECK_EQUAL(move.GetCurrPP(), 5);
         move.DecrementPP();
         BOOST_CHECK_EQUAL(move.GetCurrPP(), 4);
 
-        BOOST_TEST(move.GetAura()->GetValue() == 0.85f, boost::test_tools::tolerance(0.001));
+        BOOST_TEST(move.GetAura()->GetValue() == -0.15f, boost::test_tools::tolerance(0.001));
         BOOST_CHECK_EQUAL(move.GetPower(), 90);
-        BOOST_CHECK_EQUAL(move.GetAura()->GetName(), "defaultAuras/DefDebuf");
+        BOOST_CHECK_EQUAL(move.GetAura()->GetName(), "DefDebuf");
         BOOST_CHECK_EQUAL(move.GetAura()->TargetsSelf(), false);
         BOOST_CHECK_EQUAL(move.GetAura()->GetTargetStat(), DEF);
         BOOST_CHECK_EQUAL(move.HasPriority(), true);
-        BOOST_CHECK_EQUAL(move.GetType()->GetName(), "defaultTypes/Water"); 
+        BOOST_CHECK_EQUAL(move.GetType()->GetName(), "Water"); 
     }
 
 BOOST_AUTO_TEST_SUITE_END()

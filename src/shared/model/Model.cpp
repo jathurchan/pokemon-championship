@@ -206,7 +206,7 @@ namespace model {
         for(std::string depName : dependenciesNames) {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
-                sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
+                sprintf(name, "%s", element.name().c_str());
                 this->creatures[name] = new Creature(name, dependency[element.name()], this->moves, this->types);
             }
         }
@@ -218,7 +218,7 @@ namespace model {
         for(std::string depName : dependenciesNames) {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
-                sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
+                sprintf(name, "%s", element.name().c_str());
                 this->items[name] = new Item(name, dependency[element.name()], this->auras, this->triggers);
             }
         }
@@ -231,7 +231,7 @@ namespace model {
         for(std::string depName : dependenciesNames) {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
-                sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
+                sprintf(name, "%s", element.name().c_str());
                 this->moves[name] = new Move(name, dependency[element.name()], this->types, this->auras);
             }
         }
@@ -243,7 +243,7 @@ namespace model {
         for(std::string depName : dependenciesNames) {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
-                sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
+                sprintf(name, "%s", element.name().c_str());
                 this->types[name] = new Type(name, dependency[element.name()]);
             }
         }
@@ -256,7 +256,7 @@ namespace model {
         for(std::string depName : dependenciesNames) {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
-                sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
+                sprintf(name, "%s", element.name().c_str());
                 this->auras[name] = new Aura(name, dependency[element.name()]);
             }
         }
@@ -269,7 +269,7 @@ namespace model {
         for(std::string depName : dependenciesNames) {
             Json::Value dependency = dependencies[i++];
             for(Json::ValueIterator element = dependency.begin(); element != dependency.end(); element++) {
-                sprintf(name, "%s/%s", depName.c_str(), element.name().c_str());
+                sprintf(name, "%s", element.name().c_str());
                 this->triggers[name] = new Trigger(dependency[element.name()]);
             }
         }
