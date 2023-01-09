@@ -35,7 +35,7 @@ Turn-based Pokémon duels based on a championship system.
 
 ## Open Doxygen Documentation
 
-[Doxygen Link](./docs/doxygen/html/index.html)
+[Source Code Documentation](https://github.com/jathurchan/pokemon-championship/docs/doxygen/html/index.html)
 
 ## Repository
 
