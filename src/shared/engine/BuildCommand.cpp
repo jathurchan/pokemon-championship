@@ -6,6 +6,8 @@ namespace engine {
         this->creatureItemPairings = pairings;
     }
 
+    BuildCommand::~BuildCommand() {}
+
     void engine::BuildCommand::Execute(state::Battle* battle) {
         state::Party* party = (this->trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty();
         std::array<int, 3> creatures;

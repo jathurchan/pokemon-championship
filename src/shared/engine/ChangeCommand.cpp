@@ -6,6 +6,8 @@ namespace engine {
         this->replaceId = replaceId;
     }
 
+    ChangeCommand::~ChangeCommand() {}
+
     void engine::ChangeCommand::Execute(state::Battle *battle) {
         state::Party* party = (trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty();
         party->SetCreatureActive(replaceId);

@@ -7,10 +7,10 @@ namespace engine
 
     }
 
-    void Engine::Execute(Command commandA, Command commandB, state::Battle *battle)
+    void Engine::Execute(Command* commandA, Command* commandB, state::Battle *battle)
     {
-        commandA.Execute(battle);
-        commandB.Execute(battle);
+        commandA->Execute(battle);
+        commandB->Execute(battle);
 
         ResolveTurn(battle);
     }
@@ -20,7 +20,7 @@ namespace engine
         while ((pMove = battle->PopQueue()).procSpeed) {
             state::Creature* target = (pMove.source ? battle->GetTrainerB() : battle->GetTrainerA())->GetActiveCreature();
             target->ReceiveDamage(pMove.rawDamage, pMove.type);
-            target = (!pMove.source != pMove.aura->TargetsSelf() ? battle->GetTrainerA() : battle->GetTrainerB())->GetActiveCreature();
+            target = (!pMove.source != pMove.aura->TargetsSelf() ? battle->GetTrainerB() : battle->GetTrainerA())->GetActiveCreature();
             target->ApplyAura(pMove.aura);
         }
     }

@@ -9,7 +9,7 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
     {
         model::Model model("defaultCreatures", "defaultItems");
 
-        state::Trainer* trainerA = new state::Trainer("Ash");
+        state::Trainer* trainerA = new state::Trainer("Shell");
         state::Trainer* trainerB = new state::Trainer("Bash");
 
         std::array<std::string, 6> pokemon = {"FireSheep", "DisGrass", "Aquis", "FireSheep", "DisGrass", "Aquis"};
@@ -18,22 +18,29 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
         trainerA->GetParty()->LoadFromModel(&model, pokemon);
         trainerB->GetParty()->LoadFromModel(&model, fakemon);
 
-        engine::Command commandA;
-        engine::Command commandB;
-
         state::Battle* battle = new state::Battle(trainerA, trainerB, 100);
         engine::Engine engine;
 
-        commandA = engine::BanCommand(0, 2);
-        commandA = engine::BanCommand(0, 4);
+        engine::Command* commandA = new engine::BanCommand(0, 2);
+        engine::Command* commandB = new engine::BanCommand(1, 4);
         engine.Execute(commandA, commandB, battle);
+        delete commandA;
+        delete commandB;
 
-        commandA = engine::BuildCommand(0, {std::pair<int, model::Item*>(2, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(0, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(5, model.GetItem(""))});
-        commandA = engine::BuildCommand(0, {std::pair<int, model::Item*>(3, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem(""))});
+        commandA = new engine::BuildCommand(0, {std::pair<int, model::Item*>(2, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(0, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(5, model.GetItem(""))});
+        commandB = new engine::BuildCommand(1, {std::pair<int, model::Item*>(3, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem(""))});
         engine.Execute(commandA, commandB, battle);
+        delete commandA;
+        delete commandB;
 
         BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetName(), "Aquis");
-        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetName(), "DisGrass");
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetName(), "DisGrass");
+
+        commandA = new engine::MoveCommand(0, 0);
+        commandB = new engine::MoveCommand(1, 0);
+        engine.Execute(commandA, commandB, battle);
+        delete commandA;
+        delete commandB;
 
         delete trainerA;
         delete trainerB;

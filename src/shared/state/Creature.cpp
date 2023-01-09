@@ -90,6 +90,9 @@ namespace state {
         int targetStat = aura->GetTargetStat();
         int bonus = this->stats[targetStat].GetBase() * aura->GetValue();
         this->stats[targetStat].Update(this->stats[targetStat].GetCurrent() + bonus);
+        char* log = (char*)malloc(64 * sizeof(char));
+        sprintf(log, "%s receives %s, modifying its stat %d by %d\n", this->GetName().c_str(), aura->GetName().c_str(), aura->GetTargetStat(), bonus);
+        std::cout << log;
     }
 
     void Creature::UpdateState(CreatureState newState)

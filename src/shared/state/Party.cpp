@@ -49,7 +49,11 @@ namespace state {
 
     void Party::GiveItem(model::Item* modelItem, int creatureIndex)
     {
-        if(remainingItems > 0)
+        if(modelItem->GetName() == "None")
+        {
+            participatingCreatures[creatureIndex]->GiveItem(modelItem);
+        }
+        else if(remainingItems > 0)
         {
             participatingCreatures[creatureIndex]->GiveItem(modelItem);
             remainingItems--;
