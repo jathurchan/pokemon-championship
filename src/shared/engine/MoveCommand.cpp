@@ -2,18 +2,18 @@
 #include <iostream>
 
 namespace engine {
-    engine::MoveCommand::MoveCommand(int trainer, int moveId) {
+    MoveCommand::MoveCommand(int trainer, int moveId) {
         this->trainer = trainer;
         this->moveId = moveId;
     }
 
     MoveCommand::~MoveCommand() {}
 
-    void engine::MoveCommand::Execute(state::Battle *battle) {
+    bool MoveCommand::Execute(state::Battle *battle) {
         state::Creature* creature = (trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty()->GetActiveCreature();
         state::Move* move = creature->GetMove(moveId);
         if (move->GetCurrPP() <= 0)
-            return;
+            return false;
         
         move->DecrementPP();
 
@@ -24,8 +24,14 @@ namespace engine {
         pMove.type = move->GetType();
         pMove.aura = move->GetAura();
         battle->PushQueue(pMove);
-        char* log = (char*)malloc(64 * sizeof(char));
-        sprintf(log, "%s will use %s for %d raw damage this turn, with speed %d.\n", creature->GetName().c_str(), move->GetName().c_str(), pMove.rawDamage, pMove.procSpeed);
-        std::cout << log;
+        std::cout << creature->GetName().c_str() << " will use " << move->GetName().c_str() << " for "
+        << pMove.rawDamage << " raw damage this turn, with speed " << pMove.procSpeed << ".\n";
+        return true;
+    }
+
+    void MoveCommand::Revert(state::Battle* battle) {
+        state::Move* move = (trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty()->GetActiveCreature()->GetMove(moveId);
+        move->IncrementPP();
+        battle->PopQueue();
     }
 }

@@ -17,52 +17,105 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
     
     BOOST_AUTO_TEST_CASE( test_game )
     {
-        BOOST_CHECK_EQUAL(trainerA->GetName(), "Shell");
-        BOOST_CHECK_EQUAL(trainerB->GetName(), "Bash");
-
         trainerA->GetParty()->LoadFromModel(&model, pokemon);
         trainerB->GetParty()->LoadFromModel(&model, fakemon);
     }
 
     state::Battle* battle = new state::Battle(trainerA, trainerB, 100);
-
-    BOOST_AUTO_TEST_CASE( test_game )
-    {
-        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetName(), "Shell");
-        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetName(), "Bash");
-    }
     
-    engine::Command* commandA = new engine::BanCommand(0, 2);
-    engine::Command* commandB = new engine::BanCommand(1, 4);
+    engine::Command* commandA;
+    engine::Command* commandB;
 
-    BOOST_AUTO_TEST_CASE( test_BanCommand )
+    BOOST_AUTO_TEST_CASE( test_BanCommands )
     {
+        commandA = new engine::BanCommand(0, 2);
+        commandB = new engine::BanCommand(1, 4);
         engine.Execute(commandA, commandB, battle);
         delete commandA;
         delete commandB;
     }
 
-    BOOST_AUTO_TEST_CASE( test_BuildCommand )
+    BOOST_AUTO_TEST_CASE( test_BuildCommand1_fail )
+    {
+        commandA = new engine::BuildCommand(0, {std::pair<int, model::Item*>(4, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(0, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(5, model.GetItem(""))});
+        commandB = new engine::BuildCommand(1, {std::pair<int, model::Item*>(4, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem(""))});
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), false);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature(), nullptr);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature(), nullptr);
+    }
+
+    BOOST_AUTO_TEST_CASE( test_BuildCommand2_fail )
     {
         commandA = new engine::BuildCommand(0, {std::pair<int, model::Item*>(2, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(0, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(5, model.GetItem(""))});
-        commandB = new engine::BuildCommand(1, {std::pair<int, model::Item*>(3, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem(""))});
-        engine.Execute(commandA, commandB, battle);
+        commandB = new engine::BuildCommand(1, {std::pair<int, model::Item*>(2, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem(""))});
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), false);
         delete commandA;
         delete commandB;
-        
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature(), nullptr);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature(), nullptr);
     }
 
-    BOOST_AUTO_TEST_CASE( test_MoveCommand )
+    BOOST_AUTO_TEST_CASE( test_BuildCommand1_2_fail )
     {
+        commandA = new engine::BuildCommand(0, {std::pair<int, model::Item*>(4, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(0, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(5, model.GetItem(""))});
+        commandB = new engine::BuildCommand(1, {std::pair<int, model::Item*>(2, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem(""))});
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), false);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature(), nullptr);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature(), nullptr);
+    }
+
+    BOOST_AUTO_TEST_CASE( test_BuildCommand_success )
+    {
+        commandA = new engine::BuildCommand(0, {std::pair<int, model::Item*>(2, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(0, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(5, model.GetItem(""))});
+        commandB = new engine::BuildCommand(1, {std::pair<int, model::Item*>(4, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem(""))});
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
         BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetName(), "Aquis");
         BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetName(), "DisGrass");
+    }
+
+    BOOST_AUTO_TEST_CASE( test_MoveCommand_success )
+    {
+        commandA = new engine::MoveCommand(0, 0);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 76);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 98);
 
         commandA = new engine::MoveCommand(0, 0);
         commandB = new engine::MoveCommand(1, 0);
-        engine.Execute(commandA, commandB, battle);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
         delete commandA;
         delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 52);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 76);
 
+        commandA = new engine::MoveCommand(0, 0);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 28);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 54);
+    }
+
+    BOOST_AUTO_TEST_CASE( test_MoveCommand2_fail )
+    {
+        commandA = new engine::MoveCommand(0, 0);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), false);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 28);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 54);
+    
         delete trainerA;
         delete trainerB;
         delete battle;

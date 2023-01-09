@@ -2,17 +2,27 @@
 
 namespace engine 
 {
-    engine::Engine::Engine() 
+    Engine::Engine() 
     {
 
     }
 
-    void Engine::Execute(Command* commandA, Command* commandB, state::Battle *battle)
+    bool Engine::Execute(Command* commandA, Command* commandB, state::Battle *battle)
     {
-        commandA->Execute(battle);
-        commandB->Execute(battle);
+        int failBitmap = 0;
+        failBitmap |= !commandA->Execute(battle) << 0;
+        failBitmap |= !commandB->Execute(battle) << 1;
+
+        if (failBitmap) {
+            if ((failBitmap & 0x01) && !(failBitmap & 0x02))
+                commandB->Revert(battle);
+            if ((failBitmap & 0x02) && !(failBitmap & 0x01))
+                commandA->Revert(battle);
+            return false;
+        }
 
         ResolveTurn(battle);
+        return true;
     }
 
     void Engine::ResolveTurn(state::Battle* battle) {

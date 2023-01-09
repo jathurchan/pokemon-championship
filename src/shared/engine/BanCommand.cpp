@@ -1,15 +1,18 @@
 #include "BanCommand.hpp"
 
 namespace engine {
-    engine::BanCommand::BanCommand(int trainer, int creatureId) {
+    BanCommand::BanCommand(int trainer, int creatureId) {
         this->trainer = trainer;
         this->creatureId = creatureId;
     }
 
     BanCommand::~BanCommand() {}
 
-    void engine::BanCommand::Execute(state::Battle* battle) {
-        state::Trainer* trainer = this->trainer ? battle->GetTrainerA() : battle->GetTrainerB();  //Get opponent trainer
-        trainer->GetParty()->SetBannedCreature(creatureId);
+    bool BanCommand::Execute(state::Battle* battle) {
+        return (this->trainer ? battle->GetTrainerA() : battle->GetTrainerB())->GetParty()->SetBannedCreature(creatureId);
+    }
+
+    void BanCommand::Revert(state::Battle* battle) {
+        (this->trainer ? battle->GetTrainerA() : battle->GetTrainerB())->GetParty()->Reset();
     }
 }

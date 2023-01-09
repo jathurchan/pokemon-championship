@@ -1,23 +1,17 @@
 #include "BuildCommand.hpp"
 
 namespace engine {
-    engine::BuildCommand::BuildCommand(int trainer, std::array<std::pair<int, model::Item*>, 3> pairings) {
+    BuildCommand::BuildCommand(int trainer, std::array<std::pair<int, model::Item*>, 3> pairings) {
         this->trainer = trainer;
         this->creatureItemPairings = pairings;
     }
 
     BuildCommand::~BuildCommand() {}
 
-    void engine::BuildCommand::Execute(state::Battle* battle) {
-        state::Party* party = (this->trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty();
-        std::array<int, 3> creatures;
-        for (int i = 0; i < 3; i++) {
-            creatures[i] = creatureItemPairings[i].first;
-        }
-        party->SetParticipatingTeam(creatures);
-
-        for (int i = 0; i < 3; i++) {
-            party->GiveItem(creatureItemPairings[i].second, i);
-        }
+    bool BuildCommand::Execute(state::Battle* battle) {
+        return (this->trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty()->SetParticipatingTeam(creatureItemPairings);
+    }
+    void BuildCommand::Revert(state::Battle *battle) {
+        (this->trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty()->FreeParticipatingTeam();
     }
 }

@@ -105,6 +105,7 @@ namespace state {
                 participatingCreatures[i] = nullptr;
             }
         }
+        activeCreature = nullptr;
     }
 
     bool Party::SetBannedCreature(int creatureIndex)

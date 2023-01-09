@@ -26,7 +26,7 @@ int main(int argc,char* argv[])
     trainerA->GetParty()->LoadFromModel(&model, pokemon);
     trainerB->GetParty()->LoadFromModel(&model, fakemon);
 
-    trainerA->GetParty()->SetParticipatingTeam({0,1,2});
+    /*trainerA->GetParty()->SetParticipatingTeam({0,1,2});
     trainerA->GetParty()->SetParticipatingTeam({0,1,2});
     trainerB->GetParty()->SetParticipatingTeam({1,2,3});
 
@@ -35,7 +35,7 @@ int main(int argc,char* argv[])
     std::cout << trainerB->GetName() << std::endl;
     std::cout << trainerB->GetParty()->GetActiveCreature()->GetName() << std::endl;
 
-    trainerA->GetParty()->GiveItem(model.GetItem("defaultItems/Berserker_Shell"), 0);
+    trainerA->GetParty()->GiveItem(model.GetItem("defaultItems/Berserker_Shell"), 0);*/
     trainerA->GetActiveCreature()->RemoveItem();
 
     state::PendingMove pMove1 = state::PendingMove();

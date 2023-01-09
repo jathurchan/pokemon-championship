@@ -53,6 +53,11 @@ namespace state {
         --currentPP;
     }
 
+    void Move::IncrementPP()
+    {
+        ++currentPP;
+    }
+
     model::Type* Move::GetType ()
     {
         return type;
