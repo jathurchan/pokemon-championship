@@ -1,0 +1,12 @@
+digraph "_xmlParserInput"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="_xmlParserInput",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" buf",fontcolor="grey" ];
+  Node2 [label="_xmlParserInputBuffer",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_parser_input_buffer.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" encoder",fontcolor="grey" ];
+  Node3 [label="_xmlCharEncodingHandler",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_char_encoding_handler.html",tooltip=" "];
+}

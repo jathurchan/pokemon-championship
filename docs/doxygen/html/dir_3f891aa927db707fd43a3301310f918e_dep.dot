@@ -1,0 +1,16 @@
+digraph "/home/alexandros/Documents/PLT/V4/pokemon-championship/build/extern/dia2code"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_0528c4b79bba27ac3e98d72f5985d8dd {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="extern", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_0528c4b79bba27ac3e98d72f5985d8dd.html",tooltip=""]
+  subgraph clusterdir_3f891aa927db707fd43a3301310f918e {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_3f891aa927db707fd43a3301310f918e.html",tooltip=""]
+    dir_3f891aa927db707fd43a3301310f918e [shape=plaintext, label="dia2code"];
+  dir_8c59e518b8b89f294d631b12ca0a53f3 [label="CMakeFiles", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_8c59e518b8b89f294d631b12ca0a53f3.html",tooltip=""];
+  }
+  }
+}

@@ -1,0 +1,9 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [label="Json::StyledStreamWriter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_json_1_1_styled_stream_writer.html",tooltip="Writes a Value in JSON format in a human friendly way, to a stream rather than to a string."];
+}

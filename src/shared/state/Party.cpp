@@ -120,7 +120,7 @@ namespace state {
         }
         else
         {
-            std::cout << "Index out of bounds (Must be between 0 and 5)" << std::endl;
+            std::cout << "Index " << creatureIndex << " out of bounds (Must be between 0 and 5)" << std::endl;
         }
         return (bannedCreature != -1);            
     }
@@ -145,16 +145,11 @@ namespace state {
         }
         else
         {
-            std::cout << "Index out of bounds (Must be between 0 and 2)" << std::endl;
+            std::cout << "Index " << creatureIndex << " out of bounds (Must be between 0 and 2)" << std::endl;
             return false;
         }
 
         return participatingCreatures[creatureIndex]->GetState() == CreatureState::active;
-    }
-
-    int Party::GetRemainingItems()
-    {
-        return remainingItems;
     }
    
 }

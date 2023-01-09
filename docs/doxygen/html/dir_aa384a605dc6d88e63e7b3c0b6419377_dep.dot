@@ -1,0 +1,14 @@
+digraph "/home/alexandros/Documents/PLT/V4/pokemon-championship/src/shared/state"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_2ef585b5a5303ef1fc74fb08555317be {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="shared", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_2ef585b5a5303ef1fc74fb08555317be.html",tooltip=""]
+  dir_7a160284600fc5a7638a9a1cf04081e9 [label="model", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_7a160284600fc5a7638a9a1cf04081e9.html",tooltip=""];
+  dir_aa384a605dc6d88e63e7b3c0b6419377 [label="state", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_aa384a605dc6d88e63e7b3c0b6419377.html",tooltip=""];
+  }
+  dir_aa384a605dc6d88e63e7b3c0b6419377->dir_7a160284600fc5a7638a9a1cf04081e9 [headlabel="8", labeldistance=1.5 headhref="dir_000046_000032.html" color="steelblue1" fontcolor="steelblue1"];
+}

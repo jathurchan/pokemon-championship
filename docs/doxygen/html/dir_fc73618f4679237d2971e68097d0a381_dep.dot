@@ -1,0 +1,17 @@
+digraph "/home/alexandros/Documents/PLT/V4/pokemon-championship/build/src/shared/CMakeFiles"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_26754244db239dad64c9e449f773c515 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="shared", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_26754244db239dad64c9e449f773c515.html",tooltip=""]
+  subgraph clusterdir_fc73618f4679237d2971e68097d0a381 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_fc73618f4679237d2971e68097d0a381.html",tooltip=""]
+    dir_fc73618f4679237d2971e68097d0a381 [shape=plaintext, label="CMakeFiles"];
+  dir_a884018d52a363dc7091c591e8b0ea43 [label="shared.dir", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_a884018d52a363dc7091c591e8b0ea43.html",tooltip=""];
+  dir_9dfc7eb574fe0d73cd54ce3ae7fcd34a [label="shared_static.dir", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_9dfc7eb574fe0d73cd54ce3ae7fcd34a.html",tooltip=""];
+  }
+  }
+}

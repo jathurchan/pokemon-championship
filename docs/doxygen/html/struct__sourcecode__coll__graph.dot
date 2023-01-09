@@ -1,0 +1,13 @@
+digraph "_sourcecode"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="_sourcecode",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" blocks",fontcolor="grey" ];
+  Node2 [label="_sourceblocknode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__sourceblocknode.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" blk",fontcolor="grey" ];
+  Node3 [label="sourceblock",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structsourceblock.html",tooltip=" "];
+  Node2 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" next",fontcolor="grey" ];
+}

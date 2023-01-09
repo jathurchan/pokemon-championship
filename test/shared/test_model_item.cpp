@@ -6,18 +6,16 @@ BOOST_AUTO_TEST_SUITE( TestModelItem )
 
     model::Model model("defaultCreatures", "defaultItems");
     model::Item healingFlask = *model.GetItem("Healing_Flask");
-    model::Item none = *model.GetItem("");
 
     BOOST_AUTO_TEST_CASE( test_item_getName )
     {
         BOOST_CHECK_EQUAL(healingFlask.GetName(), "Healing_Flask");
-        BOOST_CHECK_EQUAL(none.GetName(), "None");
+        BOOST_CHECK_EQUAL(model.GetItem(""), nullptr);
     }
 
     BOOST_AUTO_TEST_CASE( test_item_getAura )
     {
         BOOST_CHECK_EQUAL(healingFlask.GetAura()->GetName(), "Heal");
-        BOOST_CHECK_EQUAL(none.GetAura()->GetName(), "nullAura");
     }
 
     BOOST_AUTO_TEST_CASE( test_item_getTrigger )

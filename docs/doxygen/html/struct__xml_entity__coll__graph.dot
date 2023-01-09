@@ -1,0 +1,33 @@
+digraph "_xmlEntity"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="_xmlEntity",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nnext\nprev",fontcolor="grey" ];
+  Node2 [label="_xmlNode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_node.html",tooltip=" "];
+  Node2 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nnext\nparent\nprev",fontcolor="grey" ];
+  Node3 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" doc",fontcolor="grey" ];
+  Node3 [label="_xmlDoc",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_doc.html",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nnext\nparent\nprev",fontcolor="grey" ];
+  Node3 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" doc",fontcolor="grey" ];
+  Node4 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" extSubset\nintSubset",fontcolor="grey" ];
+  Node4 [label="_xmlDtd",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_dtd.html",tooltip=" "];
+  Node2 -> Node4 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nnext\nprev",fontcolor="grey" ];
+  Node3 -> Node4 [dir="back",color="darkorchid3",style="dashed",label=" doc\nparent",fontcolor="grey" ];
+  Node5 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" oldNs",fontcolor="grey" ];
+  Node5 [label="_xmlNs",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_ns.html",tooltip=" "];
+  Node5 -> Node5 [dir="back",color="darkorchid3",style="dashed",label=" next",fontcolor="grey" ];
+  Node3 -> Node5 [dir="back",color="darkorchid3",style="dashed",label=" context",fontcolor="grey" ];
+  Node5 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" ns\nnsDef",fontcolor="grey" ];
+  Node6 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" properties",fontcolor="grey" ];
+  Node6 [label="_xmlAttr",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_attr.html",tooltip=" "];
+  Node2 -> Node6 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nparent",fontcolor="grey" ];
+  Node6 -> Node6 [dir="back",color="darkorchid3",style="dashed",label=" next\nprev",fontcolor="grey" ];
+  Node3 -> Node6 [dir="back",color="darkorchid3",style="dashed",label=" doc",fontcolor="grey" ];
+  Node5 -> Node6 [dir="back",color="darkorchid3",style="dashed",label=" ns",fontcolor="grey" ];
+  Node4 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" parent",fontcolor="grey" ];
+  Node3 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" doc",fontcolor="grey" ];
+  Node1 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" nexte",fontcolor="grey" ];
+}

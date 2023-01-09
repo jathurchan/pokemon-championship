@@ -3,15 +3,10 @@
 
 namespace state {
     
-
-    Trainer::Trainer()
-    {
-
-    }
-
     Trainer::Trainer(std::string name)
     {
         this->name = name;
+        this->trainerState = state::TrainerState::waiting;
     }
 
     Trainer::~Trainer()

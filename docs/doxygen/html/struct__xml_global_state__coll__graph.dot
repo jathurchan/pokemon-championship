@@ -1,0 +1,58 @@
+digraph "_xmlGlobalState"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="_xmlGlobalState",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" xmlDefaultSAXLocator",fontcolor="grey" ];
+  Node2 [label="_xmlSAXLocator",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_s_a_x_locator.html",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" docbDefaultSAXHandler\nhtmlDefaultSAXHandler\nxmlDefaultSAXHandler",fontcolor="grey" ];
+  Node3 [label="_xmlSAXHandlerV1",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_s_a_x_handler_v1.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" resolveEntity",fontcolor="grey" ];
+  Node4 [label="_xmlParserInput",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_parser_input.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="darkorchid3",style="dashed",label=" buf",fontcolor="grey" ];
+  Node5 [label="_xmlParserInputBuffer",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_parser_input_buffer.html",tooltip=" "];
+  Node6 -> Node5 [dir="back",color="darkorchid3",style="dashed",label=" encoder",fontcolor="grey" ];
+  Node6 [label="_xmlCharEncodingHandler",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_char_encoding_handler.html",tooltip=" "];
+  Node7 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" getEntity\ngetParameterEntity",fontcolor="grey" ];
+  Node7 [label="_xmlEntity",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_entity.html",tooltip=" "];
+  Node8 -> Node7 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nnext\nprev",fontcolor="grey" ];
+  Node8 [label="_xmlNode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_node.html",tooltip=" "];
+  Node8 -> Node8 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nnext\nparent\nprev",fontcolor="grey" ];
+  Node9 -> Node8 [dir="back",color="darkorchid3",style="dashed",label=" doc",fontcolor="grey" ];
+  Node9 [label="_xmlDoc",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_doc.html",tooltip=" "];
+  Node8 -> Node9 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nnext\nparent\nprev",fontcolor="grey" ];
+  Node9 -> Node9 [dir="back",color="darkorchid3",style="dashed",label=" doc",fontcolor="grey" ];
+  Node10 -> Node9 [dir="back",color="darkorchid3",style="dashed",label=" extSubset\nintSubset",fontcolor="grey" ];
+  Node10 [label="_xmlDtd",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_dtd.html",tooltip=" "];
+  Node8 -> Node10 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nnext\nprev",fontcolor="grey" ];
+  Node9 -> Node10 [dir="back",color="darkorchid3",style="dashed",label=" doc\nparent",fontcolor="grey" ];
+  Node11 -> Node9 [dir="back",color="darkorchid3",style="dashed",label=" oldNs",fontcolor="grey" ];
+  Node11 [label="_xmlNs",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_ns.html",tooltip=" "];
+  Node11 -> Node11 [dir="back",color="darkorchid3",style="dashed",label=" next",fontcolor="grey" ];
+  Node9 -> Node11 [dir="back",color="darkorchid3",style="dashed",label=" context",fontcolor="grey" ];
+  Node11 -> Node8 [dir="back",color="darkorchid3",style="dashed",label=" ns\nnsDef",fontcolor="grey" ];
+  Node12 -> Node8 [dir="back",color="darkorchid3",style="dashed",label=" properties",fontcolor="grey" ];
+  Node12 [label="_xmlAttr",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_attr.html",tooltip=" "];
+  Node8 -> Node12 [dir="back",color="darkorchid3",style="dashed",label=" children\nlast\nparent",fontcolor="grey" ];
+  Node12 -> Node12 [dir="back",color="darkorchid3",style="dashed",label=" next\nprev",fontcolor="grey" ];
+  Node9 -> Node12 [dir="back",color="darkorchid3",style="dashed",label=" doc",fontcolor="grey" ];
+  Node11 -> Node12 [dir="back",color="darkorchid3",style="dashed",label=" ns",fontcolor="grey" ];
+  Node10 -> Node7 [dir="back",color="darkorchid3",style="dashed",label=" parent",fontcolor="grey" ];
+  Node9 -> Node7 [dir="back",color="darkorchid3",style="dashed",label=" doc",fontcolor="grey" ];
+  Node7 -> Node7 [dir="back",color="darkorchid3",style="dashed",label=" nexte",fontcolor="grey" ];
+  Node13 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" attributeDecl",fontcolor="grey" ];
+  Node13 [label="_xmlEnumeration",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_enumeration.html",tooltip=" "];
+  Node13 -> Node13 [dir="back",color="darkorchid3",style="dashed",label=" next",fontcolor="grey" ];
+  Node14 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" elementDecl",fontcolor="grey" ];
+  Node14 [label="_xmlElementContent",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_element_content.html",tooltip=" "];
+  Node14 -> Node14 [dir="back",color="darkorchid3",style="dashed",label=" c1\nc2\nparent",fontcolor="grey" ];
+  Node2 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" setDocumentLocator",fontcolor="grey" ];
+  Node15 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" xmlLastError\nxmlStructuredError",fontcolor="grey" ];
+  Node15 [label="_xmlError",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$struct__xml_error.html",tooltip=" "];
+  Node8 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" xmlDeregisterNodeDefault\lValue\nxmlRegisterNodeDefault\lValue",fontcolor="grey" ];
+  Node5 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" xmlParserInputBufferCreate\lFilenameValue",fontcolor="grey" ];
+  Node6 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" xmlOutputBufferCreateFilename\lValue",fontcolor="grey" ];
+}

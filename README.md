@@ -33,6 +33,10 @@ Turn-based Pokémon duels based on a championship system.
 5. `./bin/client` (for example)
 6. `gprof ./bin/client gmon.out > analysis.txt`
 
+## Open Doxygen Documentation
+
+[An Internal Link](docs/doxygen/index.html)
+
 ## Repository
 
 - cmake

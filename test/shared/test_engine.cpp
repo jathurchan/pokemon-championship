@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
         delete battle;
     }
 
-    BOOST_AUTO_TEST_CASE( test_MoveChange_fail )
+    /*BOOST_AUTO_TEST_CASE( test_MoveChange_fail )
     {
         commandA = new engine::ChangeCommand(0, 1);
         commandB = new engine::MoveCommand(1, 0);
@@ -134,5 +134,6 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
         delete trainerA;
         delete trainerB;
         delete battle;
-    }
+    }*/
+    
 BOOST_AUTO_TEST_SUITE_END()

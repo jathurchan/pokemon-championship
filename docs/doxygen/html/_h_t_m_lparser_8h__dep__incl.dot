@@ -1,0 +1,12 @@
+digraph "/home/alexandros/Documents/PLT/V4/pokemon-championship/extern/libxml2/include/libxml/HTMLparser.h"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="/home/alexandros/Documents\l/PLT/V4/pokemon-championship\l/extern/libxml2/include/libxml\l/HTMLparser.h",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="/home/alexandros/Documents\l/PLT/V4/pokemon-championship\l/extern/libxml2/include/libxml\l/HTMLtree.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_h_t_m_ltree_8h.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node3 [label="/home/alexandros/Documents\l/PLT/V4/pokemon-championship\l/extern/libxml2/include/libxml\l/parserInternals.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$parser_internals_8h.html",tooltip=" "];
+}

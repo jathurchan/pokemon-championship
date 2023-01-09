@@ -1,0 +1,31 @@
+digraph "umlclass"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="umlclass",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" attributes",fontcolor="grey" ];
+  Node2 [label="umlattrnode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structumlattrnode.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" key",fontcolor="grey" ];
+  Node3 [label="umlattribute",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structumlattribute.html",tooltip=" "];
+  Node2 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" next",fontcolor="grey" ];
+  Node4 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" operations",fontcolor="grey" ];
+  Node4 [label="umlopnode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structumlopnode.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="darkorchid3",style="dashed",label=" key",fontcolor="grey" ];
+  Node5 [label="umloperation",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structumloperation.html",tooltip=" "];
+  Node3 -> Node5 [dir="back",color="darkorchid3",style="dashed",label=" attr",fontcolor="grey" ];
+  Node2 -> Node5 [dir="back",color="darkorchid3",style="dashed",label=" parameters",fontcolor="grey" ];
+  Node4 -> Node4 [dir="back",color="darkorchid3",style="dashed",label=" next",fontcolor="grey" ];
+  Node6 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" templates",fontcolor="grey" ];
+  Node6 [label="umltemplatenode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structumltemplatenode.html",tooltip=" "];
+  Node7 -> Node6 [dir="back",color="darkorchid3",style="dashed",label=" key",fontcolor="grey" ];
+  Node7 [label="umltemplate",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structumltemplate.html",tooltip=" "];
+  Node6 -> Node6 [dir="back",color="darkorchid3",style="dashed",label=" next",fontcolor="grey" ];
+  Node8 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" package",fontcolor="grey" ];
+  Node8 [label="umlpackage",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structumlpackage.html",tooltip=" "];
+  Node9 -> Node8 [dir="back",color="darkorchid3",style="dashed",label=" geom",fontcolor="grey" ];
+  Node9 [label="geometry",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structgeometry.html",tooltip=" "];
+  Node8 -> Node8 [dir="back",color="darkorchid3",style="dashed",label=" parent",fontcolor="grey" ];
+  Node9 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" geom",fontcolor="grey" ];
+}

@@ -11,6 +11,7 @@ add_custom_test(state_creature)
 add_custom_test(state_party)
 add_custom_test(state_move)
 add_custom_test(state_item)
+add_custom_test(state_trainer)
 add_custom_test(engine)
 
 # vim: set sw=2 sts=2 et:

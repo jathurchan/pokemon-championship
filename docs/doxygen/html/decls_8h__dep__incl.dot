@@ -1,0 +1,17 @@
+digraph "/home/alexandros/Documents/PLT/V4/pokemon-championship/extern/dia2code/src/decls.h"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="/home/alexandros/Documents\l/PLT/V4/pokemon-championship\l/extern/dia2code/src/decls.h",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="/home/alexandros/Documents\l/PLT/V4/pokemon-championship\l/extern/dia2code/src/decls.c",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$decls_8c.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node3 [label="/home/alexandros/Documents\l/PLT/V4/pokemon-championship\l/extern/dia2code/src/generate\l_code_cpp.c",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$generate__code__cpp_8c.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="steelblue1",style="solid"];
+  Node4 [label="/home/alexandros/Documents\l/PLT/V4/pokemon-championship\l/extern/dia2code/src/includes.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$includes_8h.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node4 -> Node5 [dir="back",color="steelblue1",style="solid"];
+  Node5 [label="/home/alexandros/Documents\l/PLT/V4/pokemon-championship\l/extern/dia2code/src/includes.c",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$includes_8c.html",tooltip=" "];
+}

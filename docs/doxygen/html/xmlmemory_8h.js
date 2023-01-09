@@ -1,0 +1,27 @@
+var xmlmemory_8h =
+[
+    [ "LIBXML_ATTR_ALLOC_SIZE", "xmlmemory_8h.html#adc120146ea222e3022b2cd98952eb842", null ],
+    [ "xmlFreeFunc", "xmlmemory_8h.html#a4f71389dfb832ec8b724ad68df8ef241", null ],
+    [ "xmlReallocFunc", "xmlmemory_8h.html#a0e47673c89b1b5cd7af5c01040520632", null ],
+    [ "xmlStrdupFunc", "xmlmemory_8h.html#a15d00ebd9d503c317e99e24c9748ac02", null ],
+    [ "xmlCleanupMemory", "xmlmemory_8h.html#aa637c5df5298f7777936d95d9327951a", null ],
+    [ "xmlGcMemGet", "xmlmemory_8h.html#a6756b41bc01eb0c83557da97a1ae41ae", null ],
+    [ "xmlGcMemSetup", "xmlmemory_8h.html#a103aea4f625d713b5b6ad440e1156ec6", null ],
+    [ "xmlInitMemory", "xmlmemory_8h.html#a34fe5f1eeb0bebbc44016283b2ce32d8", null ],
+    [ "xmlMallocAtomicLoc", "xmlmemory_8h.html#a9c34516aa2a23330d9c700ba5af5abb3", null ],
+    [ "xmlMallocLoc", "xmlmemory_8h.html#a2ff5db7d491186926c20439fabad6489", null ],
+    [ "xmlMemBlocks", "xmlmemory_8h.html#a20f1ab25f2110e71cbd47f6ce49864e7", null ],
+    [ "xmlMemDisplay", "xmlmemory_8h.html#a481ac8782e8f19eb6e87259f163a2f7f", null ],
+    [ "xmlMemDisplayLast", "xmlmemory_8h.html#af63ddb54d8816f097fada4af9e9d6c3f", null ],
+    [ "xmlMemFree", "xmlmemory_8h.html#a44cddd6d52cfe35d46654148aed1b491", null ],
+    [ "xmlMemGet", "xmlmemory_8h.html#aa3b9f8872e1daff13304b69b56160d9b", null ],
+    [ "xmlMemMalloc", "xmlmemory_8h.html#a7f82ec6ce7b60bd5e58544ea3b68b526", null ],
+    [ "xmlMemoryDump", "xmlmemory_8h.html#a7eb2c723be7fda2424a730d374bc9f13", null ],
+    [ "xmlMemoryStrdup", "xmlmemory_8h.html#a93e77ea35a3b613c77cc6829833b1463", null ],
+    [ "xmlMemRealloc", "xmlmemory_8h.html#ae6798a0c48418c91d9ad41f13159602d", null ],
+    [ "xmlMemSetup", "xmlmemory_8h.html#a8755b013a29c1a302453679c616a7787", null ],
+    [ "xmlMemShow", "xmlmemory_8h.html#a18cb9039e694031347922525d29f7b4a", null ],
+    [ "xmlMemStrdupLoc", "xmlmemory_8h.html#a95ee0b693117da60f2153fc9783ee2b6", null ],
+    [ "xmlMemUsed", "xmlmemory_8h.html#a01c5d46e6db4add179f3a15142659889", null ],
+    [ "xmlReallocLoc", "xmlmemory_8h.html#a9e2f15539acf22fa39a34b8754908bf3", null ]
+];

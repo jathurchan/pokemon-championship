@@ -1,0 +1,27 @@
+var struct__xml_doc =
+[
+    [ "_private", "struct__xml_doc.html#a50dd4d34840e069af0d520532ba3934b", null ],
+    [ "charset", "struct__xml_doc.html#a32382a4784bbd3d6c928d8cd7349305b", null ],
+    [ "children", "struct__xml_doc.html#ac7b84a52508e7ba5db5cdb28361bfcea", null ],
+    [ "compression", "struct__xml_doc.html#ad4d34773df893b9823a78b011a3dbb3c", null ],
+    [ "dict", "struct__xml_doc.html#ab6f89d12264ac64a920ca920329f336f", null ],
+    [ "doc", "struct__xml_doc.html#af4449ac87ed04147d6630cf7075f6fc6", null ],
+    [ "encoding", "struct__xml_doc.html#a420b6872034efc71d0232890e76fa43f", null ],
+    [ "extSubset", "struct__xml_doc.html#aff563c597b3affacc757f23b8d2ddc14", null ],
+    [ "ids", "struct__xml_doc.html#a70bbe7bd9f1af213f65da845972298d2", null ],
+    [ "intSubset", "struct__xml_doc.html#a311cd0a4e02c8fdd68fb347c43cd3385", null ],
+    [ "last", "struct__xml_doc.html#a8b4685c311eaf949512c6580da728b91", null ],
+    [ "name", "struct__xml_doc.html#a2548ebf8d04b23f6de8646769b05057d", null ],
+    [ "next", "struct__xml_doc.html#a12d4bfc0972dc7f9ba3a67f7c4b94aae", null ],
+    [ "oldNs", "struct__xml_doc.html#a702fec67cd1f40c91ff52d7ab816c2b2", null ],
+    [ "parent", "struct__xml_doc.html#a68684ddadacb0eadb84aaf64bed3c22d", null ],
+    [ "parseFlags", "struct__xml_doc.html#a90811644cebded116c22868c9397a1ca", null ],
+    [ "prev", "struct__xml_doc.html#ab4895482a4c47ae0e40b7dfadce94f3d", null ],
+    [ "properties", "struct__xml_doc.html#a9d5825f815564d4bf531fe5be8af7767", null ],
+    [ "psvi", "struct__xml_doc.html#af22a189e5ec5b98d7992cac8ef3dbb38", null ],
+    [ "refs", "struct__xml_doc.html#aa96c1eebfdcb6716520b558d381d1022", null ],
+    [ "standalone", "struct__xml_doc.html#aae15c09e02b6374b357a588002515de8", null ],
+    [ "type", "struct__xml_doc.html#aef9fa638a443a4fba932853a17948709", null ],
+    [ "URL", "struct__xml_doc.html#a15af1bfd16eb5503ce6d9753eeed6827", null ],
+    [ "version", "struct__xml_doc.html#a4afb2f267e00e73e05573b5da8e5d309", null ]
+];

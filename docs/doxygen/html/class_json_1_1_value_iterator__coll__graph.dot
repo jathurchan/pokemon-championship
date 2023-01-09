@@ -1,0 +1,10 @@
+digraph "Json::ValueIterator"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="Json::ValueIterator",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Iterator for object and array value."];
+  Node2 -> Node1 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="Json::ValueIteratorBase",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_json_1_1_value_iterator_base.html",tooltip="base class for Value iterators."];
+}

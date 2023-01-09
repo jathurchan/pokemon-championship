@@ -1,0 +1,14 @@
+digraph "umloperation"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="umloperation",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" attr",fontcolor="grey" ];
+  Node2 [label="umlattribute",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structumlattribute.html",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" parameters",fontcolor="grey" ];
+  Node3 [label="umlattrnode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structumlattrnode.html",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" key",fontcolor="grey" ];
+  Node3 -> Node3 [dir="back",color="darkorchid3",style="dashed",label=" next",fontcolor="grey" ];
+}
