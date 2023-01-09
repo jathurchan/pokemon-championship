@@ -39,7 +39,11 @@ namespace state {
                 return false;
             }
             participatingCreatures[i] = new Creature(creatures[pairs[i].first]);
-            GiveItem(pairs[i].second, i);
+            if(!GiveItem(pairs[i].second, i))
+            {
+                FreeParticipatingTeam();
+                return false;
+            }
         }
         SetCreatureActive(0);
         
@@ -48,9 +52,8 @@ namespace state {
 
     bool Party::GiveItem(model::Item* modelItem, int creatureIndex)
     {
-        if(modelItem->GetName() == "None")
+        if(modelItem == nullptr)
         {
-            participatingCreatures[creatureIndex]->GiveItem(modelItem);
             return true;
         }
         
@@ -106,6 +109,7 @@ namespace state {
             }
         }
         activeCreature = nullptr;
+        remainingItems = 2;
     }
 
     bool Party::SetBannedCreature(int creatureIndex)
