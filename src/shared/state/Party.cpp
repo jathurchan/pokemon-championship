@@ -1,6 +1,5 @@
 #include "Party.hpp"
 #include <iostream>
-#include "unordered_map"
 
 namespace model
 {
@@ -29,39 +28,41 @@ namespace state {
         }
     }
 
-    bool Party::SetParticipatingTeam(std::array<int,3> creaturesIndexes)
+    bool Party::SetParticipatingTeam(std::array<std::pair<int, model::Item*>,3> pairs)
     {
         FreeParticipatingTeam();
-        for(int i = 0; i < (int)creaturesIndexes.size(); i++)
+        for(int i = 0; i < (int)pairs.size(); i++)
         {
-            if(bannedCreature == creaturesIndexes[i])
+            if(bannedCreature == pairs[i].first)
             {
-                std::cout << "Index : " << creaturesIndexes[i] << " is equal to the banned creature" << std::endl; 
+                std::cout << "Index : " << pairs[i].first << " is equal to the banned creature" << std::endl; 
                 return false;
             }
+            participatingCreatures[i] = new Creature(creatures[pairs[i].first]);
+            GiveItem(pairs[i].second, i);
         }
-        participatingCreatures[0] = new Creature(creatures[creaturesIndexes[0]]);
         SetCreatureActive(0);
-        participatingCreatures[1] = new Creature(creatures[creaturesIndexes[1]]);
-        participatingCreatures[2] = new Creature(creatures[creaturesIndexes[2]]);
+        
         return true;
     }
 
-    void Party::GiveItem(model::Item* modelItem, int creatureIndex)
+    bool Party::GiveItem(model::Item* modelItem, int creatureIndex)
     {
         if(modelItem->GetName() == "None")
         {
             participatingCreatures[creatureIndex]->GiveItem(modelItem);
+            return true;
         }
-        else if(remainingItems > 0)
+        
+        if(remainingItems > 0)
         {
             participatingCreatures[creatureIndex]->GiveItem(modelItem);
             remainingItems--;
+            return true;
         }
-        else
-        {
-            std::cout << "Action not allowed (No more Items available)" << std::endl;
-        }        
+
+        std::cout << "Action not allowed (No more Items available)" << std::endl;
+        return false;      
     }
 
     std::string Party::GetName(int creatureIndex)

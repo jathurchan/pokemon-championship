@@ -20,10 +20,12 @@ BOOST_AUTO_TEST_SUITE( TestParty )
         party.LoadFromModel(&model, pokemon);
 
         BOOST_CHECK_EQUAL(party.SetBannedCreature(6), false);
-        BOOST_CHECK_EQUAL(party.SetBannedCreature(2), true);
-        BOOST_CHECK_EQUAL(party.SetBannedCreature(3), true);
 
-        party.SetParticipatingTeam(order);
+        BOOST_CHECK_EQUAL(party.SetBannedCreature(2), true);
+        BOOST_REQUIRE_EQUAL(party.SetParticipatingTeam(order), false);
+
+        BOOST_CHECK_EQUAL(party.SetBannedCreature(3), true);
+        BOOST_REQUIRE_EQUAL(party.SetParticipatingTeam(order), true);
 
         BOOST_CHECK_EQUAL(party.GetName(0), "FireSheep");
         BOOST_CHECK_EQUAL(party.GetName(1), "DisGrass");

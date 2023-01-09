@@ -99,11 +99,19 @@ namespace state {
     {
         if(creatureState != CreatureState::ko)
         {
-            creatureState = newState;
             if(newState == CreatureState::sub)
             {
                 Reset();
             }
+
+            if(newState == CreatureState::active)
+            {
+                if(item!=nullptr && item->GetThreshold() == 100)
+                {
+                    UseItem();                   
+                }
+            }
+            creatureState = newState;
         }
         else
         {
