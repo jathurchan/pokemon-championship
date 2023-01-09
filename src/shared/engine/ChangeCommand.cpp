@@ -11,13 +11,13 @@ namespace engine {
     bool ChangeCommand::Execute(state::Battle *battle) {
         state::Party* party = (trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty();
         this->prevPartyState = *party;
-        this->prevCreatureState = *party->GetActiveCreature();
+        *this->prevCreatureState = *party->GetActiveCreature();
         return party->SetCreatureActive(replaceId);
     }
 
     void ChangeCommand::Revert(state::Battle *battle) {
         state::Party* party = (trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty();
         *party = this->prevPartyState;
-        *party->GetActiveCreature() = this->prevCreatureState;
+        *party->GetActiveCreature() = *this->prevCreatureState;
     }
 }

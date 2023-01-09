@@ -115,7 +115,22 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
         delete commandB;
         BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 28);
         BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 54);
-    
+
+        delete trainerA;
+        delete trainerB;
+        delete battle;
+    }
+
+    BOOST_AUTO_TEST_CASE( test_MoveChange_fail )
+    {
+        commandA = new engine::ChangeCommand(0, 1);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), false);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 28);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 54);
+
         delete trainerA;
         delete trainerB;
         delete battle;

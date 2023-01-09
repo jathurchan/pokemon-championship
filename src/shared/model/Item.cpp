@@ -1,13 +1,6 @@
 #include "Item.hpp"
 
 namespace model {
-
-    Item::Item(char* name, Trigger* trigger, Aura* aura) {
-        this->name = name;
-        this->trigger = trigger;
-        this->aura = aura;
-    }
-    
     Item::Item (char* name, Json::Value val, std::unordered_map<std::string, Aura*> auraDependencies, std::unordered_map<std::string, Trigger*> triggerDependencies) {
         this->name = name;
         this->trigger = triggerDependencies[val["trigger"].asString()];

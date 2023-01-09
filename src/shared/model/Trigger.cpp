@@ -1,11 +1,6 @@
 #include "Trigger.hpp"
 
 namespace model {
-    Trigger::Trigger () {
-        this->stat = 0;
-        this->threshold = 0;
-    }
-
     Trigger::Trigger (Json::Value val){
         this->stat = val["stat"].asInt();
         this->threshold = val["threshold"].asInt();

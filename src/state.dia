@@ -70,7 +70,7 @@
           <dia:boolean val="false"/>
         </dia:attribute>
         <dia:attribute name="snap-to-grid">
-          <dia:boolean val="false"/>
+          <dia:boolean val="true"/>
         </dia:attribute>
         <dia:attribute name="snap-to-object">
           <dia:boolean val="true"/>
@@ -90,7 +90,7 @@
         <dia:point val="0.831559,1.58378"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="0.781559,0.53378;136.05,67.3921"/>
+        <dia:rectangle val="0.781559,0.53378;135.05,67.3921"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -99,7 +99,7 @@
         <dia:point val="0.831559,1.58378"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="135.168441"/>
+        <dia:real val="134.168441"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="65.75834538877092"/>

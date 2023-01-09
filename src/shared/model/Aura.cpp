@@ -12,7 +12,7 @@ namespace model {
         this->name = "nullAura";
         this->targetSelf = false;
         this->targetStat = 0;
-        this->value = 1.f;
+        this->value = 0.f;
     }
 
     std::string Aura::GetName() {

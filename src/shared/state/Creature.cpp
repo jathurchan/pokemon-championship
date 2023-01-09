@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace state {
-
+    
     Creature::Creature(model::Creature *modelCreature)
     {
         this->name = modelCreature->GetName();

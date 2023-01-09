@@ -19,12 +19,12 @@ namespace engine {
 
         state::PendingMove pMove = state::PendingMove();
         pMove.source = this->trainer;
-        pMove.procSpeed = creature->GetStatCurrent(state::spd) + move->HasPriority() ? 1000 : 0;
+        pMove.procSpeed = creature->GetStatCurrent(state::spd) + (move->HasPriority() ? 1000 : 0);
         pMove.rawDamage = creature->GetStatCurrent(state::atk) * move->GetPower() / 200;
         pMove.type = move->GetType();
         pMove.aura = move->GetAura();
         battle->PushQueue(pMove);
-        std::cout << creature->GetName().c_str() << " will use " << move->GetName().c_str() << " for "
+        std::cout << creature->GetName() << " will use " << move->GetName() << " for "
         << pMove.rawDamage << " raw damage this turn, with speed " << pMove.procSpeed << ".\n";
         return true;
     }

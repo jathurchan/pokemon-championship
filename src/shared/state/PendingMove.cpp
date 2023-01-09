@@ -1,4 +1,5 @@
 #include "PendingMove.hpp"
+#include <random>
 
 namespace state
 {
@@ -14,6 +15,6 @@ namespace state
 
     bool operator<(const PendingMove &lhs, const PendingMove &rhs)
     {
-        return lhs.procSpeed < rhs.procSpeed;
+        return (lhs.procSpeed < rhs.procSpeed) ? true : (lhs.procSpeed == rhs.procSpeed ? std::rand() % 2 : false);
     }
 }
