@@ -1,4 +1,5 @@
 #include "Engine.hpp"
+#include <iostream>
 
 namespace engine 
 {
@@ -14,6 +15,7 @@ namespace engine
         failBitmap |= !commandB->Execute(battle) << 1;
 
         if (failBitmap) {
+            std::cout << "---- REVERT TURN -----\n";
             if ((failBitmap & 0x01) && !(failBitmap & 0x02))
                 commandB->Revert(battle);
             if ((failBitmap & 0x02) && !(failBitmap & 0x01))
@@ -22,13 +24,14 @@ namespace engine
         }
 
         ResolveTurn(battle);
+        std::cout << "------ END TURN ------\n";
         return true;
     }
 
     void Engine::ResolveTurn(state::Battle* battle) {
         state::PendingMove pMove;
         while ((pMove = battle->PopQueue()).procSpeed) {
-            state::Creature* target = (pMove.source ? battle->GetTrainerB() : battle->GetTrainerA())->GetActiveCreature();
+            state::Creature* target = (pMove.source ? battle->GetTrainerA() : battle->GetTrainerB())->GetActiveCreature();
             target->ReceiveDamage(pMove.rawDamage, pMove.type);
             target = (!pMove.source != pMove.aura->TargetsSelf() ? battle->GetTrainerB() : battle->GetTrainerA())->GetActiveCreature();
             target->ApplyAura(pMove.aura);

@@ -50,6 +50,11 @@ namespace state {
         return stats[statName].GetCurrent();
     }
 
+    void Creature::SetStatCurrent(int value, StatName statName)
+    {
+        stats[statName].Update(value);
+    }
+
     Move* Creature::GetMove(int moveIndex)
     {
         return &moves[moveIndex];
@@ -92,6 +97,7 @@ namespace state {
     {
         int targetStat = aura->GetTargetStat();
         int bonus = this->stats[targetStat].GetBase() * aura->GetValue();
+        if (!bonus) return;
         this->stats[targetStat].Update(this->stats[targetStat].GetCurrent() + bonus);
         std::cout << this->GetName() << " receives " << aura->GetName() << " modifying its stat " << aura->GetTargetStat() <<  " by " << bonus << "\n";
     }
@@ -113,10 +119,6 @@ namespace state {
                 }
             }
             creatureState = newState;
-        }
-        else
-        {
-            std::cout << "This creature is ko. CreatureState cannot be changed" << std::endl;
         }
     }
 
@@ -140,14 +142,10 @@ namespace state {
 
     void Creature::RemoveItem()
     {
-        if(item != nullptr)
+        if(item)
         {
             delete item;
             item = nullptr;
-        }
-        else
-        {
-            std::cout << "Action not allowed (No Item equipped)" << std::endl;  
         }
     }
 

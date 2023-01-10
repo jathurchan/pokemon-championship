@@ -86,54 +86,81 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
         BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
         delete commandA;
         delete commandB;
-        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 76);
-        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 98);
-
-        commandA = new engine::MoveCommand(0, 0);
-        commandB = new engine::MoveCommand(1, 0);
-        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
-        delete commandA;
-        delete commandB;
-        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 52);
-        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 76);
-
-        commandA = new engine::MoveCommand(0, 0);
-        commandB = new engine::MoveCommand(1, 0);
-        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
-        delete commandA;
-        delete commandB;
         BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 28);
-        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 54);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 119);
+
+        commandA = new engine::MoveCommand(0, 3);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 0);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 82);
     }
 
-    BOOST_AUTO_TEST_CASE( test_MoveCommand2_fail )
+    BOOST_AUTO_TEST_CASE( test_MoveCommand_fail_ko )
     {
         commandA = new engine::MoveCommand(0, 0);
         commandB = new engine::MoveCommand(1, 0);
         BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), false);
         delete commandA;
         delete commandB;
-        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 28);
-        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 54);
-
-        delete trainerA;
-        delete trainerB;
-        delete battle;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 0);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 82);
     }
 
-    /*BOOST_AUTO_TEST_CASE( test_MoveChange_fail )
+    BOOST_AUTO_TEST_CASE( test_ChangeCommand_success )
     {
         commandA = new engine::ChangeCommand(0, 1);
         commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 69);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 82);
+    }
+
+    BOOST_AUTO_TEST_CASE( test_ChangeCommand_fail_already_active )
+    {
+        commandA = new engine::ChangeCommand(0, 1);
+        commandB = new engine::MoveCommand(1, 2);
         BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), false);
         delete commandA;
         delete commandB;
-        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 28);
-        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 54);
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 69);
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetState(), state::CreatureState::active);
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetName(), "FireSheep");
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 82);
+    }
+
+    BOOST_AUTO_TEST_CASE( test_ChangeCommand_fail_ko )
+    {
+        commandA = new engine::ChangeCommand(0, 0);
+        commandB = new engine::MoveCommand(1, 2);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), false);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 69);
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetState(), state::CreatureState::active);
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetName(), "FireSheep");
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 82);
+    }
+
+    BOOST_AUTO_TEST_CASE( test_ChangeCommand_revert )
+    {
+        commandA = new engine::ChangeCommand(0, 2);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), false);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 69);
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetState(), state::CreatureState::active);
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetName(), "FireSheep");
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 82);
 
         delete trainerA;
         delete trainerB;
         delete battle;
-    }*/
+    }
     
 BOOST_AUTO_TEST_SUITE_END()

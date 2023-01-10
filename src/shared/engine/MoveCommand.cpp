@@ -12,8 +12,14 @@ namespace engine {
     bool MoveCommand::Execute(state::Battle *battle) {
         state::Creature* creature = (trainer ? battle->GetTrainerB() : battle->GetTrainerA())->GetParty()->GetActiveCreature();
         state::Move* move = creature->GetMove(moveId);
-        if (move->GetCurrPP() <= 0)
+        if (move->GetCurrPP() <= 0) {
+            std::cout << creature->GetName() << " can't use " << move->GetName() << " anymore!\n";
             return false;
+        }
+        if (creature->GetState() == state::ko) {
+            std::cout << creature->GetName() << " needs rest.\n";
+            return false;
+        }
         
         move->DecrementPP();
 

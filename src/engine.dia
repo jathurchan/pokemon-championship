@@ -1735,10 +1735,10 @@
         </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#prevCreatureState#</dia:string>
+            <dia:string>#statsBackup#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#state::Creature*#</dia:string>
+            <dia:string>#std::array&lt;int, 4&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
@@ -1758,10 +1758,10 @@
         </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#prevPartyState#</dia:string>
+            <dia:string>#activeIndexBackup#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#state::Party#</dia:string>
+            <dia:string>#int#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>

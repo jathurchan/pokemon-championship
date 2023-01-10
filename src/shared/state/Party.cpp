@@ -35,7 +35,7 @@ namespace state {
         {
             if(bannedCreature == pairs[i].first)
             {
-                std::cout << "Index : " << pairs[i].first << " is equal to the banned creature" << std::endl; 
+                std::cout << creatures[pairs[i].first]->GetName() << " is banned.\n"; 
                 return false;
             }
             participatingCreatures[i] = new Creature(creatures[pairs[i].first]);
@@ -127,29 +127,53 @@ namespace state {
 
     bool Party::SetCreatureActive(int creatureIndex)
     {
-        if(creatureIndex >= 0 && creatureIndex < (int)participatingCreatures.size())
+        if(creatureIndex < 0 || creatureIndex >= (int)participatingCreatures.size())
         {
-            if(participatingCreatures[creatureIndex]->GetState() == CreatureState::sub)
-            {
-                if(activeCreature != nullptr)
-                {
-                    activeCreature->UpdateState(CreatureState::sub);
-                }
-                participatingCreatures[creatureIndex]->UpdateState(CreatureState::active);
-                activeCreature = participatingCreatures[creatureIndex];
-            }
-            else
-            {
-                std::cout << "Invalid state (Is either Active or KO)" << std::endl;                
-            }
-        }
-        else
-        {
-            std::cout << "Index " << creatureIndex << " out of bounds (Must be between 0 and 2)" << std::endl;
+            std::cout << "Index " << creatureIndex << " out of bounds (Must be between 0 and 2)\n";
             return false;
         }
+        switch (participatingCreatures[creatureIndex]->GetState())
+        {
+            case CreatureState::ko:
+                std::cout << participatingCreatures[creatureIndex]->GetName() << " needs some more rest...\n";
+                return false;
 
-        return participatingCreatures[creatureIndex]->GetState() == CreatureState::active;
+            case CreatureState::active:
+                std::cout << participatingCreatures[creatureIndex]->GetName() << " is already on the battlefield!\n";
+                return false;
+
+            case CreatureState::sub:
+                if(activeCreature != nullptr) activeCreature->UpdateState(CreatureState::sub);
+                participatingCreatures[creatureIndex]->UpdateState(CreatureState::active);
+                activeCreature = participatingCreatures[creatureIndex];
+                return true;
+                
+            default:
+                std::cout << "Unknown creature state.\n";
+                return false;
+        }
     }
-   
+
+
+    int Party::SaveStats(std::array<int,4>& backup)
+    {
+        backup[hp] = this->activeCreature->GetStatCurrent(hp);
+        backup[atk] = this->activeCreature->GetStatCurrent(atk);
+        backup[def] = this->activeCreature->GetStatCurrent(def);
+        backup[spd] = this->activeCreature->GetStatCurrent(spd);
+        for (size_t i = 0; i < participatingCreatures.size(); i++)
+        {
+            if (participatingCreatures[i] == activeCreature) return i;
+        }
+        return -1;
+    }
+
+    void Party::RestoreStats(const std::array<int,4>& backup)
+    {
+        this->activeCreature->SetStatCurrent(backup[hp], hp);
+        this->activeCreature->SetStatCurrent(backup[atk], atk);
+        this->activeCreature->SetStatCurrent(backup[def], def);
+        this->activeCreature->SetStatCurrent(backup[spd], spd);
+    }
+
 }

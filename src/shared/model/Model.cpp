@@ -80,7 +80,8 @@ namespace model {
             delete creature.second;
         }
         for(std::pair<std::string, Item*> item : this->items) {
-            delete item.second;
+            if (item.second)
+                delete item.second;
         }
         for(std::pair<std::string, Move*> move : this->moves) {
             delete move.second;
