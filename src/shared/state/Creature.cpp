@@ -182,7 +182,7 @@ namespace state {
 
     void Creature::RemoveItem()
     {
-        if(item)
+        if(item != nullptr)
         {
             delete item;
             item = nullptr;

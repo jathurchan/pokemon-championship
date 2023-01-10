@@ -10,15 +10,15 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
     state::Trainer* trainerA = new state::Trainer("Shell");
     state::Trainer* trainerB = new state::Trainer("Bash");
 
-    std::array<std::string, 6> pokemon = {"FireSheep", "DisGrass", "Aquis", "FireSheep", "DisGrass", "Aquis"};
-    std::array<std::string, 6> fakemon = {"Aquis", "FireSheep", "FireSheep", "DisGrass", "DisGrass", "Aquis"};
+    std::array<model::Creature*, 6> pokemon = {model.GetCreature("FireSheep"), model.GetCreature("DisGrass"), model.GetCreature("Aquis"), model.GetCreature("FireSheep"), model.GetCreature("DisGrass"), model.GetCreature("Aquis")};
+    std::array<model::Creature*, 6> fakemon = {model.GetCreature("Aquis"), model.GetCreature("FireSheep"),model.GetCreature("FireSheep"), model.GetCreature("DisGrass"), model.GetCreature("DisGrass"), model.GetCreature("Aquis")};
 
     engine::Engine engine;
     
     BOOST_AUTO_TEST_CASE( test_game )
     {
-        trainerA->GetParty()->LoadFromModel(&model, pokemon);
-        trainerB->GetParty()->LoadFromModel(&model, fakemon);
+        trainerA->GetParty()->LoadFromModel(pokemon);
+        trainerB->GetParty()->LoadFromModel(fakemon);
     }
 
     state::Battle* battle = new state::Battle(trainerA, trainerB, 100);

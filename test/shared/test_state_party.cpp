@@ -11,14 +11,14 @@ using namespace std;
 BOOST_AUTO_TEST_SUITE( TestParty )
 
     model::Model model("testCreatures", "testItems");
-    std::array<std::string, 6> pokemon = {"FireSheep", "DisGrass", "Aquis", "FireSheep", "DisGrass", "Aquis"};
+    std::array<model::Creature*, 6> pokemon = {model.GetCreature("FireSheep"), model.GetCreature("DisGrass"), model.GetCreature("Aquis"), model.GetCreature("FireSheep"), model.GetCreature("DisGrass"), model.GetCreature("Aquis")};
     std::array<std::pair<int, model::Item*>, 3> order({std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(2, model.GetItem(""))});
     std::array<std::pair<int, model::Item*>, 3> order_fail({std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(2, model.GetItem("Berserker_Shell"))});
     state::Party party;
 
     BOOST_AUTO_TEST_CASE( test_Init )
     {
-        party.LoadFromModel(&model, pokemon);
+        party.LoadFromModel(pokemon);
 
         BOOST_CHECK_EQUAL(party.SetBannedCreature(6), false);
 

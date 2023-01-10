@@ -18,22 +18,24 @@ int main(int argc,char* argv[])
 
     state::Battle battle(trainerA, trainerB, 100);
 
-    std::array<std::string, 6> pokemon = {"FireSheep", "DisGrass", "Aquis", "FireSheep", "DisGrass", "Aquis"};
-    std::array<std::string, 6> fakemon = {"Aquis", "FireSheep", "FireSheep", "DisGrass", "DisGrass", "Aquis"};
+    std::array<model::Creature*, 6> pokemon = {model.GetCreature("FireSheep"), model.GetCreature("DisGrass"), model.GetCreature("Aquis"), model.GetCreature("FireSheep"), model.GetCreature("DisGrass"), model.GetCreature("Aquis")};
+    std::array<model::Creature*, 6> fakemon = {model.GetCreature("Aquis"), model.GetCreature("FireSheep"),model.GetCreature("FireSheep"), model.GetCreature("DisGrass"), model.GetCreature("DisGrass"), model.GetCreature("Aquis")};
 
-    trainerA->GetParty()->LoadFromModel(&model, pokemon);
-    trainerB->GetParty()->LoadFromModel(&model, fakemon);
+    trainerA->GetParty()->LoadFromModel(pokemon);
+    trainerB->GetParty()->LoadFromModel(fakemon);
 
+    std::array<std::pair<int, model::Item*>, 3> order({std::pair<int, model::Item*>(0, model.GetItem("Berserker_Shell")), std::pair<int, model::Item*>(1, model.GetItem("Healing_Flask")), std::pair<int, model::Item*>(2, model.GetItem(""))});
+
+
+    trainerA->GetParty()->SetParticipatingTeam(order);
     /*trainerA->GetParty()->SetParticipatingTeam({0,1,2});
-    trainerA->GetParty()->SetParticipatingTeam({0,1,2});
     trainerB->GetParty()->SetParticipatingTeam({1,2,3});
 
     std::cout << trainerA->GetName() << std::endl;
     std::cout << trainerA->GetParty()->GetActiveCreature()->GetName() << std::endl;
     std::cout << trainerB->GetName() << std::endl;
-    std::cout << trainerB->GetParty()->GetActiveCreature()->GetName() << std::endl;
+    std::cout << trainerB->GetParty()->GetActiveCreature()->GetName() << std::endl;*/
 
-    trainerA->GetParty()->GiveItem(model.GetItem("defaultItems/Berserker_Shell"), 0);*/
     trainerA->GetActiveCreature()->RemoveItem();
 
     state::PendingMove pMove1 = state::PendingMove();

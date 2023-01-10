@@ -20,12 +20,9 @@ namespace state {
         FreeParticipatingTeam();
     }
 
-    void Party::LoadFromModel(model::Model* modelData, std::array<std::string, 6> creatureNameList)
+    void Party::LoadFromModel(std::array<model::Creature*, 6> creatures)
     {
-        for(size_t i = 0; i < creatures.size(); i++)
-        {
-            creatures[i] = modelData->GetCreature(creatureNameList[i]);
-        }
+        this->creatures = creatures;
     }
 
     bool Party::SetParticipatingTeam(std::array<std::pair<int, model::Item*>,3> pairs)
