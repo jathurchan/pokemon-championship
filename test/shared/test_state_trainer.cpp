@@ -5,7 +5,7 @@
 
 BOOST_AUTO_TEST_SUITE( TestEngine )
 
-    model::Model model("defaultCreatures", "defaultItems");
+    model::Model model("testCreatures", "testItems");
 
     state::Trainer* trainerA = new state::Trainer("Shell");
     std::array<std::string, 6> pokemon = {"FireSheep", "DisGrass", "Aquis", "FireSheep", "DisGrass", "Aquis"};

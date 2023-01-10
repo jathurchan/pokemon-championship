@@ -10,7 +10,7 @@ using namespace std;
 
 BOOST_AUTO_TEST_SUITE( TestStats )
 
-    model::Model model("defaultCreatures", "defaultItems");
+    model::Model model("testCreatures", "testItems");
     state::Creature aquis(model.GetCreature("Aquis"));
     state::Item* item = new state::Item(model.GetItem("Healing_Flask"));
     

@@ -5,7 +5,7 @@
 
 BOOST_AUTO_TEST_SUITE( TestModelItem )
 
-    model::Model model("defaultCreatures", "defaultItems");
+    model::Model model("testCreatures", "testItems");
 
     state::Item healingFlask(model.GetItem("Healing_Flask"));
 

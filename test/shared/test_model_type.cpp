@@ -4,7 +4,7 @@
 
 BOOST_AUTO_TEST_SUITE( TestModelType )
 
-    model::Model model("defaultCreatures", "defaultItems");
+    model::Model model("testCreatures", "testItems");
     model::Type fire = *model.GetCreature("FireSheep")->GetType();
 
     BOOST_AUTO_TEST_CASE( test_type_getName )

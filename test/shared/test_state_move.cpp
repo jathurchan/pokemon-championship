@@ -13,7 +13,7 @@ using namespace std;
 
 BOOST_AUTO_TEST_SUITE( TestMove )
 
-    model::Model model("defaultCreatures", "defaultItems");
+    model::Model model("testCreatures", "testItems");
     model::Move modelMove(*model.GetCreature("Aquis")->GetMoves().at(0));
 
     BOOST_AUTO_TEST_CASE( test_Move_0 )

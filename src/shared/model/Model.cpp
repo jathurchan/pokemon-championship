@@ -8,12 +8,11 @@
 #define MOVE 3
 #define TRIGGER 4
 #define TYPE 5
+#define PATH "res/model/"
 
 namespace model {
 
-    Model::Model() {
-        
-    }
+    Model::Model() {}
     
     Model::Model(std::string creaturePackage, std::string itemPackage) {
         std::set<std::string> creatureDependencies; creatureDependencies.insert(creaturePackage);
@@ -27,31 +26,41 @@ namespace model {
         /***************/
         /* PARSE FILES */
         /***************/
-        Json::Value* jsonCreature;
-        Json::Value* jsonItem;
-        Json::Value* jsonMoves;
-        Json::Value* jsonTypes;
-        Json::Value* jsonAuras;
-        Json::Value* jsonTriggers;
+        Json::Value* jsonCreature = nullptr;
+        Json::Value* jsonItem = nullptr;
+        Json::Value* jsonMoves = nullptr;
+        Json::Value* jsonTypes = nullptr;
+        Json::Value* jsonAuras = nullptr;
+        Json::Value* jsonTriggers = nullptr;
 
-        jsonCreature = ParseFiles(creatureDependencies, CREATURE);
+        try {
+            jsonCreature = ParseFiles(creatureDependencies, CREATURE);
 
-        jsonItem = ParseFiles(itemDependencies, ITEM);
+            jsonItem = ParseFiles(itemDependencies, ITEM);
 
-        FetchDependencies(jsonCreature, 1, moveDependencies, "Moves");
-        int moveDepSize = moveDependencies.size();
-        jsonMoves = ParseFiles(moveDependencies, MOVE);
+            FetchDependencies(jsonCreature, 1, moveDependencies, "Moves");
+            int moveDepSize = moveDependencies.size();
+            jsonMoves = ParseFiles(moveDependencies, MOVE);
 
-        FetchDependencies(jsonCreature, 1, typeDependencies, "Types");
-        FetchDependencies(jsonMoves, moveDepSize, typeDependencies, "Types");
-        jsonTypes = ParseFiles(typeDependencies, TYPE);
+            FetchDependencies(jsonCreature, 1, typeDependencies, "Types");
+            FetchDependencies(jsonMoves, moveDepSize, typeDependencies, "Types");
+            jsonTypes = ParseFiles(typeDependencies, TYPE);
 
-        FetchDependencies(jsonItem, 1, auraDependencies, "Auras");
-        FetchDependencies(jsonMoves, moveDepSize, auraDependencies, "Auras");
-        jsonAuras = ParseFiles(auraDependencies, AURA);
+            FetchDependencies(jsonItem, 1, auraDependencies, "Auras");
+            FetchDependencies(jsonMoves, moveDepSize, auraDependencies, "Auras");
+            jsonAuras = ParseFiles(auraDependencies, AURA);
 
-        FetchDependencies(jsonItem, 1, triggerDependencies, "Triggers");
-        jsonTriggers = ParseFiles(triggerDependencies, TRIGGER);
+            FetchDependencies(jsonItem, 1, triggerDependencies, "Triggers");
+            jsonTriggers = ParseFiles(triggerDependencies, TRIGGER);
+        } catch (std::runtime_error& e) {
+            if (jsonCreature) delete jsonCreature;
+            if (jsonItem) delete jsonItem;
+            if (jsonMoves) delete jsonMoves;
+            if (jsonTypes) delete jsonTypes;
+            if (jsonAuras) delete jsonAuras;
+            if (jsonTriggers) delete jsonTriggers;
+            throw e;
+        } 
 
 
         /***************/
@@ -105,39 +114,13 @@ namespace model {
         return items[name];
     }
 
-    void Model::DispAll() {
-        for(std::pair<std::string,Creature*> pair : this->creatures) {
-            printf("%s\n", pair.second->GetName().c_str());
-        }
-        printf("\n");
-        for(std::pair<std::string,Item*> pair : this->items) {
-            printf("%s\n", pair.second->GetName().c_str());
-        }
-        printf("\n");
-        for(std::pair<std::string,Move*> pair : this->moves) {
-            printf("%s\n", pair.second->GetName().c_str());
-        }
-        printf("\n");
-        for(std::pair<std::string,Type*> pair : this->types) {
-            printf("%s\n", pair.second->GetName().c_str());
-        }
-        printf("\n");
-        for(std::pair<std::string,Aura*> pair : this->auras) {
-            printf("%s\n", pair.second->GetName().c_str());
-        }
-        printf("\n");
-        for(std::pair<std::string,Trigger*> pair : this->triggers) {
-            printf("%s\n", pair.first.c_str());
-        }
-    }
-
     Json::Value* Model::ParseFiles(std::set<std::string> dependenciesName, int expectedType) {
         int i = 0;
         int depSize = dependenciesName.size();
         Json::Value* jsonArr = new Json::Value[depSize];
         for(std::string name : dependenciesName) {
             struct stat buffer;
-            name += ".json";
+            name = PATH + name + ".json";
             if (stat (name.c_str(), &buffer) != 0) {
                 std::string err = "File not found : " + name;
                 throw std::runtime_error(err);

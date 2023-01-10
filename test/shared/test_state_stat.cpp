@@ -13,7 +13,7 @@ using namespace std;
 
 BOOST_AUTO_TEST_SUITE( TestStats )
 
-    model::Model model("defaultCreatures", "defaultItems");
+    model::Model model("testCreatures", "testItems");
     model::Creature aquis = *model.GetCreature("Aquis");
     
     BOOST_AUTO_TEST_CASE( test_modelCreature )

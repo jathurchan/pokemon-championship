@@ -5,7 +5,7 @@
 
 BOOST_AUTO_TEST_SUITE( TestModelAura )
 
-    model::Model model("defaultCreatures", "defaultItems");
+    model::Model model("testCreatures", "testItems");
     model::Aura defBuf = *(model.GetCreature("DisGrass")->GetMoves()[0]->GetAura());
 
     BOOST_AUTO_TEST_CASE( test_aura_getName )

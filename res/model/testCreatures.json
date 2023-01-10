@@ -1,0 +1,1 @@
+{"Aquis":{"moves":["WaterSpray","Punch","Charge","HeadButt"],"stats":[100, 90, 80, 130],"type":"Water"},"DisGrass":{"moves":["Thorns","Punch","Charge","HeadButt"],"stats":[120, 80, 130, 70],"type":"Grass"},"FireSheep":{"moves":["FireBall","Punch","Charge","HeadButt"],"stats":[70, 150, 110, 70],"type":"Fire"},"Type":0,"Dependencies":{"Types":["testTypes"],"Moves":["testMoves"]}}

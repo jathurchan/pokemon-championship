@@ -1,0 +1,1 @@
+{"Berserker_Shell":{"aura":"AtkBuf","trigger":"BrokenDef"},"Healing_Flask":{"aura":"Heal","trigger":"LowHealth"},"Type":2,"Dependencies":{"Auras":["testAuras"],"Triggers":["testTriggers"]}}

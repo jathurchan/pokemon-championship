@@ -4,7 +4,7 @@
 
 BOOST_AUTO_TEST_SUITE( TestModelMove )
 
-    model::Model model("defaultCreatures", "defaultItems");
+    model::Model model("testCreatures", "testItems");
     model::Move thorns = *(model.GetCreature("DisGrass")->GetMoves()[0]);
 
     BOOST_AUTO_TEST_CASE( test_move_getName )

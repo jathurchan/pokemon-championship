@@ -6,11 +6,9 @@ int main(int argc,char* argv[])
 {
     std::cout << "It Works !" << std::endl;
 
-    model::Model model("defaultCreatures", "defaultItems");
+    model::Model model("testCreatures", "testItems");
 
     std::cout << "Parsed successfully!" << std::endl;
-    
-    //model.DispAll();
 
     state::Trainer* trainerA = new state::Trainer("Rémi");
     state::Trainer* trainerB = new state::Trainer("Alex");
@@ -20,8 +18,8 @@ int main(int argc,char* argv[])
 
     state::Battle battle(trainerA, trainerB, 100);
 
-    std::array<std::string, 6> pokemon = {"defaultCreatures/FireSheep", "defaultCreatures/DisGrass", "defaultCreatures/Aquis", "defaultCreatures/FireSheep", "defaultCreatures/DisGrass", "defaultCreatures/Aquis"};
-    std::array<std::string, 6> fakemon = {"defaultCreatures/Aquis", "defaultCreatures/FireSheep", "defaultCreatures/FireSheep", "defaultCreatures/DisGrass", "defaultCreatures/DisGrass", "defaultCreatures/Aquis"};
+    std::array<std::string, 6> pokemon = {"FireSheep", "DisGrass", "Aquis", "FireSheep", "DisGrass", "Aquis"};
+    std::array<std::string, 6> fakemon = {"Aquis", "FireSheep", "FireSheep", "DisGrass", "DisGrass", "Aquis"};
 
     trainerA->GetParty()->LoadFromModel(&model, pokemon);
     trainerB->GetParty()->LoadFromModel(&model, fakemon);
