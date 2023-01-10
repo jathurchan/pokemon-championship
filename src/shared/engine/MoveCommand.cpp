@@ -31,7 +31,7 @@ namespace engine {
         pMove.aura = move->GetAura();
         battle->PushQueue(pMove);
         std::cout << creature->GetName() << " will use " << move->GetName() << " for "
-        << pMove.rawDamage << " raw damage this turn, with speed " << pMove.procSpeed << ".\n";
+        << pMove.rawDamage << " " << pMove.type->GetName() << " damage this turn, with speed " << pMove.procSpeed << ".\n";
         return true;
     }
 

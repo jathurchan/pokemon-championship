@@ -15,8 +15,8 @@ BOOST_AUTO_TEST_SUITE( TestModelItem )
 
 
         BOOST_CHECK_EQUAL(healingFlask.GetThreshold() , 50);
-        BOOST_TEST(healingFlask.GetMultiplier() == 0.3f, boost::test_tools::tolerance(0.001));
-        BOOST_CHECK_EQUAL(healingFlask.GetStatName() , state::StatName::hp);
+        BOOST_TEST(healingFlask.GetAura()->GetValue() == 0.3f, boost::test_tools::tolerance(0.001));
+        BOOST_CHECK_EQUAL(healingFlask.GetStatName() , state::hp);
         BOOST_CHECK_EQUAL(healingFlask.IsPermanent() , false);
     }
 

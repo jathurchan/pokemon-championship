@@ -6,7 +6,8 @@ namespace state {
     {
         this->name = modelItem->GetName();
         this->threshold = modelItem->GetTrigger()->GetThreshold();
-        this->permanent = (threshold < 100) ? false : true;
+        this->permanent = threshold == 100;
+        this->triggerStat = (StatName)modelItem->GetTrigger()->GetStat();
         this->aura = modelItem->GetAura();
     }
 
@@ -22,7 +23,7 @@ namespace state {
 
     StatName Item::GetStatName ()
     {
-        return (state::StatName) aura->GetTargetStat();
+        return triggerStat;
     }
 
     int Item::GetThreshold ()
@@ -30,9 +31,9 @@ namespace state {
         return threshold;
     }
 
-    float Item::GetMultiplier ()
+    model::Aura* Item::GetAura ()
     {
-        return aura->GetValue();
+        return aura;
     }
 
     bool Item::IsPermanent ()

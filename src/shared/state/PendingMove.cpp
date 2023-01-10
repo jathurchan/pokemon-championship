@@ -15,6 +15,8 @@ namespace state
 
     bool operator<(const PendingMove &lhs, const PendingMove &rhs)
     {
-        return (lhs.procSpeed < rhs.procSpeed) ? true : (lhs.procSpeed == rhs.procSpeed ? std::rand() % 2 : false);
+        if (lhs.procSpeed == rhs.procSpeed)
+            return std::rand() % 2;
+        return lhs.procSpeed < rhs.procSpeed;
     }
 }

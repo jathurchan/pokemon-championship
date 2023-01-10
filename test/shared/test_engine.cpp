@@ -26,6 +26,14 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
     engine::Command* commandA;
     engine::Command* commandB;
 
+    BOOST_AUTO_TEST_CASE( test_BanCommands_fail )
+    {
+        commandA = new engine::BanCommand(0, 30);
+        commandB = new engine::BanCommand(1, 4);
+        engine.Execute(commandA, commandB, battle);
+        delete commandA;
+        delete commandB;
+    }
     BOOST_AUTO_TEST_CASE( test_BanCommands )
     {
         commandA = new engine::BanCommand(0, 2);
@@ -157,6 +165,61 @@ BOOST_AUTO_TEST_SUITE( TestEngine )
         BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetState(), state::CreatureState::active);
         BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetName(), "FireSheep");
         BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 82);
+    }
+
+    BOOST_AUTO_TEST_CASE( test_Item_trigger_hp )
+    {
+        commandA = new engine::MoveCommand(0, 2);
+        commandB = new engine::MoveCommand(1, 3);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetStatCurrent(state::hp), 56);
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetItem(), nullptr);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 78);
+    }
+
+    BOOST_AUTO_TEST_CASE( test_Item_trigger_other )
+    {
+        commandA = new engine::ChangeCommand(0, 2);
+        commandB = new engine::ChangeCommand(1, 1);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetName(), "Aquis");
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetName(), "Aquis");
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetItem()->GetName(), "Berserker_Shell");
+
+        commandA = new engine::MoveCommand(0, 0);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::atk), 108);
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetItem(), nullptr);
+    }
+
+    BOOST_AUTO_TEST_CASE( test_skip_dead )
+    {
+        commandA = new engine::MoveCommand(0, 0);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+
+        commandA = new engine::MoveCommand(0, 0);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+
+        commandA = new engine::MoveCommand(0, 1);
+        commandB = new engine::MoveCommand(1, 0);
+        BOOST_CHECK_EQUAL(engine.Execute(commandA, commandB, battle), true);
+        delete commandA;
+        delete commandB;
+        BOOST_CHECK_EQUAL(battle->GetTrainerB()->GetActiveCreature()->GetStatCurrent(state::hp), 20);
+        BOOST_CHECK_EQUAL(battle->GetTrainerA()->GetActiveCreature()->GetState(), state::ko);
 
         delete trainerA;
         delete trainerB;

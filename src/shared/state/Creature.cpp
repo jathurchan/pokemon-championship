@@ -80,26 +80,67 @@ namespace state {
 
     void Creature::ReceiveDamage(int rawDamage, model::Type *type)
     {
+        bool itemTrigger = false;
+        int th = 100;
+        if (item)
+        {
+            itemTrigger = item->GetStatName() == hp;
+            th = this->item->GetThreshold();
+        }
         int totalDamage = rawDamage * type->GetFactor(this->type->GetName()) - this->stats[state::def].GetCurrent() / 5;
         if (totalDamage < 1)
             totalDamage = 1;
-        this->stats[state::hp].Update(this->stats[state::hp].GetCurrent() - totalDamage);
+        
+        if (this->stats[hp].GetCurrent() * 100 <= this->stats[hp].GetBase() * th) //(currHP/maxHP <= Threshold/100)
+            itemTrigger = false;
+        this->stats[hp].Update(this->stats[hp].GetCurrent() - totalDamage);
+        if (this->stats[hp].GetCurrent() * 100 > this->stats[hp].GetBase() * th) //(currHP/maxHP > Threshold/100)
+            itemTrigger = false;
+
         std::cout << name << " takes " << totalDamage << " damage";
-        if (this->stats[state::hp].GetCurrent() <= 0)
+        if (this->stats[hp].GetCurrent() <= 0)
         {
             creatureState = CreatureState::ko;
-            std::cout << " and dies";
+            std::cout << " and dies.\n";
+            return;
+        } else if (itemTrigger)
+        {
+            std::cout << " and triggers " << item->GetName();
+            UseItem();
+            RemoveItem();
         }
         std::cout << ". " << name << " now has " << stats[state::hp].GetCurrent() << " hp.\n";
     }
 
     void Creature::ApplyAura(model::Aura *aura)
     {
-        int targetStat = aura->GetTargetStat();
-        int bonus = this->stats[targetStat].GetBase() * aura->GetValue();
+        StatName stat = (StatName)aura->GetTargetStat(); // targetStat
+        bool itemTrigger = false;
+        int th = 100;
+        if (item)
+        {
+            itemTrigger = item->GetStatName() == (StatName)stat;
+            th = this->item->GetThreshold();
+        }
+
+        int bonus = this->stats[stat].GetBase() * aura->GetValue();
         if (!bonus) return;
-        this->stats[targetStat].Update(this->stats[targetStat].GetCurrent() + bonus);
-        std::cout << this->GetName() << " receives " << aura->GetName() << " modifying its stat " << aura->GetTargetStat() <<  " by " << bonus << "\n";
+
+        if ((this->stats[stat].GetCurrent() * 100 <= this->stats[stat].GetBase() * th) ^ (th > 100)) // currStat/maxStat <= treshold/100 XOR threshold > 100
+            itemTrigger = false;
+        this->stats[stat].Update(this->stats[stat].GetCurrent() + bonus);
+        if ((this->stats[stat].GetCurrent() * 100 > this->stats[stat].GetBase() * th) ^ (th > 100)) // currStat/maxStat > treshold/100 XOR threshold > 100
+            itemTrigger = false;
+
+        std::cout << this->GetName() << " receives " << aura->GetName() << " modifying its stat " << aura->GetTargetStat() <<  " by " << bonus << " for a total of " << this->stats[stat].GetCurrent();
+        if (itemTrigger)
+        {
+            std::cout << " and triggers " << item->GetName() << ".\n";
+            UseItem();
+            RemoveItem();
+            return;
+        }
+        std::cout << ".\n";
     }
 
     void Creature::UpdateState(CreatureState newState)
@@ -130,14 +171,13 @@ namespace state {
         }
         else
         {
-            std::cout <<"Action not allowed (An item is alreay equipped)" << std::endl;;    
+            std::cout <<"Action not allowed (An item is alreay equipped)\n";    
         }
     }
 
     void Creature::UseItem()
     {
-        Stat* affected = &stats[item->GetStatName()];
-        affected->Update(affected->GetCurrent() + (affected->GetBase() * item->GetMultiplier()));
+        ApplyAura(item->GetAura());
     }
 
     void Creature::RemoveItem()
